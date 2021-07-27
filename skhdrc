@@ -1,0 +1,396 @@
+#TODO: Kill spacebar and limelight before running wal
+#TODO: Set PATHS in each file so it's less obnoxious
+#TODO: Keep Binaries in single place
+#TODO: Setup Env Variables in .zshrc and myabe in dots if needed
+# TODO: Keybindings can be per app Alt-Right could switch browser or vscode tabscc
+
+
+#  .::::::.  :::  .    ::   .::::::::-.  
+# ;;;`    `  ;;; .;;,.,;;   ;;,;;,   `';,
+# '[==/[[[[, [[[[[/' ,[[[,,,[[[`[[     [[
+#   '''    $_$$$$,   "$$$"""$$$ $$,    $$
+#  88b    dP"888"88o, 888   "88o888_,o8P'
+#   "YMmMY"  MMM "MMP"MMM    YMMMMMMP"`  
+
+# Setup Modes
+    :: default : \
+        . $HOME/.cache/wal/colors.sh;\
+        /opt/homebrew/bin/spacebar -m config background_color 0xaa${background:1};\
+        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color3:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
+        $HOME/.config/bin/limelight -m config active_color 0xff${color3:1};\
+        $HOME/.config/bin/limelight -m config normal_color 0xff${color4:1};
+
+    :: window @ : \
+        . $HOME/.cache/wal/colors.sh;\
+        /opt/homebrew/bin/spacebar -m config background_color 0xaa${color5:1};\
+        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${foreground:1};\
+        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
+        $HOME/.config/bin/limelight -m config active_color 0xff${color5:1};\
+        $HOME/.config/bin/limelight -m config normal_color 0xff${color5:1};
+
+    :: scripts @ : \
+        . $HOME/.cache/wal/colors.sh;\
+        /opt/homebrew/bin/spacebar -m config background_color 0xaa${color2:1};\
+        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${foreground:1};\
+        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
+        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
+        $HOME/.config/bin/limelight -m config active_color 0xff${color2:1};\
+        $HOME/.config/bin/limelight -m config normal_color 0xff${color2:1};
+
+# Mode Shortcuts
+    default, scripts < lcmd - escape ; window
+    window, scripts < escape ; default
+    default, window < lctrl - escape ; scripts
+
+# Scripts
+    # Toggle Limelight
+    scripts < 0x25 : \
+        [[ `pgrep -fl bin/limelight` ]] \
+        && /usr/bin/killall limelight \
+        || $HOME/.config/bin/limelight -c $HOME/.config/limelight/limelightrc
+
+    # Toggle Spacebar
+    scripts < 0x01 : \
+        YABAI=$(/usr/bin/pgrep -fl /bin/yabai); \
+        SPACEBAR=$(/usr/bin/pgrep -fl /bin/spacebar); \
+        echo YABAI = ${#YABAI} SPACEBAR = ${#SPACEBAR}; \
+        if [ ${#YABAI} -ne 0 ]; then \
+            if [ ${#SPACEBAR} -ne 0 ]; then \
+                /opt/homebrew/bin/brew services stop spacebar; \
+                /usr/bin/killall spacebar; \
+                /opt/homebrew/bin/yabai -m config external_bar main:0:0; \
+            else \
+                /opt/homebrew/bin/brew services start spacebar; \
+                /usr/local/opt/coreutils/libexec/gnubin/sleep 1; \
+                SPACEBAR_HEIGHT=$(/opt/homebrew/bin/spacebar -m config height); \
+                /opt/homebrew/bin/yabai -m config external_bar main:"$SPACEBAR_HEIGHT":0; \
+            fi; \
+        elif [ ${#YABAI} -eq 0 ]; then \
+            if [ ${#SPACEBAR} -ne 0 ]; then \
+                /opt/homebrew/bin/brew services stop spacebar; \
+                /usr/bin/killall spacebar; else /opt/homebrew/bin/brew services start spacebar; \
+            fi; \
+        fi; \
+ 
+
+    # Toggle Yabai
+    scripts < 0x10 : \
+        [[ `pgrep -fl bin/yabai` ]] \
+        && /opt/homebrew/bin/brew services stop xorpse/formulae/yabai \
+        || (`/usr/bin/killall limelight` `/opt/homebrew/bin/brew services start xorpse/formulae/yabai`)
+
+    # Show Desktop
+    scripts < d :\
+        yabai -m space --toggle show-desktop; \
+        /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
+        /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff;
+
+    # Change Wallpaper
+    scripts < 0x0D : \
+        /usr/bin/find /Volumes/Wallpapers -type f -print0 | \
+        /usr/local/opt/coreutils/libexec/gnubin/shuf -z -n 1| \
+        /usr/bin/xargs -I{} /usr/bin/osascript -e \
+        "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""
+
+    # Set All Desktops to the same Wallpaper
+    scripts < a : \
+        skhd -k "escape"; $HOME/.config/yabai/yabai_helper -w 1
+
+    # Update Colors Based on Current Wallpaper
+    scripts < c : ;\
+        /opt/homebrew/bin/brew services stop spacebar; \
+        /usr/bin/killall limelight; \
+        /usr/bin/osascript \
+        -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
+        current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
+        /usr/local/bin/wal -i $current_wallpaper --backend wal  -n; \
+        /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\"";\
+        /opt/homebrew/bin/pywalfox update; \
+        /opt/homebrew/bin/brew services start spacebar; \
+        /Users/brandon/.config/bin/limelight; \
+
+    # Change Wallpaper and Update Colors
+    scripts < shift - c : \
+        skhd -k "w"; \
+        /opt/homebrew/bin/brew services stop spacebar; \
+        /usr/bin/killall limelight; \
+        /usr/bin/osascript \
+        -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
+        current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
+        /usr/local/bin/wal -i $current_wallpaper --backend wal  -n; \
+        /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
+        /opt/homebrew/bin/pywalfox update; \
+        /opt/homebrew/bin/brew services start spacebar; \
+        /Users/brandon/.config/bin/limelight;
+
+
+    # Leave Wallpaper and change colors
+     scripts < lalt - c : ;\
+        /opt/homebrew/bin/brew services stop spacebar; \
+        /usr/bin/killall limelight; \
+        /usr/local/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n; \
+        /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
+        /opt/homebrew/bin/pywalfox update; \
+        /opt/homebrew/bin/brew services start spacebar; \
+        /Users/brandon/.config/bin/limelight;
+
+
+    # Toggle VPN and set spacebar to specific color when on
+    scripts < 0x09 : \
+        skhd -k "escape"; \
+        if [[ $(echo $(networksetup -showpppoestatus "Myrtle Beach Office VPN")) == "disconnected"  ]] then \
+            networksetup -connectpppoeservice "Myrtle Beach Office VPN"; \
+            /opt/homebrew/bin/spacebar -m config background_color 0xaaff0000; \
+        elif [[ $(echo $(networksetup -showpppoestatus "Myrtle Beach Office VPN")) == "connected"  ]]; then \
+            networksetup -disconnectpppoeservice "Myrtle Beach Office VPN"; \
+        fi; 
+
+    # Toggle Spacebar shell widgets
+    scripts < 0x24 : \
+        if [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o MUSIC) == "MUSIC" ]]; then \
+                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh VPN";\
+        elif [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o VPN) == "VPN" ]]; then \
+                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh INVESTMENTS";\
+        elif [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o INVESTMENTS) == "INVESTMENTS" ]]; then \
+                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh MUSIC"; \
+        fi;   
+
+
+# Window Management
+    # Balance Space
+    window < 0x18 : \
+        yabai -m space --balance; skhd -k "escape";
+    
+    # Rotate 90 degrees
+    window < 0x0F :\
+        yabai -m space --rotate 90
+    
+    # Change Split
+    window < 0x01 : \
+        yabai -m window --toggle split
+    
+    # Move Window Left
+    window < left : \
+        yabai -m window --swap prev
+    
+    # Move Window Right
+    window < right : \
+        yabai -m window --swap next
+    
+    # Toggle Between Layouts
+    window < space : \
+        if [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"bsp"* ]]; then \
+            yabai -m query --spaces \
+            | jq '[.[]|select(.focused==1)][0].index' \
+            | xargs -I {} yabai -m space {} --layout stack; \
+        elif [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"stack"* ]]; then \
+            yabai -m query --spaces \
+            | jq '[.[]|select(.focused==1)][0].index' \
+            | xargs -I {} yabai -m space {} --layout float; \
+        elif [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"float"* ]]; then \
+            yabai -m query --spaces \
+            | jq '[.[]|select(.focused==1)][0].index' \
+            | xargs -I {} yabai -m space {} --layout bsp; \
+        fi
+    
+    # Move through windows in space stack
+    window < tab : \
+        yabai -m query --spaces --space \
+        | jq -re ".index" \
+        | xargs -I{} yabai -m query --windows --space {} \
+        | jq -sre 'add | map(select(.minimized != 1 and .title != "Microsoft Teams Notification")) | sort_by(.display, .frame.y, .frame.x, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id' \
+        | xargs -I{} yabai -m window --focus {}
+    
+    # Move through windows in space in reverse
+    window < lshift - tab : \
+        yabai -m query --spaces --space \
+        | jq -re ".index" \
+        | xargs -I{} yabai -m query --windows --space {} \
+        | jq -sre 'add | map(select(.minimized != 1 and .title != "Microsoft Teams Notification")) | sort_by(.display, .frame.y, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id' \
+        | xargs -I{} yabai -m window --focus {}
+
+    # Cycle Stack 
+    window < up : \
+        yabai -m window --focus stack.next
+    window < down : \
+        yabai -m window --focus stack.prev
+
+    # Insert into Stack
+    window < return : \
+        yabai -m window --insert stack; skhd -k "escape";
+
+    # Toggle Expose        
+    window < e : \
+        yabai -m window --toggle expose
+    
+    # Toggle Misson Control        
+    window < m : \
+        yabai -m space --toggle mission-control
+    
+    # Show Destop Toggle 
+    window < d : \
+        yabai -m space --toggle show-desktop; \
+        /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
+        /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff
+
+    # Turn off Borders, Gaps, and Padding
+    window < g : \
+        yabai -m space --toggle gap;\
+        yabai -m space --toggle padding; \
+        if [[ $(pgrep -fl limelight) == ""  ]] then;\
+            /Users/brandon/.config/bin/limelight -c ~/.config/limelight/limelightrc &; \
+        else;\
+            killall limelight; \
+        fi; \
+        skhd -k "escape";
+
+    # Close Window
+    window < backspace [
+        * : yabai -m window --close; skhd -k "escape";
+        "firefox" : yabai -m window --toggle native-fullscreen; yabai -m window --close; skhd -k "escape";
+    ]
+
+    # Toggle float for focused window
+    window < f : \
+        yabai -m window --toggle float; skhd -k "escape";
+    
+    # Toggle float and center focused window
+    window < shift - f : \
+        yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2; skhd -k "escape";
+    
+    # Toggle Zoom-Fullscreen
+    window < z : \
+        yabai -m window --toggle zoom-fullscreen; skhd -k "escape";
+    
+    # Toggle Native-Fullscreen 
+    window < shift - z : \
+        yabai -m window --toggle native-fullscreen; skhd -k "escape";
+
+# Defualt
+    # Play My Radio Station
+    # default < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
+
+    default < cmd - t -> [
+        "firefox nightly" : sleep .2; skhd -k "cmd - a"; skhd -k "backspace"
+    ]
+
+    default < cmd - 0x30 [
+        "firefox nightly" : skhd -k "escape"; skhd -k "ctrl - tab";
+    ]
+
+    default < cmd + shift - 0x30 [
+        "firefox nightly" : skhd -k "escape"; skhd -k "ctrl + shift - tab";
+    ]
+
+    default < cmd - n [ 
+        "firefox nightly" : \
+        osascript -e "tell application \"System Events\"" \
+    -e "	key code 53 using command down" \
+    -e "end tell" \
+    -e "delay 1" \
+    -e "tell application \"Firefox\"" \
+    -e "	activate" \
+    -e "end tell" \
+    -e "tell application \"System Events\"" \
+    -e "	key code 36" \
+    -e "end tell" \
+    -e "tell application \"Firefox\"" \
+    -e "	activate" \
+    -e "	repeat while not frontmost" \
+    -e "		delay 0.1" \
+    -e "	end repeat" \
+    -e "	tell application \"System Events\" to tell application process \"Firefox\"" \
+    -e "		set windowCountBefore to (count of windows)" \
+    -e "		tell menu 1 of menu bar item 3 of menu bar 1" \
+    -e "			click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)" \
+    -e "		end tell" \
+    -e "		repeat while (count of windows) = windowCountBefore" \
+    -e "			delay 0.2" \
+    -e "		end repeat" \
+    -e "	end tell" \
+    -e "end tell" \
+    -e "tell application \"System Events\"" \
+    -e "	key code 53" \
+    -e "end tell" 
+        "script editor" : \
+        osascript -e "tell application \"System Events\"" \
+    -e "	key code 53 using command down" \
+    -e "end tell" \
+    -e "delay 1" \
+    -e "tell application \"Script Editor\"" \
+    -e "	activate" \
+    -e "end tell" \
+    -e "tell application \"System Events\"" \
+    -e "	key code 36" \
+    -e "end tell" \
+    -e "tell application \"Script Editor\"" \
+    -e "	activate" \
+    -e "	repeat while not frontmost" \
+    -e "		delay 0.1" \
+    -e "	end repeat" \
+    -e "	tell application \"System Events\" to tell application process \"Script Editor\"" \
+    -e "		set windowCountBefore to (count of windows)" \
+    -e "		tell menu 1 of menu bar item 3 of menu bar 1" \
+    -e "			click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)" \
+    -e "		end tell" \
+    -e "		repeat while (count of windows) = windowCountBefore" \
+    -e "			delay 0.2" \
+    -e "		end repeat" \
+    -e "	end tell" \
+    -e "end tell" \
+    -e "tell application \"System Events\"" \
+    -e "	key code 53" \
+    -e "end tell" 
+    ]
+
+default < cmd - w [
+        "firasdasdefox" : \
+        osascript -e "tell application \"Firefox\"" \
+        -e "activate" \
+        -e "repeat while not frontmost" \
+        -e "delay 0.1" \
+        -e "end repeat" \
+        -e "tell application \"System Events\"" \
+        -e "key code 36" \
+        -e "end tell" \
+        -e "tell application \"System Events\" to tell application process \"Firefox\"" \
+        -e "set windowCountBefore to (count of windows)" \
+        -e "tell menu 1 of menu bar item 3 of menu bar 1" \
+        -e "click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"W\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)" \
+        -e "end tell" \
+        -e "repeat while (count of windows) = windowCountBefore" \
+        -e "delay 0.2" \
+        -e "end repeat" \
+        -e "end tell" \
+        -e "end tell" 
+    ]
+
+    default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
+
+    default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
+
+    default < cmd - return [
+        "mail" : skhd -k "cmd + shift - d"
+    ]
+
