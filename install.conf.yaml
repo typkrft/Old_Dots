@@ -7,6 +7,6 @@
 - link:
     ~/.config/yabai/yabairc: yabairc
     ~/.config/skhd/skhdrc: skhdrc
-
+    ~/.config/limelight/limelightrc: limelightrc
 - create:
     - ~/downloads

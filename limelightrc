@@ -1,0 +1,51 @@
+#!/bin/sh
+
+#  :::     ::: .        :  .,::::::  
+#  ;;;     ;;; ;;,.    ;;; ;;;;''''  
+#  [[[     [[[ [[[[, ,[[[[, [[cccc   
+#  $$'     $$$ $$$$$$$$"$$$ $$""""   
+# o88oo,.__888 888 Y88" 888o888oo,__ 
+# """"YUMMMMMM MMM  M'  "MMM""""YUMMM
+#  :::     :::  .,-:::::/    ::   .: ::::::::::::
+#  ;;;     ;;;,;;-'````'    ,;;   ;;,;;;;;;;;''''
+#  [[[     [[[[[[   [[[[[[/,[[[,,,[[[     [[     
+#  $$'     $$$"$$c.    "$$ "$$$"""$$$     $$     
+# o88oo,.__888 `Y8bo,,,o88o 888   "88o    88,    
+# """"YUMMMMMM   `'YMUP"YMM MMM    YMM    MMM    
+
+# Needed for Sciprting Limelight is in a non-standard path
+    PATH="$PATH:$HOME/.config/bin/"
+
+# Pywal
+    # Load Colors
+        . $HOME/.cache/wal/colors.sh
+    # Colors
+        background="${background:1}"
+        foreground="${foreground:1}"
+        cursor="${cursor:1}"
+
+        color0="${color0:1}"
+        color1="${color1:1}"
+        color2="${color2:1}"
+        color3="${color3:1}"
+        color4="${color4:1}"
+        color5="${color5:1}"
+        color6="${color6:1}"
+        color7="${color7:1}"
+        color8="${color8:1}"
+        color9="${color9:1}"
+        color10="${color10:1}"
+        color11="${color11:1}"
+        color12="${color12:1}"
+        color13="${color13:1}"
+        color14="${color14:1}"
+        color15="${color15:1}"
+
+# Settings
+    limelight -m config width            6 # 3 for rounded
+    limelight -m config radius           0 # 7 for rounded
+    limelight -m config placement        inset
+    limelight -m config active_color     0xff$color3
+    limelight -m config normal_color     0xff$color4
+    
+echo "limelight configuration loaded.."
