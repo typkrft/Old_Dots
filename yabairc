@@ -1,0 +1,139 @@
+#!/bin/sh
+
+# Y A B A I
+
+# T O D O S
+  # TODO: Add Grid to move New Message Window in spark to bottom left or full height left
+
+# S C R I P T I N G  A D D I T T I O N S
+  sudo yabai --load-sa
+  yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# P Y W A L
+  # Source Colors
+    . $HOME/.cache/wal/colors.sh
+  # Colors
+    background="${background:1}"
+    foreground="${foreground:1}"
+    cursor="${cursor:1}"
+
+    color0="${color0:1}"
+    color1="${color1:1}"
+    color2="${color2:1}"
+    color3="${color3:1}"
+    color4="${color4:1}"
+    color5="${color5:1}"
+    color6="${color6:1}"
+    color7="${color7:1}"
+    color8="${color8:1}"
+    color9="${color9:1}"
+    color10="${color10:1}"
+    color11="${color11:1}"
+    color12="${color12:1}"
+    color13="${color13:1}"
+    color14="${color14:1}"
+    color15="${color15:1}"
+
+# F U N C T I O N S
+  create_spaces()
+    {
+      spaces=$(($1-$(yabai -m query --spaces | grep -c "id")+$(yabai -m query --spaces | grep -c '"native-fullscreen":1')))
+        open -a "Mission Control"
+        osascript -e "repeat \"$spaces\" times" -e "tell application \"System Events\" to click button 1 of group \"Spaces Bar\" of group 1 of group \"Mission Control\" of process \"Dock\"" -e "end repeat"
+        open -a "Mission Control"
+    }
+
+# S E T U P  D E S K T O P S
+  create_spaces 5
+  SPACEBAR_HEIGHT=$([[ `pgrep -fl /bin/spacebar` ]] &&  /opt/homebrew/bin/spacebar -m config height || echo 0 )
+
+# T I L I N G 
+  yabai -m config external_bar main:$SPACEBAR_HEIGHT:0
+  yabai -m config window_placement             second_child
+  yabai -m config window_topmost               on
+  yabai -m config split_ratio                  0.50
+  yabai -m config auto_balance                 off
+
+# W I N D O W S
+  yabai -m config window_shadow                float
+  yabai -m config window_opacity               on
+  yabai -m config active_window_opacity        1.0
+  yabai -m config normal_window_opacity        0.95
+
+# M O U S E
+  yabai -m config mouse_modifier               fn
+  yabai -m config mouse_action1                resize
+  yabai -m config mouse_action2                move
+  yabai -m config mouse_drop_action            swap
+  yabai -m config mouse_follows_focus          on
+  yabai -m config focus_follows_mouse          autoraise
+
+# L A Y O U T
+  yabai -m config layout                       bsp
+  yabai -m config top_padding                  12
+  yabai -m config bottom_padding               12
+  yabai -m config left_padding                 12
+  yabai -m config right_padding                12
+  yabai -m config window_gap                   18
+
+# S P A C E S
+  yabai -m config --space 2 layout stack
+
+# R U L E S
+  # Bitwarden
+    yabai -m rule --add app="^Bitwarden$" manage=off
+    yabai -m rule --add app="^Bitwarden$" sticky=on
+  # Authy
+    yabai -m rule --add app="^Authy.*" manage=off
+    yabai -m rule --add app="^Authy.*" sticky=on
+  # App Store
+    yabai -m rule --add app="^App Store$" manage=off
+  # Firefox
+    yabai -m rule --add app="^Firefox*" title="^Opening*" manage=off
+    yabai -m rule --add app="^Firefox*" title="^Set Desktop Background$" manage=off
+  # Spark
+    yabai -m rule --add app="^Spark$" title="^New Message*" manage=off
+    yabai -m rule --add app="^Spark$" title="^New Message*" sticky=on
+    yabai -m rule --add app="^Spark$" title="^RE:*" manage=off
+    yabai -m rule --add app="^Spark$" title="^RE:*" sticky=on
+    yabai -m rule --add app="^Spark$" title="^FWD:*" manage=off
+    yabai -m rule --add app="^Spark$" title="^FWD:*" sticky=on
+    yabai -m rule --add app="^Spark$" space=2
+  # Apple Mail
+    yabai -m rule --add app="^Mail$" title="^New Message*" manage=off
+    yabai -m rule --add app="^Mail$" title="^New Message*" sticky=on
+    yabai -m rule --add app="^Mail$" title="^Re:*" manage=off
+    yabai -m rule --add app="^Mail$" title="^Re:*" sticky=on
+    yabai -m rule --add app="^Mail$" title="^Fwd:*" manage=off
+    yabai -m rule --add app="^Mail$" title="^Fwd:*" sticky=on
+    yabai -m rule --add app="^Mail$" space=2
+    yabai -m rule --add app="^Mail$" title="^General$" manage=off
+  # Messages
+    yabai -m rule --add app="^Messages$" space=2
+  # WeBull
+    yabai -m rule --add app="^Webull Desktop$" space=3
+  # Music
+    yabai -m rule --add app="^Music$" space=4
+  # Microsoft Teams
+    yabai -m rule --add app="^Microsoft Teams$" space=2
+  # Finder
+    yabai -m rule --add app="^Finder$"  manage=off
+
+# S I G N A L S
+  # Microsoft Teams
+  # yabai -m signal --add app="^Microsoft Teams$" title="^Microsoft Teams Notification$" event=
+
+
+# B O R D E R S  - N O T  W O R K I N G 
+  # yabai -m config window_border                on
+  # yabai -m config window_border_width          6
+  # yabai -m config active_window_border_color   0xff775759
+  # yabai -m config normal_window_border_color   0xff555555
+  # yabai -m config insert_feedback_color        0xffd75f5f
+  # yabai -m config window_opacity_duration      0.0
+
+echo "yabai configuration loaded.."
+
+# L I M E L I G H T
+  /usr/bin/killall $HOME/.config/bin/limelight &> /dev/null
+  $HOME/.config/bin/limelight &> /dev/null &
