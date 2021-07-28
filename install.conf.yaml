@@ -1,12 +1,46 @@
+# D O T B O T
+
+# T O D O S
+# TODO: Figure out the order things need to happen for applications like Firefox. eg: brew install firefox > xattr command > setup profiles
+# NOTE: Could potentially install extensions `https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line`
+# TODO: Comment Config
+# TODO: Setup / Generate an ENV File
+# TODO: Maybe Create a readme and move todos to that
+
 - defaults:
     link:
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/.config/yabai/yabairc: yabairc
     ~/.config/skhd/skhdrc: skhdrc
     ~/.config/limelight/limelightrc: limelightrc
+    ~/.config/wal: wal
+
+- shell:
+    # Firefox Profile Setup besure to set variables
+    # TODO: Add check for Darwin/Linux and set paths accordingly
+    - command: PROFILE_NAME="typkrft"; /Applications/Firefox.app/Contents/MacOS/firefox -CreateProfile ${PROFILE_NAME};
+    - command: PROFILE_NAME="typkrft"; /Applications/Firefox.app/Contents/MacOS/firefox -p ${PROFILE_NAME} &> /dev/null &;
+    - command: sleep 1;
+    - command: mv --backup=t ~/Library/Application\ Support/Firefox/profiles.ini ~/Library/Application\ Support/Firefox/profiles.ini.bak;
+    - command: PROFILE_NAME="typkrft"; echo "[Profile0]\nName=${PROFILE_NAME}\nIsRelative=0\nPath=${HOME}/.config/Firefox/${PROFILE_NAME}\nDefault=1\n\n[General]\nStartWithLastProfile=1\nVersion=2" >> ~/Library/Application\ Support/Firefox/profiles.ini;
+    - command: killall firefox;
+    - command: PROFILE_NAME="typkrft"; mv -T --backup=t ~/.config/Firefox/${PROFILE_NAME} ~/.config/Firefox/${PROFILE_NAME}_bak || echo "No old profiles to backup"
+    - command: PROFILE_NAME="typkrft"; mv --backup=t ~/Library/Application\ Support/Firefox/Profiles/*.${PROFILE_NAME} ~/.config/Firefox/${PROFILE_NAME}
+
 - create:
     - ~/downloads
+    - ~/.config/Firefox/typkrft/chrome
+    - /Applications/Firefox.app/Contents/Resources/distribution
+
+- link:
+    ~/.config/Firefox/typkrft/chrome/userChrome.css: userChrome.css
+    /Applications/Firefox.app/Contents/Resources/defaults/pref/autoconfig.js: autoconfig.js
+    /Applications/Firefox.app/Contents/Resources/firefox.cfg: firefox.cfg
+# Not sure if needed
+# - shell:
+# - command: echo "Don't forget to open Firefox Nightly and go to 'about:config' and set 'gfx.webrender.all' and 'toolkit.legacyUserProfileCustomizations.stylesheets to true.'"
+# - command: xattr -r -d com.apple.quarantine /Applications/Firefox.app

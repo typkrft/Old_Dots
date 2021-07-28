@@ -1,0 +1,61 @@
+{{
+    "alfredtheme" : {{
+      "result" : {{
+        "textSpacing" : 5,
+        "subtext" : {{
+          "size" : 12,
+          "colorSelected" : "#FFFFFFFF",
+          "font" : "VictorMono Nerd Font",
+          "color" : "#FFFFFF7E"
+        }},
+        "shortcut" : {{
+          "size" : 16,
+          "colorSelected" : "#FFFFFFFF",
+          "font" : "VictorMono Nerd Font",
+          "color" : "{color3}FF"
+        }},
+        "backgroundSelected" : "{color2}FF",
+        "text" : {{
+          "size" : 18,
+          "colorSelected" : "#FFFFFFFF",
+          "font" : "VictorMono Nerd Font",
+          "color" : "#FFFFFFCB"
+        }},
+        "iconPaddingHorizontal" : 4,
+        "paddingVertical" : 3,
+        "iconSize" : 40
+      }},
+      "search" : {{
+        "paddingVertical" : 5,
+        "background" : "#00000000",
+        "spacing" : 8,
+        "text" : {{
+          "size" : 34,
+          "colorSelected" : "#FFFFFFFF",
+          "font" : "VictorMono Nerd Font",
+          "color" : "#FFFFFFFF"
+        }},
+        "backgroundSelected" : "#45A9B3FF"
+      }},
+      "window" : {{
+        "color" : "{color3}9B",
+        "paddingHorizontal" : 9,
+        "width" : 671,
+        "borderPadding" : 0,
+        "borderColor" : "#0000007F",
+        "blur" : 28,
+        "roundness" : 10,
+        "paddingVertical" : 8
+      }},
+      "credit" : "Brandon Shockley",
+      "separator" : {{
+        "color" : "#CBCBCBF3",
+        "thickness" : 0
+      }},
+      "scrollbar" : {{
+        "color" : "E5",
+        "thickness" : 2
+      }},
+      "name" : "Wal"
+    }}
+  }}
