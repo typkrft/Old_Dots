@@ -115,7 +115,7 @@
 
     # Set All Desktops to the same Wallpaper
     scripts < a : \
-        skhd -k "escape"; $HOME/.config/yabai/yabai_helper -w 1
+        skhd -k "escape"; $HOME/.config/bin/yabai_helper -w 1
 
     # Update Colors Based on Current Wallpaper
     scripts < c : ;\

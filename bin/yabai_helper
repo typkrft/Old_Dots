@@ -1,0 +1,167 @@
+#!/bin/sh
+
+# TODO: Check if Move spaces greater than 0 
+# TODO: Fix the fuck out of this 
+# TODO: Rename this to yabaiHelper
+
+ARGS=$*
+
+YABAI_HELPER=$(osascript - "$ARGS" <<EOF
+
+
+on getOptions(theItem, theList)
+	repeat with a from 1 to count of theList
+		-- a is the index
+		-- item a is theItem
+		-- a + 1 is the index of the option
+		
+		if item a of theList is theItem or item a of theList is theItem or item a of theList is theItem then
+			set option to {item a of theList}
+			-- log option & 1
+			
+			--log item (a + 1) of theList
+			--log class of item (a + 1) of theList
+			--log option
+			--log class of option
+			set option to option & item (a + 1) of theList
+			-- log option
+			try
+				set test to item 2 of option as integer
+			on error errMsg
+				-- log errMsg
+				error "Option for -" & item 1 of option & " is not an integer."
+			end try
+			
+			--log abs
+			--log option
+			--log class of item 2 of option
+			if item 2 of option > 0 then
+				return option
+			else
+				error "Option for -" & item 1 of option & " should be greater than 0."
+			end if
+		end if
+		
+	end repeat
+	return ""
+end getOptions
+
+on createSpaces(opts)
+	log opts
+	repeat item 2 of opts times
+		do shell script "open -a 'Mission Control'"
+		delay 0.1
+		tell application "System Events" to click (every button whose value of attribute "AXDescription" is "add desktop") of UI element "Spaces Bar" of UI element 1 of group 1 of process "Dock"
+		delay 0.1
+		do shell script "open -a 'Mission Control'"
+		
+	end repeat
+end createSpaces
+
+on moveSpaces(opts)
+	--log opts
+	set currentDesktop to do shell script "/opt/homebrew/bin/yabai -m query --spaces | grep -a5 \\\\\"focused\\\\\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\\\\1/'"
+	set totalDesktops to do shell script "defaults read com.apple.spaces | sed -n '/\\\\\"Display Identifier\\\\\" = Main/,/\\\\\"Collapsed Space\\\\\"/p' | grep -c ManagedSpaceID"
+	set toTheRight to (totalDesktops as number) - currentDesktop as number
+	set toTheLeft to (currentDesktop as number) - 1
+	set desiredDesktop to item 2 of opts as integer -- From Arguments passed to it
+	
+	-- Logs
+	-- log toTheRight
+	-- log toTheLeft
+	-- log desiredDesktop
+	-- log currentDesktop
+	-- log desiredDesktop - currentDesktop
+	
+	-- Setup Checks
+	
+	-- Main Logic
+	
+	if desiredDesktop - currentDesktop < 0 then
+		set a to desiredDesktop - currentDesktop
+		set a to a as string
+		set moves to item 2 of a as integer
+		tell application "System Events"
+			repeat moves times
+				key code 123 using control down
+				delay 0.1
+			end repeat
+		end tell
+	else if desiredDesktop - currentDesktop > 0 then
+		tell application "System Events"
+			repeat desiredDesktop - currentDesktop times
+				key code 124 using control down
+				delay 0.1
+			end repeat
+		end tell
+	else if desiredDesktop - currentDesktop is 0 then
+		-- log "Desired Desktop is Current Desktop"
+	else
+		-- log "failed"
+	end if
+end moveSpaces
+
+on setWallpaper(opts)
+	
+	set currentDesktop to do shell script "/opt/homebrew/bin/yabai -m query --spaces | grep -a5 \\\\\"focused\\\\\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\\\\1/'"
+	moveSpaces(opts)
+	
+	delay 1
+	tell application "Finder"
+		set a to get POSIX path of (get desktop picture as alias)
+		-- set b to do shell script "/opt/homebrew/bin/yabai -m query --spaces | grep -c id"
+		set b to do shell script "defaults read com.apple.spaces | sed -n '/\"Display Identifier\" = Main/,/\"Collapsed Space\"/p' | grep -c ManagedSpaceID"
+		log a
+		log b
+	end tell
+	
+	moveSpaces({"", "1"})
+	
+	repeat with theDesktop from 1 to b - 1
+		tell application "System Events"
+			key code 124 using (control down)
+		end tell
+		delay 0.6
+		tell application "Finder" to set desktop picture to POSIX file a
+	end repeat
+	delay 0.15
+	moveSpaces({"", currentDesktop})
+end setWallpaper
+
+on run argv -- argv is a list of text
+	
+	set argv to argv as string
+	set argv to words of argv
+	log argv
+	
+	
+	set createOpts to getOptions("c", argv)
+	set spacesOpts to getOptions("m", argv)
+	set wallpaperOpts to getOptions("w", argv)
+	delay 1
+	if createOpts is not "" then
+		-- log createOpts
+		createSpaces(createOpts)
+	else
+		-- log 1
+	end if
+	delay 1
+	if spacesOpts is not "" then
+		-- log spacesOpts
+		moveSpaces(spacesOpts)
+		
+	else
+		-- log 1
+	end if
+	delay 1
+	if wallpaperOpts is not "" then
+		-- log wallpaperOpts
+		setWallpaper(wallpaperOpts)
+	else
+		-- log 1
+	end if
+	
+end run
+
+EOF
+)
