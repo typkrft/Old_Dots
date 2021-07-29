@@ -20,7 +20,6 @@
     ~/.config/limelight/limelightrc: limelightrc
     ~/.config/wal: wal
     ~/.config/bin: bin
-    ~/.zshenv: zshenv
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
