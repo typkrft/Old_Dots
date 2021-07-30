@@ -10,6 +10,11 @@
   #### Y A B A I
     - [ ] Add Grid to move New Message Window in spark to bottom left or full height left
     - [ ] If yabai is working properly I may be able to remove the create spaces function
-    - [ ] Uranus
-    - [ ] Neptune
-    - [ ] Comet Haley
+
+  #### S K H D
+    - [ ] Kill spacebar and limelight before running wal
+    - [ ] Set PATHS in each file so it's less obnoxious
+    - [ ] Keep Binaries in single place
+    - [ ] Setup Env Variables in .zshrc and myabe in dots if needed
+    - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
+
