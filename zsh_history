@@ -1479,3 +1479,31 @@ cd kitty/kitty.conf
 nvim kitty/kitty.conf
 kitty reload
 exit
+source .zshrc
+dbot Updated zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+cat .zsh_history
+cat .dotfiles/zsh_history
+rm .zsh_history
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+bat .zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Update zshrc
+source .zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc

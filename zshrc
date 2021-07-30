@@ -1,6 +1,14 @@
 # A L I A S E S
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 
+# F U N C T I O N S
+dbot() {
+  $HOME/.dotfiles/install;
+  git -C $HOME/.dotfiles add $HOME/.dotfiles/*;
+  git -C $HOME/.dotfiles commit -am "'$*'";
+  git -C $HOME/.dotfiles push -u origin main;
+}
+
 # Z I N I T
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -32,6 +40,14 @@ zinit light zsh-users/zsh-syntax-highlighting
 # Completions 
 zinit ice blockf
 zinit light zsh-users/zsh-completions
+
+zinit snippet https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh
+
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# Unused plugins
+# zinit light Aloxaf/fzf-tab
 
 # S T A R S H I P
 eval "$(starship init zsh)"
