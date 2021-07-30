@@ -1,12 +1,5 @@
 # D O T B O T
 
-# T O D O S
-# TODO: Figure out the order things need to happen for applications like Firefox. eg: brew install firefox > xattr command > setup profiles
-# NOTE: Could potentially install extensions `https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line`
-# TODO: Comment Config
-# TODO: Setup / Generate an ENV File
-# TODO: Maybe Create a readme and move todos to that
-
 - defaults:
     link:
       relink: true
@@ -28,7 +21,6 @@
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
-#     # TODO: Add check for Darwin/Linux and set paths accordingly
 #     - command: PROFILE_NAME="typkrft"; /Applications/Firefox.app/Contents/MacOS/firefox -CreateProfile ${PROFILE_NAME};
 #     - command: PROFILE_NAME="typkrft"; /Applications/Firefox.app/Contents/MacOS/firefox -p ${PROFILE_NAME} &> /dev/null &;
 #     - command: sleep 1;

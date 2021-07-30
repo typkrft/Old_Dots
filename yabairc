@@ -2,9 +2,6 @@
 
 # Y A B A I
 
-# T O D O S
-  # TODO: Add Grid to move New Message Window in spark to bottom left or full height left
-  # TODO: If yabai is working properly I may be able to remove the create spaces function
 # S C R I P T I N G  A D D I T T I O N S
   sudo yabai --load-sa
   yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
@@ -122,7 +119,6 @@
 # S I G N A L S
   # Microsoft Teams
   # yabai -m signal --add app="^Microsoft Teams$" title="^Microsoft Teams Notification$" event=
-
 
 # B O R D E R S  
   yabai -m config window_border                on
