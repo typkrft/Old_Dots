@@ -1,6 +1,6 @@
 ### T O D O S
 
-  #### install.conf.yaml
+  #### I N S T A L L . C O N F . Y A M L
     - [ ]  Figure out the order things need to happen for applications like Firefox. eg: brew install firefox > xattr command > setup profiles
       - Could potentially install extensions `https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line`
     - [ ] Setup / Generate an ENV File
