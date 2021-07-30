@@ -4,7 +4,7 @@
 
 # T O D O S
   # TODO: Add Grid to move New Message Window in spark to bottom left or full height left
-
+  # TODO: If yabai is working properly I may be able to remove the create spaces function
 # S C R I P T I N G  A D D I T T I O N S
   sudo yabai --load-sa
   yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
@@ -124,16 +124,16 @@
   # yabai -m signal --add app="^Microsoft Teams$" title="^Microsoft Teams Notification$" event=
 
 
-# B O R D E R S  - N O T  W O R K I N G 
-  # yabai -m config window_border                on
-  # yabai -m config window_border_width          6
-  # yabai -m config active_window_border_color   0xff775759
-  # yabai -m config normal_window_border_color   0xff555555
-  # yabai -m config insert_feedback_color        0xffd75f5f
-  # yabai -m config window_opacity_duration      0.0
+# B O R D E R S  
+  yabai -m config window_border                on
+  yabai -m config window_border_width          8
+  yabai -m config active_window_border_color   0xff${color2}
+  yabai -m config normal_window_border_color   0xff${color4}
+  yabai -m config insert_feedback_color        0xffd75f5f
+  yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
 
 # L I M E L I G H T
-  /usr/bin/killall $HOME/.config/bin/limelight &> /dev/null
-  $HOME/.config/bin/limelight &> /dev/null &
+#  /usr/bin/killall $HOME/.config/bin/limelight &> /dev/null
+#  $HOME/.config/bin/limelight &> /dev/null &

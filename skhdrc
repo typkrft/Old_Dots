@@ -2,7 +2,7 @@
 #TODO: Set PATHS in each file so it's less obnoxious
 #TODO: Keep Binaries in single place
 #TODO: Setup Env Variables in .zshrc and myabe in dots if needed
-# TODO: Keybindings can be per app Alt-Right could switch browser or vscode tabscc
+#TODO: Keybindings can be per app Alt-Right could switch browser or vscode tabscc
 
 
 #  .::::::.  :::  .    ::   .::::::::-.  
@@ -25,8 +25,9 @@
         /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color3:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        $HOME/.config/bin/limelight -m config active_color 0xff${color3:1};\
-        $HOME/.config/bin/limelight -m config normal_color 0xff${color4:1};
+        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color2:1};\
+        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color4:1};\
+        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
 
     :: window @ : \
         . $HOME/.cache/wal/colors.sh;\
@@ -40,8 +41,9 @@
         /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        $HOME/.config/bin/limelight -m config active_color 0xff${color5:1};\
-        $HOME/.config/bin/limelight -m config normal_color 0xff${color5:1};
+        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color5:1};\
+        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color5:1};\
+        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
 
     :: scripts @ : \
         . $HOME/.cache/wal/colors.sh;\
@@ -55,8 +57,9 @@
         /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        $HOME/.config/bin/limelight -m config active_color 0xff${color2:1};\
-        $HOME/.config/bin/limelight -m config normal_color 0xff${color2:1};
+        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color2:1};\
+        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color2:1};\
+        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
 
 # Mode Shortcuts
     default, scripts < lcmd - escape ; window
@@ -65,10 +68,10 @@
 
 # Scripts
     # Toggle Limelight
-    scripts < 0x25 : \
-        [[ `pgrep -fl bin/limelight` ]] \
-        && /usr/bin/killall limelight \
-        || $HOME/.config/bin/limelight -c $HOME/.config/limelight/limelightrc
+    # scripts < 0x25 : \
+        # [[ `pgrep -fl bin/limelight` ]] \
+        # && /usr/bin/killall limelight \
+        # || $HOME/.config/bin/limelight -c $HOME/.config/limelight/limelightrc
 
     # Toggle Spacebar
     scripts < 0x01 : \
@@ -98,13 +101,13 @@
     scripts < 0x10 : \
         [[ `pgrep -fl bin/yabai` ]] \
         && /opt/homebrew/bin/brew services stop xorpse/formulae/yabai \
-        || (`/usr/bin/killall limelight` `/opt/homebrew/bin/brew services start xorpse/formulae/yabai`)
+        || (/opt/homebrew/bin/brew services start xorpse/formulae/yabai`)
 
     # Show Desktop
     scripts < d :\
-        yabai -m space --toggle show-desktop; \
-        /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
-        /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff;
+        yabai -m space --toggle show-desktop; 
+        # /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
+        # /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff;
 
     # Change Wallpaper
     scripts < 0x0D : \
@@ -120,7 +123,7 @@
     # Update Colors Based on Current Wallpaper
     scripts < c : ;\
         /opt/homebrew/bin/brew services stop spacebar; \
-        /usr/bin/killall limelight; \
+        # /usr/bin/killall limelight; \
         /usr/bin/osascript \
         -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
         current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
@@ -128,13 +131,13 @@
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\"";\
         /opt/homebrew/bin/pywalfox update; \
         /opt/homebrew/bin/brew services start spacebar; \
-        /Users/brandon/.config/bin/limelight; \
+        # /Users/brandon/.config/bin/limelight; \
 
     # Change Wallpaper and Update Colors
     scripts < shift - c : \
         skhd -k "w"; \
         /opt/homebrew/bin/brew services stop spacebar; \
-        /usr/bin/killall limelight; \
+        # /usr/bin/killall limelight; \
         /usr/bin/osascript \
         -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
         current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
@@ -142,18 +145,18 @@
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
         /opt/homebrew/bin/pywalfox update; \
         /opt/homebrew/bin/brew services start spacebar; \
-        /Users/brandon/.config/bin/limelight;
+        # /Users/brandon/.config/bin/limelight;
 
 
     # Leave Wallpaper and change colors
      scripts < lalt - c : ;\
         /opt/homebrew/bin/brew services stop spacebar; \
-        /usr/bin/killall limelight; \
+        # /usr/bin/killall limelight; \
         /usr/local/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n; \
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
         /opt/homebrew/bin/pywalfox update; \
         /opt/homebrew/bin/brew services start spacebar; \
-        /Users/brandon/.config/bin/limelight;
+        # /Users/brandon/.config/bin/limelight;
 
 
     # Toggle VPN and set spacebar to specific color when on
@@ -251,25 +254,43 @@
     # Show Destop Toggle 
     window < d : \
         yabai -m space --toggle show-desktop; \
-        /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
-        /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff
+        # /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
+        # /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff
 
     # Turn off Borders, Gaps, and Padding
     window < g : \
-        yabai -m space --toggle gap;\
-        yabai -m space --toggle padding; \
-        if [[ $(pgrep -fl limelight) == ""  ]] then;\
-            /Users/brandon/.config/bin/limelight -c ~/.config/limelight/limelightrc &; \
-        else;\
-            killall limelight; \
-        fi; \
+        if [[ $(yabai -m config window_border) == on ]]; then \
+          yabai -m space --toggle gap; \
+          yabai -m space --toggle padding; \
+          yabai -m config window_border off; \
+        elif [[ $(yabai -m config window_border) == off ]]; then \
+          yabai -m space --toggle gap;\
+          yabai -m space --toggle padding; \
+          yabai -m config window_border on; \
+        fi;\
         skhd -k "escape";
+        # if [[ $(pgrep -fl limelight) == ""  ]] then;\
+            # /Users/brandon/.config/bin/limelight -c ~/.config/limelight/limelightrc &; \
+        # else;\
+            # killall limelight; \
+        # fi; \
 
     # Close Window
     window < backspace [
-        * : yabai -m window --close; skhd -k "escape";
-        "firefox" : yabai -m window --toggle native-fullscreen; yabai -m window --close; skhd -k "escape";
+        * : \
+        if [[ $(yabai -m query --windows --window|grep native-fullscreen |grep 1) ]]; then \
+      WINDOW=$(yabai -m query --windows --window |grep \"id\":|sed -E 's/[[:blank:]]"id":([0-9]*),.*/\1/'); \
+      yabai -m window --toggle native-fullscreen; \
+      yabai -m window --close; \
+      skhd -k "escape"; \
+    else \
+      yabai -m window --close; \
+      skhd -k "escape"; \
+    fi\
+
+        "zzz" : yabai -m window --toggle native-fullscreen; yabai -m window --close; skhd -k "escape";
     ]
+
 
     # Toggle float for focused window
     window < f : \
