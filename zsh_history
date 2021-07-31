@@ -1507,3 +1507,196 @@ source .zshrc
 source .zshrc
 dbot Updated zshrc
 source .zshrc
+zinit load zsh-users/completions
+zinit load zsh-users/zhs-completions
+zinit load zsh-users/zsh-completions
+zinit load zsh-users/zsh-completions
+zinit load zsh-users/zsh-completions
+source .zshrc
+ls
+zpl install
+zpl --help
+zpl xlist
+zpl clist
+zinit self-update
+zinit update
+nvim .zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+ls /Users/brandon/.dotfiles
+ls -la /Users/brandon/.dotfiles
+source .zshrc
+clear
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+source .zshrc
+dbot Updated zshrc
+--git-dir=/Users/brandon/.dotfiles/.git add *;
+--git-dir=/Users/brandon/.dotfiles/.git add *;
+git --git-dir=/Users/brandon/.dotfiles/.git add *;
+git --git-dir=/Users/brandon/.dotfiles/.git --work-tree=/Users/brandon/.dotfiles add *;
+git --git-dir /Users/brandon/.dotfiles/.git add *;
+git --git-dir /Users/brandon/.dotfiles/.git --work-tree /Users/brandon/.dotfiles add *;
+git --git-dir=/Users/brandon/.dotfiles/.git --work-tree=/Users/brandon/.dotfiles add *;
+git --git-dir=/Users/brandon/.dotfiles/.git --work-tree=/Users/brandon/.dotfiles/ add *;
+git --git-dir /Users/brandon/.dotfiles/.git --work-tree /Users/brandon/.dotfiles/ add *;
+git --git-dir="$HOME/.dotfiles" status
+git --git-dir="$HOME/.dotfiles/.git" status
+source .zshrc
+clear
+dbot Updated zshrc
+git --git-dir="$HOME/.dotfiles/.git"
+ git --git-dir="$HOME/.dotfiles/.git" add *;\
+
+ git --git-dir="$HOME/.dotfiles" add *;
+ git --git-dir="$HOME/.dotfiles/" add *;
+ git --git-dir="$HOME/.dotfiles/.git" --work-dir="$HOME/.dotfiles" add *;
+ git --git-dir="$HOME/.dotfiles/.git" --work-tree="$HOME/.dotfiles" add *;
+ git --git-dir="$HOME/.dotfiles/.git" --work-tree="$HOME/.dotfiles/" add *;
+ git --git-dir="~/.dotfiles/.git" --work-tree="~/.dotfiles/" add *;
+ git --git-dir="~/.dotfiles/.git" --work-tree="~/.dotfiles/" add *;
+ git --git-dir="$HOME/.dotfiles/.git" --work-tree="~/.dotfiles/" add *;
+ git --git-dir="'$HOME/.dotfiles/.git'" --work-tree="~/.dotfiles/" add *;
+ git --git-dir='"$HOME/.dotfiles/.git"' --work-tree="~/.dotfiles/" add *;
+ git --git-dir='"$HOME/.dotfiles/.git"' --work-tree="~/.dotfiles/" add *;
+ git --git-dir="$HOME/.dotfiles/.git --work-tree="~/.dotfiles/" add *;
+ git --git-dir=$HOME/.dotfiles/.git --work-tree="~/.dotfiles/" add *;
+ git --git-dir="${HOME}/.dotfiles/.git" --work-tree="~/.dotfiles/" add *;
+ git --git-dir="${HOME}/.dotfiles/.git" --work-tree="${HOME}/.dotfiles/" add *;
+GITPATH=$($HOME/.dotfiles/.git); WORKTREE=$(${HOME}/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *;
+GITPATH=$($HOME/.dotfiles/.git); WORKTREE=$(${HOME}/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$($HOME/.dotfiles/.git); WORKTREE=$($HOME/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$($HOME/.dotfiles/.git); WORKTREE=$(echo$($HOME/.dotfiles)); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$($HOME/.dotfiles/.git); WORKTREE=$($HOME/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$($HOME/.dotfiles/); WORKTREE=$($HOME/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$(~/.dotfiles/); WORKTREE=$(~/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$(~/.dotfiles/.git); WORKTREE=$(~/.dotfiles); git --git-dir="$GITPATH" --work-tree="$WORKTREE" add *
+GITPATH=$(~/.dotfiles/.git); WORKTREE=$(~/.dotfiles); git --git-dir=${GITPATH} --work-tree="$WORKTREE" add *
+git --git-dir ~/.dotfiles/.git --work-tree ~/.dotfiles add *
+git --git-dir=~/.dotfiles/.git --work-tree=~/.dotfiles add *
+git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles status
+git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles status add *
+git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles add *
+git -C "$HOME/.dotfiles" status
+git -C "$HOME/.dotfiles" add *
+git -C "$HOME/.dotfiles" add $HOME/.dotfiles/*
+./.dotfiles/install
+dbot
+dbot
+dbot Updated zshrc
+dbot Updated zshrc
+git -C $HOME/.dotifiles add $HOME/.dotfiles/
+git -C $HOME/.dotifiles add $HOME/.dotfiles/*
+git -C $HOME/.dotfiles add $HOME/.dotfiles/*
+dbot
+dbot
+source .zshrc
+dbot
+source .zshrc
+dbot
+source .zshrc
+dbot Update zshrc
+dbot Update zshrc
+source .zshrc
+dbot Update zshrc
+autoload allopt
+zinit cuninstall zsh-users/zsh-completions
+zinit load zsh-users/zsh-completions
+zinit install zsh-users/zsh-completions
+zinit compile zsh-users/zsh-completions
+clear
+zinit cinstall zsh-users/zsh-completions
+zinit creinstall zsh-users/zsh-completions
+brew pr-automerge --quiet --
+brew developer off
+clear
+zpl compile
+source .zshrc
+ls
+zpl uncompile zsh-users/zsh-completions
+zpl uninstall zsh-users/zsh-completions
+zinit update
+q
+nvim 
+nvim .zshrc
+zinit uncompile snippet https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh
+zinit compile snippet https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh
+zinit uninstall https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh
+zinit delete https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh
+lear
+clear
+ls
+zinit load https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/asdf/asdf.plugin.zsh
+brew info asdf
+brew reinstall asdf
+ls 
+ASDF_COMPLETIONS
+echo $ASDF_COMPLETIONS
+cat $ASDF_COMPLETIONS
+ls $ASDF_COMPLETIONS/
+cat $ASDF_COMPLETIONS/asdf.bash
+zinit delete OMZP::asdf
+clear
+zinit comile
+zinit update
+ls
+compinit
+zpl comile
+zpl compile
+zpl unload OMZP::asdf
+zpl unload https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/asdf/asdf.plugin.zsh
+zpl delete https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/asdf/asdf.plugin.zsh
+zpl delete OMZP::asdf
+clear
+zsh update
+zinit update
+ autoload -U +X bashcompinit && bashcompinit
+clear
+zinit load  https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh\
+
+zinit snippet  https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh\
+
+zinit compile
+compinit
+source "$HOME/.zinit/bin/zinit.zsh"\
+autoload -Uz _zinit\
+(( ${+_comps} )) && _comps[zinit]=_zinit\
+
+brew services
+autoload -U compinit promptinit
+compinit
+ls
+zinit update
+ls 
+zinit compile
+zinit update
+zinit snippet OMZP::completion
+zinit status
+zinit creinstall zsh-users/zsh-completions\
+
+zinit cenable zsh-users/zsh-completions\
+
+zinit compinit
+zinit delete  https://raw.githubusercontent.com/mattjj/my-oh-my-zsh/master/completion.zsh\
+
+source .zshrc
+zinit update
+zinit load zsh-users/zsh-completions\
+
+clear
+nvim .zshrc
+ls
+clear
+zsh --help
+zsh --version
+.zsh_history
+: 1627707978:0;dbot Reorganizing zsh files

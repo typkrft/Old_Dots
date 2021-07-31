@@ -13,11 +13,13 @@
     ~/.config/limelight/limelightrc: limelightrc
     ~/.config/wal: wal
     ~/.config/bin: bin
+    ~/.config/starship.toml: starship.toml
+    ~/.config/kitty: kitty
+
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.zsh_history: zsh_history
-    ~/.config/starship.toml: starship.toml
-    ~/.config/kitty: kitty
+    ~/.config/zsh: zsh
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
