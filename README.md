@@ -20,3 +20,7 @@
 
 #### S T A R S H I P
 - [ ] Set up Prompt
+
+### Z S H _ H I S T O R Y
+- [ ] History symlink keeps getting replaced
+- [ ] Remove URLs and other sensitive commands prior to uploading
