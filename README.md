@@ -18,3 +18,5 @@
 - [ ] Setup Env Variables in .zshrc and myabe in dots if needed
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
 
+#### S T A R S H I P
+- [ ] Set up Prompt

@@ -1,0 +1,18 @@
+# Example Prompt
+# format = """
+# [┌───────────────────>](bold green)$custom$battery
+# [│](bold green)$directory$rust$package
+# [└─>](bold green) """
+
+# Example Module
+# [custom.foo]
+# command = "echo foo"  # shows output of command
+# when = "exit 0" # any command that exits with 0 
+# format = "[$output]($style)"
+
+#[custom.music]
+#command = '''
+#osascript -e "set theName to \"\"" -e "set theArtist to \"\"" -e "set theAlbum to \"\"" -e "try" -e "with timeout of 2 seconds" -e "tell application \"Music\"" -e " if it is running then" -e "    set theName to name of current track" -e "set theArtist to artist of current track" -e "set theAlbum to album of current track" -e "end if" -e "end tell" -e "end timeout" -e "end try" -e "if theName is not \"\" then" -e "return theName & \" by \" & theArtist & \" on \" & theAlbum & \"\"" -e "else if theName is \"\" then" -e "return \"\"" -e "end if"
+#'''
+#when = "exit 0"
+#format = "[$output]($style)"

@@ -27,6 +27,35 @@ dbot() {
   git -C $HOME/.dotfiles push -u origin main;
 }
 
+--() {
+  abduco -c "$1" "$1";
+}
+__() {
+  abduco -a "$1";
+}
+
+cs_spectrum() {
+  # Author: crshd
+# Source: http://crunchbang.org/forums/viewtopic.php?pid=128584#p128584
+
+
+for f in {0..6}; do
+	echo -en "\033[$((f+41))m\033[$((f+30))m██▓▒░"
+done
+echo -en "\033[37m██\n"
+
+for f in {0..6}; do
+	echo -en "\033[$((f+41))m\033[1;$((f+30))m██▓▒░"
+done
+echo -en "\033[1;37m██"
+
+echo -e "\033[0m"
+}
+
+
+# R U N  B E F O R E  P R O M P T 
+pfetch
+cs_spectrum
 # P R O M P T - S T A R S H I P
 eval "$(starship init zsh)"
 
