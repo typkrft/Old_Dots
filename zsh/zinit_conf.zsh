@@ -29,8 +29,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light jeffreytse/zsh-vi-mode
 
 # OMZ History Conf
-zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/history.zsh
+zinit snippet OMZP::history
 source $HOME/.config/zsh/omz_history_conf.zsh
+
+# Keep Vi-Mode from overriding keybindings
+zvm_after_init_commands+=('[ -f $HOME/.config/zsh/omz_history_conf.zsh ] && source $HOME/.config/zsh/omz_history_conf.zsh')
 
 # C O M P L E T I O N S 
 # Add completions provided by brew packages

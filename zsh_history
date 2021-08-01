@@ -1700,3 +1700,109 @@ zsh --help
 zsh --version
 .zsh_history
 : 1627707978:0;dbot Reorganizing zsh files
+: 1627708124:0;curl https://google.com
+: 1627708405:0;clear
+: 1627708406:0;ls
+: 1627708732:0;load_config_file $HOME/.dotfiles/kitty/kitty.conf 
+: 1627708737:0;kitty load_config_file $HOME/.dotfiles/kitty/kitty.conf 
+: 1627777412:0;/opt/homebrew/bin/brew services stop spacebar; \\
+        /usr/local/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n; \\
+        /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \\
+        /opt/homebrew/bin/pywalfox update; \\
+        /opt/homebrew/bin/brew services start spacebar;\\
+        echo test;
+: 1627777905:0;/usr/local/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n;
+: 1627777916:0;l
+: 1627777918:0;wal
+: 1627777922:0;which wal
+: 1627778020:0;wal
+: 1627778054:0;brew uninstall wal
+: 1627778060:0;brew uninstall pywal
+: 1627778067:0;pip3 uinstall pywal
+: 1627778073:0;pip3 uninstall pywal
+: 1627778082:0;pip uninstall pywal
+: 1627778143:0;pip3 install git+https://github.com/dylanaraps/pywal
+: 1627778161:0;pip3 uninstall fzf-wal
+: 1627778173:0;pip3 install git+https://github.com/dylanaraps/pywal
+: 1627778188:0;wal
+: 1627778257:0;/opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n
+: 1627778286:0;which wal
+: 1627778341:0;pip3 uninstall wal
+: 1627778346:0;pip3 uninstall pywal
+: 1627778352:0;pip3 install pywal
+: 1627778358:0;wal
+: 1627778374:0;pip3 uninstall pywal
+: 1627778380:0;/opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n
+: 1627778437:0;wal
+: 1627778494:0;wal rm -rf .cache/wal
+: 1627778499:0;rm -rf .cache/wal
+: 1627778503:0;/opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n
+: 1627778517:0;brew install imagemagick
+: 1627778530:0;brew reinstall imagemagick
+: 1627778563:0;/opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n
+compadd
+compinit
+zpl clist
+zpl cclear
+zsh cenable
+nvim .zshrc
+reboot
+sudo reboot
+./.dotfiles/install
+bat Pywal.js
+clear
+source .zshrc
+clear
+cat -V
+cat -v
+mkdir .config/zsh
+mkdir .config/zsh/plugins
+rm -rf .config/zsh/plugins
+bindkey '\e[A' history-search-backward
+bindkey '\e[A' history-beginning-search-backward\
+bindkey '\e[B' history-beginning-search-forward
+mv .config/zsh .dotfiles
+mv .dotfiles/zsh_history .dotfiles/zsh
+mv .dotfiles/zsh/zsh_history .dotfiles
+ls -la
+echo .zsh_history >> .dotfiles/zsh_history 
+rm .zsh_history
+./.dotfiles/install
+skhd -V
+brew services stop skhd
+skhd -V
+skhd -V
+pip3 install git+https://github.com/dylanaraps/pywal
+wal 
+/opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n
+: 1627778955:0;brew services start --all
+: 1627778977:0;brew services
+: 1627778989:0;sh .dotfiles/yabairc
+: 1627779361:0;wal -i /Volumes/Wallpapers --recursive
+: 1627779389:0;nvim .dotfiles/kitty/kitty.conf
+: 1627779419:0;wal -i /Volumes/Wallpapers --recursive
+: 1627779457:0;ls .cache/wal
+: 1627779466:0;ls .cache/wal/schemes
+: 1627779494:0;brew services restart yabai
+: 1627779503:0;brew services restart xorpse/formulae/yabai
+: 1627779519:0;brew services restart --all
+: 1627779524:0;brew services
+: 1627779535:0;brew services start skhd
+: 1627779538:0;brew services start spacebar
+: 1627779985:0;clear
+: 1627780204:0;nvim .dotfiles/kitty/kitty.conf
+: 1627780259:0;wal -r
+: 1627780264:0;cat /Users/brandon/.cache/wal/sequences
+: 1627780725:0;nvim .dotfiles/skhdrc
+: 1627780811:0;ls .config/spacebar
+: 1627780816:0;ls -la .config/spacebar
+: 1627780830:0;mv .config/spacebar .dotfiles
+: 1627780867:0;./.dotfiles/install
+: 1627781507:0;wal
+: 1627781582:0;wal --theme .cache/wal/sequences
+: 1627781627:0;bat .cache/wal/colors.sh
+: 1627781646:0;wal -n -i  /Volumes/Wallpapers/Organize/wallhaven-z8q59j.jpg
+: 1627781914:0;kitty @ launch --title Output --keep-focus cat
+: 1627781942:0;allow_remote_control
+: 1627781944:0;kitty @ launch --title Output --keep-focus cat
+: 1627781947:0;exit

@@ -20,7 +20,7 @@
         /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color3:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
         /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color2:1};\
+        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color3:1};\
         /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color4:1};\
         /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
 
@@ -122,10 +122,11 @@
         /usr/bin/osascript \
         -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
         current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
-        /usr/local/bin/wal -i $current_wallpaper --backend wal  -n; \
+        /opt/homebrew/bin/wal -i $current_wallpaper --backend wal  -n; \
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\"";\
         /opt/homebrew/bin/pywalfox update; \
         /opt/homebrew/bin/brew services start spacebar; \
+        /opt/homebrew/bin/kitty @ set-colors -a -c $HOME/.config/kitty/kitty.conf 
         # /Users/brandon/.config/bin/limelight; \
 
     # Change Wallpaper and Update Colors
@@ -136,22 +137,22 @@
         /usr/bin/osascript \
         -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""; \
         current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"; \
-        /usr/local/bin/wal -i $current_wallpaper --backend wal  -n; \
+        /opt/homebrew/bin/wal -i $current_wallpaper --backend wal  -n; \
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
         /opt/homebrew/bin/pywalfox update; \
-        /opt/homebrew/bin/brew services start spacebar; \
+        /opt/homebrew/bin/kitty @ set-colors -a -c $HOME/.config/kitty/kitty.conf; \
+        /opt/homebrew/bin/brew services start spacebar; 
         # /Users/brandon/.config/bin/limelight;
 
 
     # Leave Wallpaper and change colors
      scripts < lalt - c : ;\
         /opt/homebrew/bin/brew services stop spacebar; \
-        # /usr/bin/killall limelight; \
-        /usr/local/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n; \
+        /opt/homebrew/bin/wal -i /Volumes/Wallpapers/ --recursive --backend wal  -n; \
         /usr/bin/osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""; \
         /opt/homebrew/bin/pywalfox update; \
-        /opt/homebrew/bin/brew services start spacebar; \
-        # /Users/brandon/.config/bin/limelight;
+        /opt/homebrew/bin/brew services start spacebar;\
+        /opt/homebrew/bin/kitty @ set-colors -a -c $HOME/.config/kitty/kitty.conf 
 
 
     # Toggle VPN and set spacebar to specific color when on
@@ -308,19 +309,19 @@
     # default < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
 
     default < cmd - t -> [
-        "firefox nightly" : sleep .2; skhd -k "cmd - a"; skhd -k "backspace"
+        "firefox" : sleep .2; skhd -k "cmd - a"; skhd -k "backspace"
     ]
 
     default < cmd - 0x30 [
-        "firefox nightly" : skhd -k "escape"; skhd -k "ctrl - tab";
+        "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
     ]
 
     default < cmd + shift - 0x30 [
-        "firefox nightly" : skhd -k "escape"; skhd -k "ctrl + shift - tab";
+        "firefox" : skhd -k "escape"; skhd -k "ctrl + shift - tab";
     ]
 
     default < cmd - n [ 
-        "firefox nightly" : \
+        "firefox" : \
         osascript -e "tell application \"System Events\"" \
     -e "	key code 53 using command down" \
     -e "end tell" \
@@ -409,4 +410,19 @@ default < cmd - w [
     default < cmd - return [
         "mail" : skhd -k "cmd + shift - d"
     ]
+  
+    default < alt - left [
+      "kitty" : skhd -k "escape"; skhd -k "b"
+    ]
 
+    default < alt - right [
+      "kitty" : skhd -k "escape"; skhd -k "w"
+    ]
+
+    default < cmd - left [
+        "kitty" : skhd -k "escape"; skhd -k "0"
+    ]
+    
+    default < cmd - right [
+        "kitty" : skhd -k "escape"; skhd -k "shift - 4"
+    ]
