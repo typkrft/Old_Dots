@@ -18,6 +18,7 @@
     ~/.config/spacebar: spacebar
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
+    ~/.asdfrc: asdfrc
     ~/.zsh_history: zsh_history
     ~/.config/zsh: zsh
 # FIREFOX

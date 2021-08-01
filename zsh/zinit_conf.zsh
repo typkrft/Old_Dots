@@ -1,5 +1,6 @@
 # Z I N I T
 
+# NOTE: Do not edit
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -21,31 +22,46 @@ zinit light-mode for \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node
 
+# U S E R  C O N F I G 
 # P L U G I N S
-zinit light zdharma/history-search-multi-word
-
-zinit light zsh-users/zsh-syntax-highlighting
-
+# Vi-Mode
+# NOTE: This messes with a lot of things, like bindkeys
+zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-# OMZ History Conf
-zinit snippet OMZP::history
-source $HOME/.config/zsh/omz_history_conf.zsh
+# Syntax Highlighting
+zinit ice lucid wait
+zinit light zsh-users/zsh-syntax-highlighting
 
-# Keep Vi-Mode from overriding keybindings
+# OMZ History Conf
+zinit ice lucid wait
+zinit snippet OMZP::history
+# NOTE: # Keep Vi-Mode from overriding keybindings
 zvm_after_init_commands+=('[ -f $HOME/.config/zsh/omz_history_conf.zsh ] && source $HOME/.config/zsh/omz_history_conf.zsh')
+
+# ZSH Autopair 
+zinit ice lucid wait
+zinit light hlissner/zsh-autopair
 
 # C O M P L E T I O N S 
 # Add completions provided by brew packages
 zinit fpath -f /opt/homebrew/share/zsh/site-functions
 
-# Add additional completions here
-
 # Completion Provider
-zinit ice blockf
-zinit snippet "https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/completion.zsh" # From OMZ
-# These Commands should be loaded after all completion 
-# related functions
+
+# NOTE: Check with your completion provide to see where it should
+# NOTE: be loaded. Some need to be loaded before compinit and others
+# NOTE: after it.
+ 
+# NOTE: Additional Unused completion engine
+# zinit ice blockf
+# zinit snippet "https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/completion.zsh"
+
 autoload -Uz compinit
 compinit
+
+# FZF Completions 
+zinit ice lucid wait
+zinit light Aloxaf/fzf-tab # Needs to be loaded after compinit
+
 zinit cdreplay -q 
