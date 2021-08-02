@@ -17,6 +17,7 @@
 - [ ] Keep Binaries in single place
 - [ ] Setup Env Variables in .zshrc and myabe in dots if needed
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
+- [ ] Set up Kitty to launch window with tab title changed and may have to edit jq commands
 
 #### S T A R S H I P
 - [ ] Set up Prompt
@@ -24,3 +25,11 @@
 ### Z S H _ H I S T O R Y
 - [ ] History symlink keeps getting replaced
 - [ ] Remove URLs and other sensitive commands prior to uploading
+
+### T M U X
+- [ ] Get a Conf setup
+
+### P A C K A G E S 
+- [ ] Brewfile / Get a list of packages to install
+- [ ] Python Package List
+- [ ] NPM Package list

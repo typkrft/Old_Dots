@@ -426,3 +426,31 @@ default < cmd - w [
     default < cmd - right [
         "kitty" : skhd -k "escape"; skhd -k "shift - 4"
     ]
+
+    default < cmd - 0x32 : \
+    MINIMIZED=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.minimized'); \
+    APP=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.id'); \
+    if [[ "${APP}" != "" ]]; then \
+        if [[ "${MINIMIZED}" -eq 0 ]]; then \
+            yabai -m window "$APP" --toggle border;\
+            yabai -m window "$APP" --opacity 0.001; \
+            yabai -m window "$APP" --minimize; \
+        elif [[ "${MINIMIZED}" -eq 1 ]]; then \
+            yabai -m window "$APP" --deminimize; \
+            yabai -m window "$APP" --move abs:0:0; \
+            yabai -m window "$APP" --resize abs:10000:450; \
+            yabai -m window "$APP" --opacity 0.95; \
+            yabai -m window "$APP" --focus "$APP"; \
+            yabai -m window "$APP" --toggle border;\
+        fi; \
+    elif [[ "${APP}" = "" ]]; then \
+        open -a kitty.app -n --args --single-instance --title="quake" &>/dev/null & disown; \
+        sleep 0.5; \
+        APP=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.id'); \
+        yabai -m window "$APP" --toggle float; \
+        yabai -m window "$APP" --toggle sticky; \
+        yabai -m window "$APP" --move abs:0:0; \
+        yabai -m window "$APP" --resize abs:10000:450; \
+        yabai -m window "$APP" --opacity 0.95; \
+        yabai -m window "$APP" --focus "$APP"; \
+    fi; 
