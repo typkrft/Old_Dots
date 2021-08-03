@@ -1,0 +1,27 @@
+[[ $(pgrep kitty) ]] && RUNNING=true || RUNNING=false; \
+[[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id') ]] && QUAKE=true || QUAKE=false; \
+[[ $(yabai -m query --windows --space 1| jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.minimized') = 1 ]] && MINIMZED=true || MINIMZED=false; \
+WINDOW_ID=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id'); \
+if [[ (! $RUNNING) ||  ($RUNNING && $WINDOW_ID = "") ]]; then \
+    open -a kitty.app -n --args -1 --title="Quake" -o tab_title_template="Quake: {index}" --listen-on="tcp:localhost:54889" &>/dev/null & disown; \
+    while ! $QUAKE; \
+    do \
+        [[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id') ]] && QUAKE=true || QUAKE=false ; \
+    done; \
+    [[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.minimized') = 1 ]] && MINIMZED=true || MINIMZED=false; \
+    WINDOW_ID=$(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id'); \
+    [[ $(pgrep kitty) ]] && RUNNING=true || RUNNING=false; \
+    yabai -m window "${WINDOW_ID}" --toggle float; \
+    yabai -m window "${WINDOW_ID}" --toggle sticky; \
+    yabai -m window "${WINDOW_ID}" --move abs:0:0; \
+    yabai -m window "${WINDOW_ID}" --resize abs:10000:450; \
+    exit 0; \
+fi; \    
+if $MINIMZED; then \
+    yabai -m window "${WINDOW_ID}" --deminimize; \
+    yabai -m window "${WINDOW_ID}" --focus "${WINDOW_ID}"; \
+elif ! $MINIMZED; then \
+    yabai -m window "${WINDOW_ID}" --toggle border; \
+    yabai -m window "${WINDOW_ID}" --opacity 0.001; \
+    yabai -m window "${WINDOW_ID}" --minimize; \
+fi

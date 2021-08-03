@@ -421,21 +421,21 @@ default < cmd - w [
         "mail" : skhd -k "cmd + shift - d"
     ]
   
-    default < alt - left [
-      "kitty" : skhd -k "escape"; skhd -k "b"
-    ]
+    # default < alt - left [
+      # "kitty" : skhd -k "escape"; skhd -k "b"
+    # ]
 
-    default < alt - right [
-      "kitty" : skhd -k "escape"; skhd -k "w"
-    ]
+    # default < alt - right [
+      # "kitty" : skhd -k "escape"; skhd -k "w"
+    # ]
 
-    default < cmd - left [
-        "kitty" : skhd -k "escape"; skhd -k "0"
-    ]
+    # default < cmd - left [
+        # "kitty" : skhd -k "escape"; skhd -k "0"
+    # ]
     
-    default < cmd - right [
-        "kitty" : skhd -k "escape"; skhd -k "shift - 4"
-    ]
+    # default < cmd - right [
+        # "kitty" : skhd -k "escape"; skhd -k "shift - 4"
+    # ]
 
     default < cmd - 0x32 : \
     [[ $(pgrep kitty) ]] && RUNNING=true || RUNNING=false; \
