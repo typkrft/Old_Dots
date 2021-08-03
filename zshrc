@@ -21,7 +21,7 @@ function rmdsstore() {
 }
 
 # Install dotfiles and push them to github
-dbot() {
+function dbot() {
   rmdsstore $HOME/.dotfiles
   $HOME/.dotfiles/install;
   git -C $HOME/.dotfiles add $HOME/.dotfiles/*;
@@ -29,21 +29,21 @@ dbot() {
   git -C $HOME/.dotfiles push -u origin main;
 }
 
-auto-color-ls() {
-	emulate -L zsh
-	echo
-	ls
+function auto-color-ls() {
+  emulate -L zsh
+  echo
+  ls
 }
 chpwd_functions=(auto-color-ls $chpwd_functions)
 
---() {
+function --() {
   tmux new -s "$1" "$2";
 }
-__() {
-tmux attach-session -d -t $1 
+function __() {
+  tmux attach-session -d -t $1 
 }
 
-cs_spectrum() {
+function cs_spectrum() {
   # Author: crshd
   # Source: http://crunchbang.org/forums/viewtopic.php?pid=128584#p128584
   for f in {0..6}; do
@@ -59,19 +59,28 @@ cs_spectrum() {
   echo -e "\033[0m"
 }
 
+fav_colorscheme() {
+  WALLPAPER=$(grep "wallpaper=" $HOME/.cache/wal/colors.sh | sed -E 's/wallpaper="(.*)"/\1/')
+  D_NUMBER=$[$(find $HOME/.config/wal/colorschemes/dark -maxdepth 1 -type f -name "Fav_*" | wc -l) +1]
+  L_NUMBER=$[$(find $HOME/.config/wal/colorschemes/light -maxdepth 1 -type f -name "Fav_*" | wc -l) + 1]
+  /opt/homebrew/bin/wal -n -s -t -p "D_Fav_$D_NUMBER" -i "${WALLPAPER}" &>/dev/null
+  /opt/homebrew/bin/wal -n -s -t -l -p "L_Fav_$L_NUMBER" -i "${WALLPAPER}" &>/dev/null
+}
+
 # M I S C 
 # Sets the shells title to the current process for Kitty (and others)
+# Breaks Window Titles in Kitty
 function set-title-precmd() {
   printf "\e]2;%s\a" "${PWD/#$HOME/~}"
 }
 
 function set-title-preexec() {
-  printf "\e]2;%s\a" "$1"
+   printf "\e]2;%s\a" "$1"
 }
 
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd set-title-precmd
-add-zsh-hook preexec set-title-preexec
+# autoload -Uz add-zsh-hook
+# add-zsh-hook precmd set-title-precmd
+# add-zsh-hook preexec set-title-preexec
 
 # Add Case Insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'

@@ -57,8 +57,8 @@
   spacebar -m config spacing_right               15
 
 # Fonts
-  spacebar -m config text_font                   'VictorMono Nerd Font:Regular:14.0'
-  spacebar -m config icon_font                   'VictorMono Nerd Font:Mono:14.0'
+  spacebar -m config text_font                   'Iosevka Nerd Font:Regular:14.0'
+  spacebar -m config icon_font                   'Iosevka Nerd Font:Mono:14.0'
 
 # Icons
   spacebar -m config power_icon_strip            '| ' '|  '

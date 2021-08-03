@@ -314,13 +314,12 @@
     
     default < cmd - t [
         "kitty" : \
-        if [[ $(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.focused') -eq 1 ]]; then\
-          /opt/homebrew/bin/kitty @ --to="tcp:localhost:54889" new-window --new-tab --title="quake"; \
+        if [[ $(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.focused') -eq 1 ]]; then\
+          /opt/homebrew/bin/kitty @ --to="tcp:localhost:54889" launch --title="Quake" --tab-title="Quake: {index}" --type="tab"; \
         else\
             skhd -k "ctrl + shift - t";\
         fi
     ]
-
 
     default < cmd - 0x30 [
         "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
