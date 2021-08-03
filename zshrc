@@ -29,6 +29,13 @@ dbot() {
   git -C $HOME/.dotfiles push -u origin main;
 }
 
+auto-color-ls() {
+	emulate -L zsh
+	echo
+	ls
+}
+chpwd_functions=(auto-color-ls $chpwd_functions)
+
 --() {
   tmux new -s "$1" "$2";
 }
@@ -51,6 +58,20 @@ cs_spectrum() {
 
   echo -e "\033[0m"
 }
+
+# M I S C 
+# Sets the shells title to the current process for Kitty (and others)
+function set-title-precmd() {
+  printf "\e]2;%s\a" "${PWD/#$HOME/~}"
+}
+
+function set-title-preexec() {
+  printf "\e]2;%s\a" "$1"
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd set-title-precmd
+add-zsh-hook preexec set-title-preexec
 
 # R U N  B E F O R E  P R O M P T 
 pfetch

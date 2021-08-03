@@ -308,9 +308,19 @@
     # Play My Radio Station
     # default < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
 
-    default < cmd - t -> [
-        "firefox" : sleep .2; skhd -k "cmd - a"; skhd -k "backspace"
+#    default < cmd - t -> [
+#        "firefox" : skhd -k "cmd - a"; skhd -k "backspace"
+#    ]
+    
+    default < cmd - t [
+        "kitty" : \
+        if [[ $(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.focused') -eq 1 ]]; then\
+          /opt/homebrew/bin/kitty @ --to="tcp:localhost:54889" new-window --new-tab --title="quake"; \
+        else\
+            skhd -k "ctrl + shift - t";\
+        fi
     ]
+
 
     default < cmd - 0x30 [
         "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
@@ -428,29 +438,34 @@ default < cmd - w [
     ]
 
     default < cmd - 0x32 : \
-    MINIMIZED=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.minimized'); \
-    APP=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.id'); \
-    if [[ "${APP}" != "" ]]; then \
-        if [[ "${MINIMIZED}" -eq 0 ]]; then \
-            yabai -m window "$APP" --toggle border;\
-            yabai -m window "$APP" --opacity 0.001; \
-            yabai -m window "$APP" --minimize; \
-        elif [[ "${MINIMIZED}" -eq 1 ]]; then \
-            yabai -m window "$APP" --deminimize; \
-            yabai -m window "$APP" --move abs:0:0; \
-            yabai -m window "$APP" --resize abs:10000:450; \
-            yabai -m window "$APP" --opacity 0.95; \
-            yabai -m window "$APP" --focus "$APP"; \
-            yabai -m window "$APP" --toggle border;\
-        fi; \
-    elif [[ "${APP}" = "" ]]; then \
-        open -a kitty.app -n --args --single-instance --title="quake" &>/dev/null & disown; \
-        sleep 0.5; \
-        APP=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="quake")|.id'); \
-        yabai -m window "$APP" --toggle float; \
-        yabai -m window "$APP" --toggle sticky; \
-        yabai -m window "$APP" --move abs:0:0; \
-        yabai -m window "$APP" --resize abs:10000:450; \
-        yabai -m window "$APP" --opacity 0.95; \
-        yabai -m window "$APP" --focus "$APP"; \
-    fi; 
+    [[ $(pgrep kitty) ]] && RUNNING=true || RUNNING=false; \
+    [[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id') ]] && QUAKE=true || QUAKE=false; \
+    [[ $(yabai -m query --windows --space 1| jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.minimized') = 1 ]] && MINIMZED=true || MINIMZED=false; \
+    WINDOW_ID=$(yabai -m query --windows --space 1 | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id'); \
+    if [[ (! $RUNNING) ||  ($RUNNING && $WINDOW_ID = "") ]]; then \
+        open -a kitty.app -n --args -1 --title="Quake" -o tab_title_template="Quake: {index}" --listen-on="tcp:localhost:54889" &>/dev/null & disown; \
+        while ! $QUAKE; \
+        do \
+            [[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id') ]] && QUAKE=true || QUAKE=false ; \
+        done; \
+        [[ $(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.minimized') = 1 ]] && MINIMZED=true || MINIMZED=false; \
+        WINDOW_ID=$(yabai -m query --windows | jq '.[]| select(.app=="kitty")| select(.title=="Quake")|.id'); \
+        [[ $(pgrep kitty) ]] && RUNNING=true || RUNNING=false; \
+        yabai -m window "${WINDOW_ID}" --toggle float; \
+        yabai -m window "${WINDOW_ID}" --toggle sticky; \
+        yabai -m window "${WINDOW_ID}" --move abs:0:0; \
+        yabai -m window "${WINDOW_ID}" --resize abs:10000:450; \
+        exit 0; \
+    fi; \
+    if $MINIMZED; then \
+        yabai -m window "${WINDOW_ID}" --deminimize; \
+        yabai -m window "${WINDOW_ID}" --move abs:0:0; \
+        yabai -m window "${WINDOW_ID}" --resize abs:10000:450; \
+        yabai -m window "${WINDOW_ID}" --opacity 0.95; \
+        yabai -m window "${WINDOW_ID}" --focus "${WINDOW_ID}"; \
+        yabai -m window "${WINDOW_ID}" --toggle border; \
+    elif ! $MINIMZED; then \
+        yabai -m window "${WINDOW_ID}" --toggle border; \
+        yabai -m window "${WINDOW_ID}" --opacity 0.001; \
+        yabai -m window "${WINDOW_ID}" --minimize; \
+    fi
