@@ -7,41 +7,11 @@
   yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # P Y W A L
-  # Source Colors
-    . $HOME/.cache/wal/colors.sh
-  # Colors
-    background="${background:1}"
-    foreground="${foreground:1}"
-    cursor="${cursor:1}"
+  . $HOME/.cache/wal/colors.sh
 
-    color0="${color0:1}"
-    color1="${color1:1}"
-    color2="${color2:1}"
-    color3="${color3:1}"
-    color4="${color4:1}"
-    color5="${color5:1}"
-    color6="${color6:1}"
-    color7="${color7:1}"
-    color8="${color8:1}"
-    color9="${color9:1}"
-    color10="${color10:1}"
-    color11="${color11:1}"
-    color12="${color12:1}"
-    color13="${color13:1}"
-    color14="${color14:1}"
-    color15="${color15:1}"
-
-# F U N C T I O N S
-  create_spaces()
-    {
-      spaces=$(($1-$(yabai -m query --spaces | grep -c "id")+$(yabai -m query --spaces | grep -c '"native-fullscreen":1')))
-        open -a "Mission Control"
-        osascript -e "repeat \"$spaces\" times" -e "tell application \"System Events\" to click button 1 of group \"Spaces Bar\" of group 1 of group \"Mission Control\" of process \"Dock\"" -e "end repeat"
-        open -a "Mission Control"
-    }
 
 # S E T U P  D E S K T O P S
-  create_spaces 5
+  $HOME/.config/bin/helpers -C "5"
   SPACEBAR_HEIGHT=$([[ `pgrep -fl /bin/spacebar` ]] &&  /opt/homebrew/bin/spacebar -m config height || echo 0 )
 
 # T I L I N G 
@@ -117,10 +87,10 @@
     yabai -m rule --add app="^Microsoft Teams$" space=2
   # Finder
     yabai -m rule --add app="^Finder$"  manage=off
-
+  # FaceTime
+    yabai -m rule --add app="^FaceTime$" title="Window"  manage=off
+    
 # S I G N A L S
-  # Microsoft Teams
-  # yabai -m signal --add app="^Microsoft Teams$" title="^Microsoft Teams Notification$" event=
   
   # Kitty
   yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="yabai -m window $YABAI_WINDOW_ID --opacity 0.95; yabai -m window $YABAI_WINDOW_ID --move abs:0:0; yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450"
@@ -130,9 +100,9 @@
 # B O R D E R S  
   yabai -m config window_border                on
   yabai -m config window_border_width          8
-  yabai -m config active_window_border_color   0xff${color2}
-  yabai -m config normal_window_border_color   0xff${color4}
-  yabai -m config insert_feedback_color        0xff${color3}
+  yabai -m config active_window_border_color   0xff${color2:1}
+  yabai -m config normal_window_border_color   0xff${color4:1}
+  yabai -m config insert_feedback_color        0xff${color3:1}
   yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."

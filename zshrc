@@ -69,7 +69,6 @@ fav_colorscheme() {
 
 # M I S C 
 # Sets the shells title to the current process for Kitty (and others)
-# Breaks Window Titles in Kitty
 function set-title-precmd() {
   printf "\e]2;%s\a" "${PWD/#$HOME/~}"
 }
@@ -78,12 +77,16 @@ function set-title-preexec() {
    printf "\e]2;%s\a" "$1"
 }
 
-# autoload -Uz add-zsh-hook
-# add-zsh-hook precmd set-title-precmd
-# add-zsh-hook preexec set-title-preexec
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd set-title-precmd
+add-zsh-hook preexec set-title-preexec
 
 # Add Case Insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Set VISUAL
+export VISUAL=nvim
+export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
 
 # R U N  B E F O R E  P R O M P T 
 pfetch

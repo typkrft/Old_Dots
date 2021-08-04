@@ -1,17 +1,6 @@
 #!/bin/sh
 
-#  .::::::.::::::::::. :::.       .,-::::: .,::::::  
-# ;;;`    ` `;;;```.;;;;;`;;    ,;;;'````' ;;;;''''  
-# '[==/[[[[, `]]nnn]]',[[ '[[,  [[[         [[cccc   
-#   '''    $  $$$""  c$$$cc$$$c $$$         $$""""   
-#  88b    dP  888o    888   888,`88bo,__,o, 888oo,__ 
-#   "YMmMY"   YMMMb   YMM   ""`   "YUMMMMMP"""""YUMMM
-#           :::::::.    :::.    :::::::..   
-# ;;;'';;'   ;;`;;   ;;;;``;;;;  
-#            [[[__[[\. ,[[ '[[,  [[[,/[[['  
-#            $$""""Y$$c$$$cc$$$c $$$$$$c    
-#           _88o,,od8P 888   888,888b "88bo,
-#           ""YUMMMP"  YMM   ""` MMMM   "W" 
+# S P A C E B A R 
 
 # NOTE: 
   # Colors are in 8bit Hex segments using the ARGB format. 
@@ -26,26 +15,6 @@
 # Pywal
   # Load Colors
     . $HOME/.cache/wal/colors.sh
-  # Colors
-    background="${background:1}"
-    foreground="${foreground:1}"
-    cursor="${cursor:1}"
-    color0="${color0:1}"
-    color1="${color1:1}"
-    color2="${color2:1}"
-    color3="${color3:1}"
-    color4="${color4:1}"
-    color5="${color5:1}"
-    color6="${color6:1}"
-    color7="${color7:1}"
-    color8="${color8:1}"
-    color9="${color9:1}"
-    color10="${color10:1}"
-    color11="${color11:1}"
-    color12="${color12:1}"
-    color13="${color13:1}"
-    color14="${color14:1}"
-    color15="${color15:1}"
 
 # Positioning
   spacebar -m config position                    top
@@ -70,15 +39,15 @@
 
 # Colors
   spacebar -m config background_color            0xaa$background
-  spacebar -m config foreground_color            0xff$color4
-  spacebar -m config power_icon_color            0xff$color3
-  spacebar -m config battery_icon_color          0xff$color3
-  spacebar -m config dnd_icon_color              0xff$color3
-  spacebar -m config clock_icon_color            0xff$color3
-  spacebar -m config right_shell_icon_color      0xff$color3
-  spacebar -m config space_icon_color            0xff$color3
-  spacebar -m config space_icon_color_secondary  0xff$color5
-  spacebar -m config space_icon_color_tertiary   0xff$color6
+  spacebar -m config foreground_color            0xff${color4:1}
+  spacebar -m config power_icon_color            0xff${color3:1}
+  spacebar -m config battery_icon_color          0xff${color3:1}
+  spacebar -m config dnd_icon_color              0xff${color3:1}
+  spacebar -m config clock_icon_color            0xff${color3:1}
+  spacebar -m config right_shell_icon_color      0xff${color3:1}
+  spacebar -m config space_icon_color            0xff${color3:1}
+  spacebar -m config space_icon_color_secondary  0xff${color5:1}
+  spacebar -m config space_icon_color_tertiary   0xff${color6:1}
 
 # Features
   spacebar -m config title                       on
@@ -90,6 +59,6 @@
 
 # Configuration
   spacebar -m config clock_format                ' %B %d, %Y %R'
-  spacebar -m config right_shell_command       "sh $HOME/.config/spacebar/spacebar_scripts.sh MUSIC;"
+  spacebar -m config right_shell_command       "$HOME/.config/bin/helpers -m;"
 
 echo "spacebar configuration loaded.."

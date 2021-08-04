@@ -1,0 +1,408 @@
+#!/bin/sh
+
+# H E L P E R  F U N C T I O N S
+
+# S K H D
+# N O R M A L  M O D E 
+function normal_mode() {
+    echo "N O R M A L  M O D E";
+
+    # P A T H S
+    HOMEBREW=/opt/homebrew/bin
+    
+    # C O L O R S
+    . $HOME/.cache/wal/colors.sh;
+    
+    # S P A C B A R
+    $HOMEBREW/spacebar -m config background_color 0xaa${background:1};
+    $HOMEBREW/spacebar -m config foreground_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config power_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config battery_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config dnd_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config clock_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config right_shell_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config space_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color5:1};
+    $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color6:1};
+    
+    $HOMEBREW/spacebar -m config center_shell off
+    $HOMEBREW/spacebar -m config title on
+
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color3:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+}
+
+# W I N D O W  M O D E
+function window_mode() {
+    echo "W I N D O W  M O D E";    
+
+    # P A T H S
+    HOMEBREW=/opt/homebrew/bin
+    
+    # C O L O R S
+    . $HOME/.cache/wal/colors.sh;
+    
+    # S P A C B A R
+    $HOMEBREW/spacebar -m config background_color 0xaa${color5:1};
+    $HOMEBREW/spacebar -m config foreground_color 0xff${foreground:1};
+    $HOMEBREW/spacebar -m config power_icon_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config battery_icon_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config dnd_icon_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config clock_icon_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config right_shell_icon_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config space_icon_color 0xff${color4:1};
+    $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color5:1};
+    $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color6:1};
+    
+    $HOMEBREW/spacebar -m config title off
+    $HOMEBREW/spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\""
+    $HOMEBREW/spacebar -m config center_shell on
+
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color5:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color5:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+}
+
+# S C R I P T S  M O D E
+function scripts_mode() {
+    echo "S C R I P T S  M O D E";    
+
+    # P A T H S
+    HOMEBREW=/opt/homebrew/bin
+    
+    # C O L O R S
+    . $HOME/.cache/wal/colors.sh;
+    
+    # S P A C B A R
+    $HOMEBREW/spacebar -m config background_color 0xaa${color4:1};
+    $HOMEBREW/spacebar -m config foreground_color 0xff${foreground:1};
+    $HOMEBREW/spacebar -m config power_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config battery_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config dnd_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config clock_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config right_shell_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config space_icon_color 0xff${color5:1};
+    $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color6:1};
+    $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color7:1};
+
+    $HOMEBREW/spacebar -m config title off;
+    $HOMEBREW/spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\"";    
+    $HOMEBREW/spacebar -m config center_shell on;
+
+    
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+}
+
+# S E T  W A L L P A P E R
+function set_wallpaper() {
+    
+    HOMEBREW=/opt/homebrew/bin
+    CURRENT_DESKTOP=$($HOMEBREW/yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
+    TOTAL_SPACES=$($HOMEBREW/yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
+    
+    if [[ $1 = "" ]]; then
+        WALLPAPER=$(osascript <<EOF
+        tell application "Finder"
+            set wallpaper to get POSIX path of (get desktop picture as alias)
+        end tell
+        return wallpaper
+EOF
+);
+    elif [[ $1 != "" ]]; then
+        WALLPAPER=$1
+    fi
+
+    [[ $CURRENT_DESKTOP -ne 1 ]] && $HOMEBREW/yabai -m space --focus 1 || :
+
+    for SPACE in $(seq 1 $TOTAL_SPACES)
+        do
+            $HOMEBREW/yabai -m space --focus $SPACE
+            echo $SPACE
+            sleep .25
+            osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$WALLPAPER\""
+        done
+    $HOMEBREW/yabai -m space --focus $CURRENT_DESKTOP
+
+}
+
+# T O G G L E  S E R V I C E S
+function toggle_service() {
+    # P A T H S
+    HOMEBREW=/opt/homebrew/bin
+
+    SERVICE=$1
+
+    case $SERVICE in
+        yabai) 
+            # Yabai requires full forumla in service commands
+            [[ $SERVICE == "yabai" ]] && SERVICE=xorpse/formulae/yabai || :;
+            # Other Services Start/Stop
+            pgrep $SERVICE && $HOMEBREW/brew services stop $SERVICE || $HOMEBREW/brew services start $SERVICE;
+            ;;
+        skhd) 
+            # Don't stop SKHD
+            if [[ $SERVICE == "skhd" ]]; then
+                $HOMEBREW/brew services restart skhd;
+            fi
+            ;;
+        spacebar)
+            pgrep $SERVICE && $HOMEBREW/brew services stop $SERVICE || $HOMEBREW/brew services start $SERVICE;
+            sleep .25;
+            pgrep spacebar && $HOMEBREW/yabai -m config external_bar main:$($HOMEBREW/spacebar -m config height):0 || $HOMEBREW/yabai -m config external_bar main:0:0;
+            ;;
+        *) echo default
+            pgrep $SERVICE && $HOMEBREW/brew services stop $SERVICE || $HOMEBREW/brew services start $SERVICE;
+        ;;
+    esac
+    sleep .25;
+    scripts_mode
+}
+
+# S P A C E B A R
+# M U S I C
+function spacebar_music_info() {
+    MUSIC_INFO=$(osascript <<EOF
+        on titleCase(theString)
+            set UpperFirstCharString to do shell script "echo " & character 1 of theString & " | tr [:lower:] [:upper:]"
+            set theString to UpperFirstCharString & characters 2 through -1 of theString
+            return theString
+        end titleCase
+
+        on appRunning(appName)
+            if application appName is running then
+                return true
+            else
+                return false
+            end if
+        end appRunning
+
+        on musicPlaying()
+            tell application "Music"
+                set playerState to (get player state) as text
+            end tell
+            
+            if playerState is "paused" then
+                set stateIcon to " "
+            else if playerState is "stopped" then
+                set stateIcon to " "
+            else if playerState is "playing" then
+                set stateIcon to " "
+            end if
+                
+            if playerState is not "stopped" then
+                return {true, titleCase(playerState), stateIcon}
+            else
+                return {false, titleCase(playerState), stateIcon}
+            end if
+        end musicPlaying
+
+        on getTrackInfo()
+            set appRunning to appRunning("Music")
+            set musicPlaying to musicPlaying()	
+            
+            if appRunning is true then
+                if item 1 of musicPlaying is true then
+                    tell application "Music"
+                        set info to get {name, artist, album} of current track
+                        return "" & item 3 of musicPlaying & "  " & item 1 of info & " x " & item 2 of info
+                    end tell
+                else
+                    return item 3 of musicPlaying & " Music Stopped "
+                end if
+            else
+                return "   Music App Not Running "
+            end if
+        end getTrackInfo
+
+        getTrackInfo()
+EOF
+    )
+    printf "$MUSIC_INFO"
+}
+
+# V P N 
+function spacebar_vpn_info() {
+    if [[ $(scutil --nc list | grep Connected) ]]; then
+        VPN_NAME=$(scutil --nc list| sed -r 's/.*"(.*)".*/\1/'|tail -n1);
+        printf " $VPN_NAME Connected ";
+    else
+        printf " No VPN Connected "
+    fi
+}
+
+# I N V E S T M E N T S
+function spacebar_investment_info() {
+    ETH=$(/usr/bin/curl -s 'rate.sx/eth@1d' | /usr/bin/grep change| /usr/bin/sed -r 's/.*\((.*)\).*/\1/' | /opt/homebrew/bin/strip-ansi); 
+
+    BTC=$(/usr/bin/curl -s 'rate.sx/btc@1d' | /usr/bin/grep change| /usr/bin/sed -r 's/.*\((.*)\).*/\1/' | /opt/homebrew/bin/strip-ansi); 
+
+    VTI=$(/usr/bin/curl -s https://terminal-stocks.herokuapp.com/VTI | /usr/bin/grep - | head -n1 | /opt/homebrew/bin/strip-ansi |/usr/local/opt/python@3.9/libexec/bin/python -c "import sys,re;[sys.stdout.write(re.sub('│.*?│.*?│.*?│\w*?(.*?)\w*?│.*', r'\1', line)) for line in sys.stdin]" | /usr/bin/sed 's/ //g');     
+
+    echo " BTC: $BTC ETH: $ETH VTI: $VTI%" | strip-ansi | rev | cut -c2-| rev | /usr/bin/sed -e 's/$/\%/g'
+}
+
+# S P A C E B A R  C M D  S E L E C T
+function spacebar_cmd_select() {
+    # P A T H S
+    HOMEBREW=/opt/homebrew/bin
+    
+    current_selection=$($HOMEBREW/spacebar -m config right_shell_command)
+    if [[ $current_selection == *"-m"* ]]; then
+       $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -v;"
+    elif [[ $current_selection == *"-v"* ]]; then
+        $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -i;"
+    elif [[ $current_selection == *"-i"* ]]; then
+        $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -m;" 
+    fi
+}
+
+# Y A B A I
+# TODO: Create another function that runs hack if neccessary else native
+function create_spaces() {
+    HOMEBREW=/opt/homebrew/bin
+    TOTAL_SPACES=$(yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
+    DESIRED_SPACES=$1
+    SPACES_TO_CREATE=$(($DESIRED_SPACES - $TOTAL_SPACES))
+    echo $SPACES_TO_CREATE
+
+    if [[ ${SPACES_TO_CREATE} -le 0 ]]; then
+        echo "$TOTAL_SPACES are available."
+        exit 0
+    elif [[ ${SPACES_TO_CREATE} -gt 0 ]]; then
+        for space in ${SPACES_TO_CREATE}
+            do 
+                $HOMEBREW/yabai -m space --create;
+            done
+    fi
+}
+
+# S I P  H A C K S 
+# C R E A T E  S P A C E S
+function create_spaces_hack() {
+    TOTAL_SPACES=$(($(yabai -m query --spaces | grep -c "id") - $(yabai -m query --spaces | grep -c '"native-fullscreen":1')))
+    ARGS=$(echo "${*} $TOTAL_SPACES")
+
+    osascript - "${ARGS}" <<EOF
+    on run argv
+        set argv to argv as string
+        set argv to words of argv
+
+        set desired_spaces to item 1 of argv as number
+        set additional_or_total to item 2 of argv as boolean -- true is total
+        set total_spaces to item 3 of argv as number
+        
+        if additional_or_total is true and desired_spaces < total_spaces then
+            -- look for empty spaces to remove maybe
+            tell me to "exit"
+        else if additional_or_total is true and desired_spaces > total_spaces then
+            repeat desired_spaces - total_spaces times
+                do shell script "open -a 'Mission Control'"
+                delay 0.1
+                tell application "System Events" to click (every button whose value of attribute "AXDescription" is "add desktop") of UI element "Spaces Bar" of UI element 1 of group 1 of process "Dock"
+                delay 0.1
+                do shell script "open -a 'Mission Control'"
+            end repeat
+        else if additional_or_total is false then
+            repeat desired_spaces times
+                do shell script "open -a 'Mission Control'"
+                delay 0.1
+                tell application "System Events" to click (every button whose value of attribute "AXDescription" is "add desktop") of UI element "Spaces Bar" of UI element 1 of group 1 of process "Dock"
+                delay 0.1
+                do shell script "open -a 'Mission Control'"
+            end repeat
+        end if
+    end run
+EOF
+}
+
+# M O V E  S P A C E S
+# TODO: Needs check for out of bounds e.g.: move to 100 or -1
+function move_spaces_hack() {
+    HOMEBREW=/opt/homebrew/bin
+    CURRENT_DESKTOP=$($HOMEBREW/yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
+    DESIRED_DESKTOP=$1
+    ARGS="$CURRENT_DESKTOP $DESIRED_DESKTOP"
+
+    osascript - "${ARGS}" <<EOF
+    on run argv
+        set argv to argv as string
+        set argv to words of argv
+        set current_space to item 1 of argv as integer
+        set desired_space to item 2 of argv as integer
+
+        if desired_space - current_space < 0 then
+		set a to desired_space - current_space
+		set a to a as string
+		set moves to item 2 of a as integer
+		tell application "System Events"
+			repeat moves times
+				key code 123 using control down
+				delay 0.1
+			end repeat
+		end tell
+	else if desired_space - current_space > 0 then
+		tell application "System Events"
+			repeat desired_space - current_space times
+				key code 124 using control down
+				delay 0.1
+			end repeat
+		end tell
+	else if desired_space - current_space is 0 then
+		-- log "Desired Desktop is Current Desktop"
+	else
+		-- log "failed"
+	end if
+    end run
+EOF
+}
+
+while getopts "nwsmvict:S:M:w:C:W" flag
+do
+    case "${flag}" in
+        n) 
+            normal_mode
+            ;;
+        w) 
+            window_mode
+            ;;
+        s) 
+            scripts_mode
+            ;;
+        m) 
+            spacebar_music_info
+            ;;
+        v) 
+            spacebar_vpn_info
+            ;;
+        i) 
+            spacebar_investment_info
+            ;;
+        c) 
+            spacebar_cmd_select
+            ;;
+        t) 
+            toggle_service ${OPTARG}
+            ;;
+        S) 
+            create_spaces_hack ${OPTARG}
+            ;;
+        M) 
+            move_spaces_hack ${OPTARG}
+            ;;
+        C)
+            create_spaces ${OPTARG}
+            ;;
+        W)
+            set_wallpaper $2
+            ;;
+        *) 
+            echo "Invalid option: -$flag" 
+            ;;
+    esac
+done

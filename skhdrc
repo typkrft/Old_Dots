@@ -1,60 +1,9 @@
+# S K H D
 
-
-#  .::::::.  :::  .    ::   .::::::::-.  
-# ;;;`    `  ;;; .;;,.,;;   ;;,;;,   `';,
-# '[==/[[[[, [[[[[/' ,[[[,,,[[[`[[     [[
-#   '''    $_$$$$,   "$$$"""$$$ $$,    $$
-#  88b    dP"888"88o, 888   "88o888_,o8P'
-#   "YMmMY"  MMM "MMP"MMM    YMMMMMMP"`  
-
-# Setup Modes
-    :: default : \
-        . $HOME/.cache/wal/colors.sh;\
-        /opt/homebrew/bin/spacebar -m config background_color 0xaa${background:1};\
-        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color3:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color3:1};\
-        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color4:1};\
-        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
-
-    :: window @ : \
-        . $HOME/.cache/wal/colors.sh;\
-        /opt/homebrew/bin/spacebar -m config background_color 0xaa${color5:1};\
-        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${foreground:1};\
-        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color5:1};\
-        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color5:1};\
-        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
-
-    :: scripts @ : \
-        . $HOME/.cache/wal/colors.sh;\
-        /opt/homebrew/bin/spacebar -m config background_color 0xaa${color2:1};\
-        /opt/homebrew/bin/spacebar -m config foreground_color 0xff${foreground:1};\
-        /opt/homebrew/bin/spacebar -m config power_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config battery_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config dnd_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config clock_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config right_shell_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color 0xff${color4:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_secondary 0xff${color5:1};\
-        /opt/homebrew/bin/spacebar -m config space_icon_color_tertiary 0xff${color6:1};\
-        /opt/homebrew/bin/yabai -m config active_window_border_color 0xff${color2:1};\
-        /opt/homebrew/bin/yabai -m config normal_window_border_color 0xff${color2:1};\
-        /opt/homebrew/bin/yabai -m config insert_feedback_color 0xff${color3:1};
+# M O D E S
+    :: default : $HOME/.config/bin/helpers -n
+    :: window @ : $HOME/.config/bin/helpers -w
+    :: scripts @ : $HOME/.config/bin/helpers -s
 
 # Mode Shortcuts
     default, scripts < lcmd - escape ; window
@@ -62,47 +11,15 @@
     default, window < lctrl - escape ; scripts
 
 # Scripts
-    # Toggle Limelight
-    # scripts < 0x25 : \
-        # [[ `pgrep -fl bin/limelight` ]] \
-        # && /usr/bin/killall limelight \
-        # || $HOME/.config/bin/limelight -c $HOME/.config/limelight/limelightrc
-
     # Toggle Spacebar
-    scripts < 0x01 : \
-        YABAI=$(/usr/bin/pgrep -fl /bin/yabai); \
-        SPACEBAR=$(/usr/bin/pgrep -fl /bin/spacebar); \
-        echo YABAI = ${#YABAI} SPACEBAR = ${#SPACEBAR}; \
-        if [ ${#YABAI} -ne 0 ]; then \
-            if [ ${#SPACEBAR} -ne 0 ]; then \
-                /opt/homebrew/bin/brew services stop spacebar; \
-                /usr/bin/killall spacebar; \
-                /opt/homebrew/bin/yabai -m config external_bar main:0:0; \
-            else \
-                /opt/homebrew/bin/brew services start spacebar; \
-                /usr/local/opt/coreutils/libexec/gnubin/sleep 1; \
-                SPACEBAR_HEIGHT=$(/opt/homebrew/bin/spacebar -m config height); \
-                /opt/homebrew/bin/yabai -m config external_bar main:"$SPACEBAR_HEIGHT":0; \
-            fi; \
-        elif [ ${#YABAI} -eq 0 ]; then \
-            if [ ${#SPACEBAR} -ne 0 ]; then \
-                /opt/homebrew/bin/brew services stop spacebar; \
-                /usr/bin/killall spacebar; else /opt/homebrew/bin/brew services start spacebar; \
-            fi; \
-        fi; \
+    scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
  
-
     # Toggle Yabai
-    scripts < 0x10 : \
-        [[ `pgrep -fl bin/yabai` ]] \
-        && /opt/homebrew/bin/brew services stop xorpse/formulae/yabai \
-        || (/opt/homebrew/bin/brew services start xorpse/formulae/yabai`)
+    scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
 
     # Show Desktop
     scripts < d :\
         yabai -m space --toggle show-desktop; 
-        # /Users/brandon/.config/bin/limelight -m config active_color 0xffffff; \
-        # /Users/brandon/.config/bin/limelight -m config normal_color 0xffffff;
 
     # Change Wallpaper
     scripts < 0x0D : \
@@ -166,14 +83,7 @@
         fi; 
 
     # Toggle Spacebar shell widgets
-    scripts < 0x24 : \
-        if [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o MUSIC) == "MUSIC" ]]; then \
-                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh VPN";\
-        elif [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o VPN) == "VPN" ]]; then \
-                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh INVESTMENTS";\
-        elif [[ $(/opt/homebrew/bin/spacebar -m config right_shell_command | /usr/bin/grep -o INVESTMENTS) == "INVESTMENTS" ]]; then \
-                /opt/homebrew/bin/spacebar -m config right_shell_command "sh /Users/brandon/.config/spacebar/spacebar_scripts.sh MUSIC"; \
-        fi;   
+    scripts < 0x24 : $HOME/.config/bin/helpers -c
 
 
 # Window Management
