@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: ADD add Paths and Universally Used Variables out of function scope
+
 # H E L P E R  F U N C T I O N S
 
 # S K H D
@@ -166,6 +168,7 @@ function toggle_service() {
 
 # S P A C E B A R
 # M U S I C
+# NOTE: Sure how to dynamically change the Player Icon
 function spacebar_music_info() {
     HOMEBREW=/opt/homebrew/bin
 
@@ -223,15 +226,19 @@ function spacebar_cmd_select() {
         $HOMEBREW/spacebar -m config right_shell_command "echo" # Delay before information displayed 
         $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -i;"
     elif [[ $current_selection == *"-i"* ]]; then
-        if [[ $(spacebar_music_info) -eq 0 ]]; then
-            $HOMEBREW/spacebar -m config right_shell_icon '| '
-        elif [[ $(spacebar_music_info) -eq 1 ]]; then
-            $HOMEBREW/spacebar -m config right_shell_icon '| '        
-        elif [[ $(spacebar_music_info) -eq 2 ]]; then
-            $HOMEBREW/spacebar -m config right_shell_icon '| '        
-        else
-            $HOMEBREW/spacebar -m config right_shell_icon '| '
-        fi
+        # spacebar_music_info
+        # PLAYER_STATE=$?
+        # if [[ ${PLAYER_STATE} -eq 0 ]]; then
+        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
+        # elif [[ ${PLAYER_STATE} -eq 1 ]]; then
+        #     $HOMEBREW/spacebar -m config right_shell_icon '| '        
+        # elif [[ ${PLAYER_STATE} -eq 2 ]]; then
+        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
+        # else
+        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
+        # fi
+        
+        $HOMEBREW/spacebar -m config right_shell_icon '| '
         $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -m;" 
 
     fi
@@ -337,6 +344,9 @@ function move_spaces_hack() {
 EOF
 }
 
+# P A R S E  O P T S
+# For GETOPT : = required param :: = optional param 
+# For GETOPTS just use $2 if you need an optional param
 while getopts "nwsmvict:S:M:w:C:W" flag
 do
     case "${flag}" in

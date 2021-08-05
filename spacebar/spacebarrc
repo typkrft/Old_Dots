@@ -59,6 +59,6 @@
 
 # Configuration
   spacebar -m config clock_format                ' %B %d, %Y %R'
-  spacebar -m config right_shell_command       "$HOME/.config/bin/helpers -m;"
+  spacebar -m config right_shell_command       "$HOME/.config/bin/helpers -i;"
 
 echo "spacebar configuration loaded.."
