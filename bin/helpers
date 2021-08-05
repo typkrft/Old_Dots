@@ -167,63 +167,25 @@ function toggle_service() {
 # S P A C E B A R
 # M U S I C
 function spacebar_music_info() {
-    MUSIC_INFO=$(osascript <<EOF
-        on titleCase(theString)
-            set UpperFirstCharString to do shell script "echo " & character 1 of theString & " | tr [:lower:] [:upper:]"
-            set theString to UpperFirstCharString & characters 2 through -1 of theString
-            return theString
-        end titleCase
+    HOMEBREW=/opt/homebrew/bin
 
-        on appRunning(appName)
-            if application appName is running then
-                return true
-            else
-                return false
-            end if
-        end appRunning
-
-        on musicPlaying()
-            tell application "Music"
-                set playerState to (get player state) as text
-            end tell
-            
-            if playerState is "paused" then
-                set stateIcon to " "
-            else if playerState is "stopped" then
-                set stateIcon to " "
-            else if playerState is "playing" then
-                set stateIcon to " "
-            end if
-                
-            if playerState is not "stopped" then
-                return {true, titleCase(playerState), stateIcon}
-            else
-                return {false, titleCase(playerState), stateIcon}
-            end if
-        end musicPlaying
-
-        on getTrackInfo()
-            set appRunning to appRunning("Music")
-            set musicPlaying to musicPlaying()	
-            
-            if appRunning is true then
-                if item 1 of musicPlaying is true then
-                    tell application "Music"
-                        set info to get {name, artist, album} of current track
-                        return "" & item 3 of musicPlaying & "  " & item 1 of info & " x " & item 2 of info
-                    end tell
-                else
-                    return item 3 of musicPlaying & " Music Stopped "
-                end if
-            else
-                return "   Music App Not Running "
-            end if
-        end getTrackInfo
-
-        getTrackInfo()
-EOF
-    )
-    printf "$MUSIC_INFO"
+    PLAYER_STATE=$(osascript -e "tell application \"Music\" to set playerState to (get player state) as text") || echo
+    TITLE=$(osascript -e "tell application \"Music\" to set theTrack to get name of current track") || echo
+    ARTIST=$(osascript -e "tell application \"Music\" to set theTrack to get artist of current track")
+    ALBUM=$(osascript -e "tell application \"Music\" to set theTrack to get album of current track") || echo
+    
+    if [[ $PLAYER_STATE == "stopped" ]]; then
+        printf " Music Stopped "
+        return 0
+    elif [[ $PLAYER_STATE == "paused" ]]; then
+    printf " $TITLE x $ARTIST" # Should probably manipulate this text and show the album as well if line is x characters eg | cut -c 1-80 or something more intelligent 
+        return 1
+    elif [[ $PLAYER_STATE == "playing" ]]; then
+    printf " $TITLE x $ARTIST" # Should probably manipulate this text and show the album as well if line is x characters eg | cut -c 1-80 or something more intelligent 
+        return 2
+    else
+        return 3
+    fi    
 }
 
 # V P N 
@@ -254,11 +216,24 @@ function spacebar_cmd_select() {
     
     current_selection=$($HOMEBREW/spacebar -m config right_shell_command)
     if [[ $current_selection == *"-m"* ]]; then
+       $HOMEBREW/spacebar -m config right_shell_icon '| '
        $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -v;"
     elif [[ $current_selection == *"-v"* ]]; then
+        $HOMEBREW/spacebar -m config right_shell_icon '| '
+        $HOMEBREW/spacebar -m config right_shell_command "echo" # Delay before information displayed 
         $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -i;"
     elif [[ $current_selection == *"-i"* ]]; then
+        if [[ $(spacebar_music_info) -eq 0 ]]; then
+            $HOMEBREW/spacebar -m config right_shell_icon '| '
+        elif [[ $(spacebar_music_info) -eq 1 ]]; then
+            $HOMEBREW/spacebar -m config right_shell_icon '| '        
+        elif [[ $(spacebar_music_info) -eq 2 ]]; then
+            $HOMEBREW/spacebar -m config right_shell_icon '| '        
+        else
+            $HOMEBREW/spacebar -m config right_shell_icon '| '
+        fi
         $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -m;" 
+
     fi
 }
 
