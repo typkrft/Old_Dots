@@ -30,6 +30,8 @@ scripts < lalt - c : $HOME/.config/bin/helpers -P s
 scripts < 0x09 : skhd -k "escape"; $HOME/.config/bin/helpers -V
 # Toggle Spacebar shell widgets
 scripts < 0x24 : $HOME/.config/bin/helpers -c
+# Play My Radio Station
+scripts < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
 
 # W I N D O W S
 # Balance Space
@@ -72,8 +74,6 @@ window < z : yabai -m window --toggle zoom-fullscreen; skhd -k "escape";
 window < shift - z : yabai -m window --toggle native-fullscreen; skhd -k "escape";
 
 # D E F A U L T
-# Play My Radio Station
-# default < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
 default < cmd - 0x30 [
   "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
 ]
