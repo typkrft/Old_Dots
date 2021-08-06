@@ -85,6 +85,10 @@ default < cmd - n [
   "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
+default < cmd -t [
+  "kitty" : $HOME/.config/bin/helpers -q
+]
+
 default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
 default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
 default < cmd - return [

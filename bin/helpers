@@ -475,7 +475,7 @@ EOF
 # M I S C
 # V P N
 # TODO: Work on colors and add VPN Center Title
-toggle_vpn() {
+function toggle_vpn() {
   skhd -k "escape"; 
   HOMEBREW=/opt/homebrew/bin      
   VPN_STATUS=$(networksetup -showpppoestatus "Myrtle Beach Office VPN")
@@ -489,10 +489,23 @@ toggle_vpn() {
   fi; 
 }
 
+function kitty_quake_tab() {
+  HOMEBREW=/opt/homebrew/bin  
+  QUAKE=($(yabai -m query --windows --window | jq '.|.id,.focused,.title'| sed -E 's/"(.*)"/\1/'))
+
+  if [[ ${QUAKE[2]} == "Quake" ]]; then
+    echo test
+    kitty @ --to="tcp:localhost:54889" launch --type=tab --window-title "Quake" --tab-title="Quake: {index}"
+  else
+    echo test2
+    skhd -k "ctrl + shift - t"
+  fi
+}
+
 # P A R S E  O P T S
 # For GETOPT : = required param :: = optional param 
 # For GETOPTS just use $2 if you need an optional param
-while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Q" flag
+while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Qq" flag
 do
     case "${flag}" in
         n) 
@@ -554,6 +567,9 @@ do
             ;;
         Q) 
             kitty_quake
+            ;;
+        q)  
+	    kitty_quake_tab
             ;;
         *) 
             echo "Invalid option: -$flag" 

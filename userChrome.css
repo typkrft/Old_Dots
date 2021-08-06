@@ -238,17 +238,17 @@ hbox.titlebar-spacer:nth-child(3) {visibility: collapse !important;}
 /* Hide splitter, when using Tree Style Tab. */
 /* Take From https://www.reddit.com/r/FirefoxCSS/comments/emjqx2/autohide_tree_style_tabs/fdpck8l?utm_source=share&utm_medium=web2x&context=3 */
 
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
   display: none !important;
-} */
+}
 
 /* Hide sidebar header, when using Tree Style Tab. */
-/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
   visibility: collapse;
-} */
+} 
 
 /* Shrink sidebar until hovered, when using Tree Style Tab. */
-/* #sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
   min-width: var(--wide-tab-width) !important;
   max-width: none !important;
 }
@@ -267,10 +267,10 @@ hbox.titlebar-spacer:nth-child(3) {visibility: collapse !important;}
   max-width: var(--wide-tab-width) !important;
   margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
   z-index: 1;
-} */
+} 
 
-/* :root { --thin-tab-width: 10px; }
-:root { --wide-tab-width: 250px; } */
+:root { --thin-tab-width: 10px; }
+:root { --wide-tab-width: 250px; } 
 /* Configuration 2 - END */
 
 
