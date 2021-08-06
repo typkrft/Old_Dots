@@ -11,10 +11,15 @@ function normal_mode() {
 
     # P A T H S
     HOMEBREW=/opt/homebrew/bin
-    
+
     # C O L O R S
     . $HOME/.cache/wal/colors.sh;
     
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color3:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+
     # S P A C B A R
     $HOMEBREW/spacebar -m config background_color 0xaa${background:1};
     $HOMEBREW/spacebar -m config foreground_color 0xff${color4:1};
@@ -26,14 +31,8 @@ function normal_mode() {
     $HOMEBREW/spacebar -m config space_icon_color 0xff${color3:1};
     $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color5:1};
     $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color6:1};
-    
     $HOMEBREW/spacebar -m config center_shell off
     $HOMEBREW/spacebar -m config title on
-
-    # Y A B A I
-    $HOMEBREW/yabai -m config active_window_border_color 0xff${color3:1};
-    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
-    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
 }
 
 # W I N D O W  M O D E
@@ -41,10 +40,15 @@ function window_mode() {
     echo "W I N D O W  M O D E";    
 
     # P A T H S
-    HOMEBREW=/opt/homebrew/bin
+    HOMEBREW=/opt/homebrew/bin    
     
     # C O L O R S
     . $HOME/.cache/wal/colors.sh;
+
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color5:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color5:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
     
     # S P A C B A R
     $HOMEBREW/spacebar -m config background_color 0xaa${color5:1};
@@ -57,27 +61,27 @@ function window_mode() {
     $HOMEBREW/spacebar -m config space_icon_color 0xff${color4:1};
     $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color5:1};
     $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color6:1};
-    
-    $HOMEBREW/spacebar -m config title off
-    $HOMEBREW/spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\""
-    $HOMEBREW/spacebar -m config center_shell on
 
-    # Y A B A I
-    $HOMEBREW/yabai -m config active_window_border_color 0xff${color5:1};
-    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color5:1};
-    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config title off 
+    $HOMEBREW/spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
+    $HOMEBREW/spacebar -m config center_shell on 
+    
 }
 
 # S C R I P T S  M O D E
 function scripts_mode() {
-    echo "S C R I P T S  M O D E";    
-
     # P A T H S
     HOMEBREW=/opt/homebrew/bin
-    
+    echo "S C R I P T S  M O D E";
+
     # C O L O R S
     . $HOME/.cache/wal/colors.sh;
     
+    # Y A B A I
+    $HOMEBREW/yabai -m config active_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
+    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+
     # S P A C B A R
     $HOMEBREW/spacebar -m config background_color 0xaa${color4:1};
     $HOMEBREW/spacebar -m config foreground_color 0xff${foreground:1};
@@ -90,32 +94,20 @@ function scripts_mode() {
     $HOMEBREW/spacebar -m config space_icon_color_secondary 0xff${color6:1};
     $HOMEBREW/spacebar -m config space_icon_color_tertiary 0xff${color7:1};
 
-    $HOMEBREW/spacebar -m config title off;
-    $HOMEBREW/spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\"";    
-    $HOMEBREW/spacebar -m config center_shell on;
-
-    
-    # Y A B A I
-    $HOMEBREW/yabai -m config active_window_border_color 0xff${color4:1};
-    $HOMEBREW/yabai -m config normal_window_border_color 0xff${color4:1};
-    $HOMEBREW/yabai -m config insert_feedback_color 0xff${color3:1};
+    $HOMEBREW/spacebar -m config title off 
+    $HOMEBREW/spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
+    $HOMEBREW/spacebar -m config center_shell on
 }
 
 # S E T  W A L L P A P E R
+#TODO: CHECK IF this still works
 function set_wallpaper() {
-    
     HOMEBREW=/opt/homebrew/bin
     CURRENT_DESKTOP=$($HOMEBREW/yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
     TOTAL_SPACES=$($HOMEBREW/yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
     
     if [[ $1 = "" ]]; then
-        WALLPAPER=$(osascript <<EOF
-        tell application "Finder"
-            set wallpaper to get POSIX path of (get desktop picture as alias)
-        end tell
-        return wallpaper
-EOF
-);
+        WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
     elif [[ $1 != "" ]]; then
         WALLPAPER=$1
     fi
@@ -133,6 +125,13 @@ EOF
 
 }
 
+function shuffle_wallpaper(){
+    /usr/bin/find /Volumes/Wallpapers -type f -print0 | \
+    /usr/local/opt/coreutils/libexec/gnubin/shuf -z -n 1| \
+    /usr/bin/xargs -I{} \
+    /usr/bin/osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""
+}
+
 # T O G G L E  S E R V I C E S
 function toggle_service() {
     # P A T H S
@@ -143,9 +142,9 @@ function toggle_service() {
     case $SERVICE in
         yabai) 
             # Yabai requires full forumla in service commands
-            [[ $SERVICE == "yabai" ]] && SERVICE=xorpse/formulae/yabai || :;
+            [[ $SERVICE == "yabai" ]] && YABAI=xorpse/formulae/yabai || :;
             # Other Services Start/Stop
-            pgrep $SERVICE && $HOMEBREW/brew services stop $SERVICE || $HOMEBREW/brew services start $SERVICE;
+            pgrep $SERVICE && $HOMEBREW/brew services stop $YABAI || $HOMEBREW/brew services start $YABAI;
             ;;
         skhd) 
             # Don't stop SKHD
@@ -163,6 +162,40 @@ function toggle_service() {
         ;;
     esac
     sleep .25;
+    scripts_mode
+}
+
+# TODO: Add Save Colorscheme
+# TODO: Add Cycle Favorite Colorshemes
+function update_colors() {
+    HOMEBREW=/opt/homebrew/bin
+    case $1 in
+        c) # Current Wallpaper Colorscheme            
+            CURRENT_WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
+            $HOMEBREW/wal -n -i $CURRENT_WALLPAPER
+            ;;
+        n) # New Walllpaper Colorscheme
+            shuffle_wallpaper
+            CURRENT_WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
+            $HOMEBREW/wal -n -i $CURRENT_WALLPAPER
+            ;;
+        s) # Keep Wallpaper, Shuffle Colorsheme
+            $HOMEBREW/wal -n --recursive -i /Volumes/Wallpapers
+            ;;
+        S) # Save Scheme
+            ;;
+        f) # Cycle Favorite Schemes
+            ;;
+        *) 
+            echo default
+            ;;
+    esac
+
+
+    # Update Various App Colorschemes
+    osascript -e "tell application \"Alfred 4\" to set theme \"Wal\"";
+    $HOMEBREW/pywalfox update
+    $HOMEBREW/kitty @ --to="tcp:localhost:54889" set-colors -a -c $HOME/.config/kitty/kitty.conf
     scripts_mode
 }
 
@@ -240,11 +273,106 @@ function spacebar_cmd_select() {
         
         $HOMEBREW/spacebar -m config right_shell_icon '| '
         $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -m;" 
-
     fi
 }
 
 # Y A B A I
+# TODO: Make a layout and stack indicator
+# C L O S E  W I N D O W S
+function close_window() {
+  HOMEBREW=/opt/homebrew/bin
+  if [[ $(yabai -m query --windows --window |grep \"native-fullscreen\":1) ]]; then
+    $HOMEBREW/yabai -m window --toggle native-fullscreen;
+    $HOMEBREW/yabai -m window --close;
+    $HOMEBREW/skhd -k "escape";
+  else
+    $HOMBREW/yabai -m window --close;
+  fi
+}
+# T O G G L E  G A P S  A N D  B O R D E R S
+function toggle_gabs_and_borders() {
+  HOMEBREW=/opt/homebrew/bin
+  if [[ $(yabai -m config window_border) == on ]]; then
+    yabai -m space --toggle gap;
+    yabai -m space --toggle padding;
+  elif [[ $(yabai -m config window_border) == off ]]; then
+    yabai -m space --toggle gap;
+    yabai -m space --toggle padding;
+    yabai -m config window_border on;
+  fi
+  $HOMEBREW/skhd -k "escape"
+}
+# T O G G L E  W I N D O W  L A Y O U T S
+function toggle_layouts(){
+  if [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"bsp"* ]]; then
+    yabai -m query --spaces \
+    | jq '[.[]|select(.focused==1)][0].index' \
+    | xargs -I {} yabai -m space {} --layout stack;
+  elif [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"stack"* ]]; then
+    yabai -m query --spaces \
+    | jq '[.[]|select(.focused==1)][0].index' \
+    | xargs -I {} yabai -m space {} --layout float;
+  elif [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"float"* ]]; then \
+    yabai -m query --spaces \
+    | jq '[.[]|select(.focused==1)][0].index' \
+    | xargs -I {} yabai -m space {} --layout bsp; \
+  fi
+}
+
+# I N S E R T  A P P  W I N D O W S  I N T O  S T A C K
+# TODO: setup function so any app can do this. 
+function kitty_quake() {
+  HOMEBREW=/opt/homebrew/bin
+  QUAKE=($($HOMEBREW/yabai -m query --windows --space |jq '.[]|select(.title=="Quake")|.id,.minimized,.border'))
+  echo "1) ${QUAKE[0]} 2) ${QUAKE[1]} 3) ${QUAKE[2]} 4) ${QUAKE[3]} 5) ${QUAKE[4]} 6) ${#QUAKE[@]}"
+  
+  if [[ ${#QUAKE} -eq 0 ]]; then
+    open -a kitty.app -n --args -1 --title="Quake" -o \
+      tab_title_template="Quake: {index}" --listen-on="tcp:localhost:54889" \
+      &>/dev/null & disown; 
+    while [[ ${#QUAKE[@]} -ne 3 ]];
+      do
+        QUAKE=($($HOMEBREW/yabai -m query --windows --space|jq '.[]|select(.title=="Quake")|.id,.minimized,.border'))
+        echo ${QUAKE[0]} ${QUAKE[1]} ${QUAKE[2]}
+      done
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --toggle sticky;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --move abs:0:0;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --resize abs:10000:450;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --opacity 0.95;
+  elif [[ ${QUAKE[1]} -eq 1 ]]; then
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --deminimize;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --move abs:0:0;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --resize abs:10000:450;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --opacity 0.95;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --focus "${QUAKE[0]}";
+    [[ ${QUAKE[2]} -eq 0 ]] && $HOMEBREW/yabai -m window "${QUAKE[0]}" --toggle border || :
+  elif [[ ${QUAKE[1]} -eq 0 ]]; then
+    [[ ${QUAKE[2]} -eq 1 ]] && $HOMEBREW/yabai -m window "${QUAKE[0]}" --toggle border || :
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --opacity 0.001;
+    $HOMEBREW/yabai -m window "${QUAKE[0]}" --minimize;
+  else
+    echo quake failed
+  fi
+}
+
+# TODO: Setup a title filter instead of hard coding it just for kitty
+function stack_app() {
+  HOMEBREW=/opt/homebrew/bin
+  APP=$*
+  WINDOW=$($HOMEBREW/yabai -m query --windows --window | jq '.app' | sed -E 's/"(.*)"/\1/')
+  TITLE=$($HOMEBREW/yabai -m query --windows --window | jq '.title' | sed -E 's/"(.*)"/\1/')
+  echo $APP $WINDOW
+  if [[ $APP == $WINDOW ]]; then
+    if [[ $TITLE == *"Quake"* ]]; then
+       osascript -e "tell application \"System Events\" to tell application process \"$APP\" to tell menu 1 of menu bar item 3 of menu bar 1 to click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)"
+      exit 0
+    fi
+    $HOMEBREW/yabai -m window --insert stack
+    osascript -e "tell application \"System Events\" to tell application process \"$APP\" to tell menu 1 of menu bar item 3 of menu bar 1 to click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)"
+  fi
+}
+
+# C R E A T E  S P A C E S
 # TODO: Create another function that runs hack if neccessary else native
 function create_spaces() {
     HOMEBREW=/opt/homebrew/bin
@@ -344,10 +472,27 @@ function move_spaces_hack() {
 EOF
 }
 
+# M I S C
+# V P N
+# TODO: Work on colors and add VPN Center Title
+toggle_vpn() {
+  skhd -k "escape"; 
+  HOMEBREW=/opt/homebrew/bin      
+  VPN_STATUS=$(networksetup -showpppoestatus "Myrtle Beach Office VPN")
+  if [[ $VPN_STATUS == "disconnected"  ]]; then
+    networksetup -connectpppoeservice "Myrtle Beach Office VPN";
+    $HOMEBREW/spacebar -m config right_shell_icon '| '
+    $HOMEBREW/spacebar -m config right_shell_command "$HOME/.config/bin/helpers -v"
+  elif [[ $VPN_STATUS == "connected"  ]]; then
+    networksetup -disconnectpppoeservice "Myrtle Beach Office VPN";
+    normal_mode
+  fi; 
+}
+
 # P A R S E  O P T S
 # For GETOPT : = required param :: = optional param 
 # For GETOPTS just use $2 if you need an optional param
-while getopts "nwsmvict:S:M:w:C:W" flag
+while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Q" flag
 do
     case "${flag}" in
         n) 
@@ -385,6 +530,30 @@ do
             ;;
         W)
             set_wallpaper $2
+            ;;
+        p)
+            shuffle_wallpaper
+            ;;
+        P) 
+            update_colors ${OPTARG}
+            ;;
+        V) 
+            toggle_vpn
+            ;;
+        l) 
+            toggle_layouts
+            ;;
+        g) 
+            toggle_gabs_and_borders
+            ;;
+        x) 
+            close_window
+            ;;
+        T) 
+            stack_app ${OPTARG}
+            ;;
+        Q) 
+            kitty_quake
             ;;
         *) 
             echo "Invalid option: -$flag" 

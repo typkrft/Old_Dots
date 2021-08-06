@@ -26,18 +26,25 @@ zinit light-mode for \
 # P L U G I N S
 # Vi-Mode
 # NOTE: This messes with a lot of things, like bindkeys
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode
 
 # Syntax Highlighting
+# Pywal colors Mess this up
 zinit ice lucid wait
 zinit light zsh-users/zsh-syntax-highlighting
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+# To differentiate aliases from other command types
+# Uses Terminal colors which dont neccisarily refer to the acutal color
+ZSH_HIGHLIGHT_STYLES[comment]='fg=green,bold'
 
 # OMZ History Conf
 zinit ice lucid wait
 zinit snippet OMZP::history
 # NOTE: # Keep Vi-Mode from overriding keybindings
-zvm_after_init_commands+=('[ -f $HOME/.config/zsh/omz_history_conf.zsh ] && source $HOME/.config/zsh/omz_history_conf.zsh')
+# zvm_after_init_commands+=('[ -f $HOME/.config/zsh/omz_history_conf.zsh ] && source $HOME/.config/zsh/omz_history_conf.zsh')
+. $HOME/.config/zsh/omz_history_conf.zsh
 
 # ZSH Autopair 
 zinit ice lucid wait

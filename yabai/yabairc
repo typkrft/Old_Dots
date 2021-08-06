@@ -1,0 +1,114 @@
+#!/bin/sh
+
+# Y A B A I
+
+# S C R I P T I N G  A D D I T T I O N S
+  sudo yabai --load-sa
+  yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# P Y W A L
+  . $HOME/.cache/wal/colors.sh
+
+# S E T U P  D E S K T O P S
+  $HOME/.config/bin/helpers -C "5"
+  SPACEBAR_HEIGHT=$([[ `pgrep -fl /bin/spacebar` ]] &&  /opt/homebrew/bin/spacebar -m config height || echo 0 )
+
+# T I L I N G 
+  yabai -m config external_bar main:$SPACEBAR_HEIGHT:0
+  yabai -m config window_placement             second_child
+  yabai -m config window_topmost               on
+  yabai -m config split_ratio                  0.50
+  yabai -m config auto_balance                 off
+
+# W I N D O W S
+  yabai -m config window_shadow                float
+  yabai -m config window_opacity               on
+  yabai -m config active_window_opacity        1.0
+  yabai -m config normal_window_opacity        0.95
+
+# M O U S E
+  yabai -m config mouse_modifier               fn
+  yabai -m config mouse_action1                resize
+  yabai -m config mouse_action2                move
+  yabai -m config mouse_drop_action            swap
+  yabai -m config mouse_follows_focus          on
+  yabai -m config focus_follows_mouse          autoraise
+
+# L A Y O U T
+  yabai -m config layout                       bsp
+  yabai -m config top_padding                  12
+  yabai -m config bottom_padding               12
+  yabai -m config left_padding                 12
+  yabai -m config right_padding                12
+  yabai -m config window_gap                   12
+
+# S P A C E S
+  yabai -m config --space 2 layout stack
+
+# R U L E S
+  # Bitwarden
+    yabai -m rule --add app="^Bitwarden$" manage=off
+    yabai -m rule --add app="^Bitwarden$" sticky=on
+  # Authy
+    yabai -m rule --add app="^Authy.*" manage=off
+    yabai -m rule --add app="^Authy.*" sticky=on
+  # App Store
+    yabai -m rule --add app="^App Store$" manage=off
+  # Archive Utility
+    yabai -m rule --add app="^Archive Utility$" manage=off
+  # Firefox
+    yabai -m rule --add app="^Firefox*" title="^Opening*" manage=off
+    yabai -m rule --add app="^Firefox*" title="^Set Desktop Background$" manage=off
+  # Spark
+    yabai -m rule --add app="^Spark$" title="^New Message*" manage=off
+    yabai -m rule --add app="^Spark$" title="^New Message*" sticky=on
+    yabai -m rule --add app="^Spark$" title="^RE:*" manage=off
+    yabai -m rule --add app="^Spark$" title="^RE:*" sticky=on
+    yabai -m rule --add app="^Spark$" title="^FWD:*" manage=off
+    yabai -m rule --add app="^Spark$" title="^FWD:*" sticky=on
+    yabai -m rule --add app="^Spark$" space=2
+  # Apple Mail
+    yabai -m rule --add app="^Mail$" title="^New Message*" manage=off
+    yabai -m rule --add app="^Mail$" title="^New Message*" sticky=on
+    yabai -m rule --add app="^Mail$" title="^Re:*" manage=off
+    yabai -m rule --add app="^Mail$" title="^Re:*" sticky=on
+    yabai -m rule --add app="^Mail$" title="^Fwd:*" manage=off
+    yabai -m rule --add app="^Mail$" title="^Fwd:*" sticky=on
+    yabai -m rule --add app="^Mail$" space=2
+    yabai -m rule --add app="^Mail$" title="^General$" manage=off
+  # Messages
+    yabai -m rule --add app="^Messages$" space=2
+  # WeBull
+    yabai -m rule --add app="^Webull Desktop$" space=3
+  # Music
+    yabai -m rule --add app="^Music$" space=4
+    yabai -m rule --add app="^Music$" title="MiniPlayer"  manage=off
+  # Microsoft Teams
+    yabai -m rule --add app="^Microsoft Teams$" space=2
+  # Finder
+    yabai -m rule --add app="^Finder$"  manage=off
+  # FaceTime
+    yabai -m rule --add app="^FaceTime$" title="Window"  manage=off
+  # Font Book
+    yabai -m rule --add app="^Font Book$" manage=off
+
+# S I G N A L S
+  
+  # Kitty
+  yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="yabai -m window $YABAI_WINDOW_ID --opacity 0.95; yabai -m window $YABAI_WINDOW_ID --move abs:0:0; yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450"
+  # Test border funcitonality more calling it exlicity from skhd is faster than a signal but if it focuses on 
+  # if [[ ($(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .border') -ne 1) &&  ]]; then yabai -m window $(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .id') --toggle border; fi; 
+
+# B O R D E R S  
+  yabai -m config window_border                on
+  yabai -m config window_border_width          8
+  yabai -m config active_window_border_color   0xff${color2:1}
+  yabai -m config normal_window_border_color   0xff${color4:1}
+  yabai -m config insert_feedback_color        0xff${color3:1}
+  yabai -m config window_opacity_duration      0.0
+
+echo "yabai configuration loaded.."
+
+# L I M E L I G H T
+#  /usr/bin/killall $HOME/.config/bin/limelight &> /dev/null
+#  $HOME/.config/bin/limelight &> /dev/null &

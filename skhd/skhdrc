@@ -1,0 +1,93 @@
+# S K H D
+
+# M O D E S
+:: default : $HOME/.config/bin/helpers -n
+:: window @ : $HOME/.config/bin/helpers -w
+:: scripts @ : $HOME/.config/bin/helpers -s
+# Mode Shortcuts
+default, scripts < lcmd - escape ; window
+window, scripts < escape ; default
+default, window < lctrl - escape ; scripts
+
+# S C R I P T S
+# Toggle Spacebar
+scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
+# Toggle Yabai
+scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
+# Show Desktop
+scripts < d :yabai -m space --toggle show-desktop; 
+# Change Wallpaper
+scripts < 0x0D : $HOME/.config/bin/helpers -p 
+# Set All Desktops to the same Wallpaper
+scripts < a : $HOME/.config/bin/helpers -W;
+# Update Colors Based on Current Wallpaper
+scripts < c : $HOME/.config/bin/helpers -P c
+# Change Wallpaper and Update Colors
+scripts < shift - c : $HOME/.config/bin/helpers -P n
+# Leave Wallpaper and change colors
+scripts < lalt - c : $HOME/.config/bin/helpers -P s
+# Toggle VPN and set spacebar to specific color when on
+scripts < 0x09 : skhd -k "escape"; $HOME/.config/bin/helpers -V
+# Toggle Spacebar shell widgets
+scripts < 0x24 : $HOME/.config/bin/helpers -c
+
+# W I N D O W S
+# Balance Space
+window < 0x18 : yabai -m space --balance; skhd -k "escape";
+# Rotate 90 degrees
+window < 0x0F : yabai -m space --rotate 90
+# Change Split
+window < 0x01 : yabai -m window --toggle split
+# Move Window Left
+window < left : yabai -m window --swap prev
+# Move Window Right
+window < right : yabai -m window --swap next
+# Toggle Between Layouts
+window < space : $HOME/.config/bin/helpers -l
+# Cycle through windows
+window < tab : yabai -m window --focus next ||yabai -m window --focus prev
+window < lshift - tab : yabai -m window --focus prev || yabai -m window --focus next
+# Cycle Stack 
+window < up : yabai -m window --focus stack.next || yabai -m window --focus stack.prev
+window < down : yabai -m window --focus stack.prev ||  yabai -m window --focus stack.next
+# Insert into Stack
+window < return : yabai -m window --insert stack; skhd -k "escape";
+# Toggle Expose
+window < e : yabai -m window --toggle expose
+# Toggle Misson Control        
+window < m : yabai -m space --toggle mission-control
+# Show Destop Toggle 
+window < d : yabai -m space --toggle show-desktop;
+# Turn off Borders, Gaps, and Paddingg
+window < g : $HOME/.config/bin/helpers -g
+# Close Window
+window < backspace : $HOME/.config/bin/helpers -x
+# Toggle float for focused window
+window < f : yabai -m window --toggle float; skhd -k "escape";
+# Toggle float and center focused window
+window < shift - f : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2; skhd -k "escape";
+# Toggle Zoom-Fullscreen
+window < z : yabai -m window --toggle zoom-fullscreen; skhd -k "escape";
+# Toggle Native-Fullscreen 
+window < shift - z : yabai -m window --toggle native-fullscreen; skhd -k "escape";
+
+# D E F A U L T
+# Play My Radio Station
+# default < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
+default < cmd - 0x30 [
+  "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
+]
+default < cmd + shift - 0x30 [
+  "firefox" : skhd -k "escape"; skhd -k "ctrl + shift - tab";
+]
+default < cmd - n [ 
+  "firefox" : $HOME/.config/bin/helpers -T Firefox
+  "kitty" : $HOME/.config/bin/helpers -T kitty
+  "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
+]
+default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
+default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
+default < cmd - return [
+  "mail" : skhd -k "cmd + shift - d"
+]
+default < cmd - 0x32 : $HOME/.config/bin/helpers -Q

@@ -8,8 +8,8 @@
 
 # D O T S
 - link:
-    ~/.config/yabai/yabairc: yabairc
-    ~/.config/skhd/skhdrc: skhdrc
+    ~/.config/yabai: yabai
+    ~/.config/skhd: skhd
     ~/.config/limelight/limelightrc: limelightrc
     ~/.config/wal: wal
     ~/.config/bin: bin

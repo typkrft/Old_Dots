@@ -1,0 +1,32 @@
+# I O S E V K A  C U S T O M  B U I L D  P L A N S
+# NOTE: MORE INFORMATION HERE https://github.com/be5invis/Iosevka#customized-build
+
+[buildPlans.iosevka-custom]
+family = "Iosevka Custom"
+spacing = "term"
+serifs = "slab"
+no-cv-ss = true
+export-glyph-names = "true"
+
+[buildPlans.iosevka-custom.variants.design]
+one = "base-flat-top-serif"
+two = "curly-neck"
+three = "flattop"
+four = "open"
+five = "vertical-upper-left-bar"
+six = "closed-contour"
+seven = "curly-crossbar-serifed"
+eight = "two-circles"
+nine = "closed-contour"
+asterisk = "penta-low"
+paren = "flat-arc"
+brace = "curly-flat-boundary"
+ampersand = "upper-open"
+at = "fourfold"
+percent = "rings-continuous-slash-also-connected"
+bar = "natural-slope"
+question = "corner"
+punctuation-dot = "square"
+
+  [buildPlans.iosevka-custom.ligations]
+  inherits = "dlig"
