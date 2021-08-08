@@ -10,6 +10,7 @@
 - link:
     ~/.config/yabai: yabai
     ~/.config/skhd: skhd
+    ~/.config/nvim: nvim
     ~/.config/limelight/limelightrc: limelightrc
     ~/.config/wal: wal
     ~/.config/bin: bin

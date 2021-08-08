@@ -14,6 +14,9 @@ alias icat="kitty +kitten icat"
 alias rm="rm-trash"
 alias orm="/bin/rm"
 
+# P L A C E S
+CODE='/Volumes/Code'
+
 # F U N C T I O N S
 # Remove .DS_Store files recursively in a directory, default .
 function rmdsstore() {
