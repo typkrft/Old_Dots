@@ -2,6 +2,7 @@
 
 # I N I T
 source $HOME/.config/zsh/zinit_conf.zsh
+source $HOME/.config/zsh/pfetch.zsh
 
 # Source asdf
 . /opt/homebrew/opt/asdf/asdf.sh

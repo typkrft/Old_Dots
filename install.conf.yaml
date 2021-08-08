@@ -11,6 +11,7 @@
     ~/.config/yabai: yabai
     ~/.config/skhd: skhd
     ~/.config/nvim: nvim
+    ~/.config/neofetch: neofetch
     # ~/.config/limelight: limelight
     ~/.config/wal: wal
     ~/.config/bin: bin
