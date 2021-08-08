@@ -11,17 +11,17 @@
     ~/.config/yabai: yabai
     ~/.config/skhd: skhd
     ~/.config/nvim: nvim
-    # ~/.config/limelight/limelightrc: limelightrc
+    # ~/.config/limelight: limelight
     ~/.config/wal: wal
     ~/.config/bin: bin
-    ~/.config/starship.toml: starship.toml
+    ~/.config/starship.toml: zsh/starship/starship.toml
     ~/.config/kitty: kitty
     ~/.config/spacebar: spacebar
-    ~/.zprofile: zprofile
-    ~/.zshrc: zshrc
-    ~/.asdfrc: asdfrc
+    ~/.zprofile: zsh/zprofile
+    ~/.zshrc: zsh/zshrc
+    ~/.asdfrc: asdf/asdfrc
     # ~/.zsh_history: zsh_history
-    ~/.config/zsh: zsh
+    ~/.config/zsh: zsh/plugins
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
