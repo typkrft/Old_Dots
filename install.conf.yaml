@@ -20,6 +20,7 @@
     ~/.config/spacebar: spacebar
     ~/.zprofile: zsh/zprofile
     ~/.zshrc: zsh/zshrc
+    ~/.vscdoe: vscode
     ~/.asdfrc: asdf/asdfrc
     # ~/.zsh_history: zsh_history
     ~/.config/zsh: zsh/plugins

@@ -1,0 +1,41 @@
+{
+	"name": "forest-night",
+	"displayName": "Forest Night",
+	"description": "Comfortable & Pleasant Color Scheme for Visual Studio Code (Deprecated)",
+	"version": "0.1.6",
+	"publisher": "sainnhe",
+	"author": "sainnhe (https://github.com/sainnhe)",
+	"homepage": "https://github.com/sainnhe/everforest-vscode",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sainnhe/everforest-vscode.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sainnhe/everforest-vscode/issues"
+	},
+	"license": "MIT",
+	"keywords": [
+		"green",
+		"theme"
+	],
+	"galleryBanner": {
+		"color": "#323d43",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"categories": [
+		"Themes",
+		"Extension Packs"
+	],
+	"extensionPack": [
+		"sainnhe.everforest"
+	],
+	"__metadata": {
+		"id": "31bbc9b9-ad20-4ce9-963b-696cd8603fe9",
+		"publisherId": "cd5355a7-bbfb-4a47-8f70-727aed458bc8",
+		"publisherDisplayName": "sainnhe",
+		"installedTimestamp": 1618780390211
+	}
+}

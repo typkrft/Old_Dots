@@ -1,0 +1,33 @@
+{
+	"name": "aurora",
+	"displayName": "Aurora",
+	"publisher": "joewallery",
+	"description": "A dark mode theme with colors based off the aurora borealis.",
+	"version": "0.9.0",
+	"engines": {
+		"vscode": "^1.38.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"icon": "aurora-logo.png",
+	"contributes": {
+		"themes": [
+			{
+				"label": "Aurora",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Aurora-color-theme.json"
+			}
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoeWallery/aurora.git"
+	},
+	"__metadata": {
+		"id": "721bf727-cf75-40fb-b35e-b62dbe660e74",
+		"publisherId": "f6d886ab-edef-416d-8c97-ebb7408fb040",
+		"publisherDisplayName": "Joe Wallery",
+		"installedTimestamp": 1627058204007
+	}
+}

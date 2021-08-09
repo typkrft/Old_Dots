@@ -1,0 +1,87 @@
+{
+	"name": "binary-plist",
+	"displayName": "Binary Plist",
+	"version": "0.5.2",
+	"description": "Decodes binary plist files by opening a new tab with decoded XML and saving it back to binary on save.",
+	"categories": [
+		"Programming Languages"
+	],
+	"keywords": [
+		"binary",
+		"plist",
+		"xml"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dnicolson/binary-plist"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "David Nicolson"
+	},
+	"publisher": "dnicolson",
+	"main": "./out/extension.js",
+	"scripts": {
+		"compile": "tsc -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"lint": "tslint --fix src/**/*.ts",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "plist",
+				"extensions": [
+					".plist"
+				]
+			}
+		]
+	},
+	"activationEvents": [
+		"onFileSystem:plist",
+		"*"
+	],
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"package.json": [
+			"sort-package-json",
+			"git add"
+		],
+		"src/**/*.ts": [
+			"npm run lint",
+			"git add"
+		]
+	},
+	"dependencies": {
+		"hasbin": "^1.2.3",
+		"simple-plist": "^1.1.1"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.17.58",
+		"@types/tmp": "^0.1.0",
+		"husky": "^2.7.0",
+		"lint-staged": "^8.2.1",
+		"sort-package-json": "^1.49.0",
+		"tmp": "^0.1.0",
+		"tslint": "^5.20.1",
+		"typescript": "^3.9.9",
+		"vscode": "^1.1.37"
+	},
+	"engines": {
+		"vscode": "^1.34.0"
+	},
+	"icon": "icon.png",
+	"__metadata": {
+		"id": "7b530645-4f49-4222-a851-c18d854275fb",
+		"publisherId": "8df7d9b0-2f84-4203-b6f5-896ab7f5feae",
+		"publisherDisplayName": "David Nicolson",
+		"installedTimestamp": 1618780391487
+	}
+}
