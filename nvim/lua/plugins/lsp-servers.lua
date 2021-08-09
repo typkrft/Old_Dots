@@ -13,4 +13,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 lspconfig.denols.setup{
   root_dir = lspconfig.util.root_pattern('*.js'),
   capabilities = capabilities,
+  init_options = {
+    lint = true,
+  }
 }

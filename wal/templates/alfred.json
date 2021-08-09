@@ -12,9 +12,9 @@
           "size" : 16,
           "colorSelected" : "#FFFFFFFF",
           "font" : "VictorMono Nerd Font",
-          "color" : "{color2}FF"
+          "color" : "{color5}FF"
         }},
-        "backgroundSelected" : "{color3}FF",
+        "backgroundSelected" : "{color1}FF",
         "text" : {{
           "size" : 18,
           "colorSelected" : "#FFFFFFFF",
@@ -38,7 +38,7 @@
         "backgroundSelected" : "#45A9B3FF"
       }},
       "window" : {{
-        "color" : "{color4}9B",
+        "color" : "{color3}9B",
         "paddingHorizontal" : 9,
         "width" : 671,
         "borderPadding" : 0,

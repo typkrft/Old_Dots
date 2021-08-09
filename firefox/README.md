@@ -1,0 +1,1 @@
+-- Add Context menu coloring to stealth-fox-fork

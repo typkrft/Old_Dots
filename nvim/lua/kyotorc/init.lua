@@ -1,5 +1,6 @@
 -- V I M  O P T S
 vim.opt.rnu = false
+vim.opt.clipboard:prepend {"unnamed"}
 
 -- M O D U L E S
 -- Snippets

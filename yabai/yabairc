@@ -102,9 +102,9 @@
 # B O R D E R S  
   yabai -m config window_border                on
   yabai -m config window_border_width          8
-  yabai -m config active_window_border_color   0xff${color2:1}
-  yabai -m config normal_window_border_color   0xff${color4:1}
-  yabai -m config insert_feedback_color        0xff${color3:1}
+  yabai -m config active_window_border_color   0xff${color1:1}
+  yabai -m config normal_window_border_color   0xff${color3:1}
+  yabai -m config insert_feedback_color        0xff${color5:1}
   yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."

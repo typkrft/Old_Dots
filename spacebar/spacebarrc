@@ -39,15 +39,15 @@
 
 # Colors
   spacebar -m config background_color            0xaa$background
-  spacebar -m config foreground_color            0xff${color4:1}
+  spacebar -m config foreground_color            0xff${color1:1}
   spacebar -m config power_icon_color            0xff${color3:1}
   spacebar -m config battery_icon_color          0xff${color3:1}
   spacebar -m config dnd_icon_color              0xff${color3:1}
   spacebar -m config clock_icon_color            0xff${color3:1}
   spacebar -m config right_shell_icon_color      0xff${color3:1}
   spacebar -m config space_icon_color            0xff${color3:1}
-  spacebar -m config space_icon_color_secondary  0xff${color5:1}
-  spacebar -m config space_icon_color_tertiary   0xff${color6:1}
+  spacebar -m config space_icon_color_secondary  0xff${color4:1}
+  spacebar -m config space_icon_color_tertiary   0xff${color5:1}
 
 # Features
   spacebar -m config title                       on

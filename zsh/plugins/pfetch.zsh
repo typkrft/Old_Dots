@@ -8,7 +8,7 @@
 # Valid: space separated string
 #
 # OFF by default: shell editor wm de palette
-PF_INFO="ascii title os de wm editor pkgs memory uptime"
+export PF_INFO="ascii title os de wm editor pkgs memory uptime"
 
 # Example: Only ASCII.
 # PF_INFO="ascii"
@@ -24,27 +24,27 @@ PF_INFO="ascii title os de wm editor pkgs memory uptime"
 # Separator between info name and info data.
 # Default: unset
 # Valid: string
-PF_SEP=""
+# PF_SEP=""
 
 # Enable/Disable colors in output:
 # Default: 1
 # Valid: 1 (enabled), 0 (disabled)
-PF_COLOR=1
+export PF_COLOR=1
 
 # Color of info names:
 # Default: unset (auto)
 # Valid: 0-9
-PF_COL1=4
+export PF_COL1=4
 
 # Color of info data:
 # Default: unset (auto)
 # Valid: 0-9
-PF_COL2=7
+export PF_COL2=7
 
 # Color of title data:
 # Default: unset (auto)
 # Valid: 0-9
-PF_COL3=1
+export PF_COL3=1
 
 # Alignment padding.
 # Default: unset (auto)
@@ -63,10 +63,10 @@ PF_COL3=1
 # PF_HOSTNAME=""
 
 # Which editor to display.
-PF_EDITOR="NV_Ghost"
+export PF_EDITOR="NV_Ghost"
 
 # Which DE to display
-PF_DE="AQUA"
+export PF_DE="Aqua"
 
 # The below environment variables control more
 # than just 'pfetch' and can be passed using

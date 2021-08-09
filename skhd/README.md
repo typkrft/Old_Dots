@@ -1,0 +1,2 @@
+-- Clean up and organize skhdrc
+-- ReMap Keybindings Inteligently
