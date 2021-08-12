@@ -1,0 +1,3 @@
+# E X A
+export EXA_ICON_SPACING=2
+

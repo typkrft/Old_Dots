@@ -50,6 +50,9 @@ zinit snippet OMZP::history
 zinit ice lucid wait
 zinit light hlissner/zsh-autopair
 
+zinit ice lucid wait
+zinit light pabloariasal/zfm
+
 # C O M P L E T I O N S 
 # Add completions provided by brew packages
 zinit fpath -f /opt/homebrew/share/zsh/site-functions
