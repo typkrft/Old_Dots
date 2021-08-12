@@ -25,7 +25,7 @@
     ~/.asdfrc: asdf/asdfrc
     # ~/.zsh_history: zsh_history
     ~/.config/zsh: zsh/plugins
-    ~/.config/zsh/.zfm.txt: zsh/zfm.txt
+    ~/.zfm.txt: zsh/zfm.txt
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
