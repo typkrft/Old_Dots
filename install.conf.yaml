@@ -13,7 +13,6 @@
     ~/.config/nvim: nvim
     ~/.config/neofetch: neofetch
     ~/.config/taskell: taskell
-    # ~/.config/limelight: limelight
     ~/.config/wal: wal
     ~/.config/bin: bin
     ~/.config/starship.toml: zsh/starship/starship.toml
@@ -23,9 +22,11 @@
     ~/.zshrc: zsh/zshrc
     ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
     ~/.asdfrc: asdf/asdfrc
-    # ~/.zsh_history: zsh_history
     ~/.config/zsh: zsh/plugins
     ~/.zfm.txt: zsh/zfm.txt
+    # ~/.config/limelight: limelight
+    
+    
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables

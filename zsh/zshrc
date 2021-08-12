@@ -1,116 +1,18 @@
 # Z S H R C
 
 # I N I T
+source $HOME/.config/zsh/env.zsh
+source $HOME/.config/zsh/paths.zsh
 source $HOME/.config/zsh/zinit_conf.zsh
+source $HOME/.config/zsh/functions.zsh
+source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/pfetch.zsh
 source $HOME/.config/zsh/exa.zsh
-source $HOME/.config/zsh/aliases.zsh
-# source $HOME/.config/zsh/nnn.zsh
-
-# Source asdf
+# NOTE: Depending on setup ASDF location might differ 
 source /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-# P L A C E S
-CODE='/Volumes/Code'
-# Edit default path for Go bins
-export GOPATH=$HOME/.go
-
-# P A T H
-# Not sure what the issue is but python programs installed by one version don't seem to see programs installed by other versions it may be wise to defualt to 3.7 pip3_7 install some-package
-# ZSH Specific
-# https://stackoverflow.com/questions/11530090/adding-a-new-entry-to-the-path-variable-in-zsh/18077919#18077919
-path+=("/Users/brandon/.asdf/installs/python/3.7.11/bin")
-path+=("/Users/brandon/.cargo/bin")
-path+=("$HOME/.config/bin")
-path+=("/usr/local/opt/python/libexec/bin")
-path+=("$GOPATH/bin")
-path+=("/Users/brandon/Library/Python/3.7/bin") # Not sure if this is okay prepended or if it should be appended
-export PATH
-
-# F U N C T I O N S
-# Remove .DS_Store files recursively in a directory, default .
-function rmdsstore() {
-  find "${@:-.}" -type f -name .DS_Store -delete
-}
-
-function nvim_quick() {
-  if [[ -f $1 ]]; then
-    nvim $1 
-  elif [[ -d $1 ]]; then
-    echo "$1/*"
-    nvim $1/*
-  else
-    \:
-  fi
-}
-
-# Install dotfiles and push them to github
-function dbot() {
-  rmdsstore $HOME/.dotfiles
-  $HOME/.dotfiles/install;
-  git -C $HOME/.dotfiles add $HOME/.dotfiles/*;
-  git -C $HOME/.dotfiles commit -am "'$*'";
-  git -C $HOME/.dotfiles push -u origin main;
-}
-
-function auto-color-ls() {
-  emulate -L zsh
-  echo
-  ls
-}
-chpwd_functions=(auto-color-ls $chpwd_functions)
-
-function --() {
-  tmux new -s "$1" "$2";
-}
-function __() {
-  tmux attach-session -d -t $1 
-}
-
-function cs_spectrum() {
-  # Author: crshd
-  # Source: http://crunchbang.org/forums/viewtopic.php?pid=128584#p128584
-  for f in {0..6}; do
-    echo -en "\033[$((f+41))m\033[$((f+30))m██▓▒░"
-  done
-  echo -en "\033[37m██\n"
-
-  for f in {0..6}; do
-    echo -en "\033[$((f+41))m\033[1;$((f+30))m██▓▒░"
-  done
-  echo -en "\033[1;37m██"
-
-  echo -e "\033[0m"
-}
-
-fav_colorscheme() {
-  WALLPAPER=$(grep "wallpaper=" $HOME/.cache/wal/colors.sh | sed -E 's/wallpaper="(.*)"/\1/')
-  D_NUMBER=$[$(find $HOME/.config/wal/colorschemes/dark -maxdepth 1 -type f -name "Fav_*" | wc -l) +1]
-  L_NUMBER=$[$(find $HOME/.config/wal/colorschemes/light -maxdepth 1 -type f -name "Fav_*" | wc -l) + 1]
-  /opt/homebrew/bin/wal -n -s -t -p "D_Fav_$D_NUMBER" -i "${WALLPAPER}" &>/dev/null
-  /opt/homebrew/bin/wal -n -s -t -l -p "L_Fav_$L_NUMBER" -i "${WALLPAPER}" &>/dev/null
-}
-
-# M I S C 
-# Sets the shells title to the current process for Kitty (and others)
-function set-title-precmd() {
-  printf "\e]2;%s\a" "${PWD/#$HOME/~}"
-}
-
-function set-title-preexec() {
-   printf "\e]2;%s\a" "$1"
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd set-title-precmd
-add-zsh-hook preexec set-title-preexec
 
 # Add Case Insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# Set VISUAL
-export VISUAL=nvim
-export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
 
 # H I S T O R Y
 HISTFILE=~/.zsh_history
@@ -121,5 +23,6 @@ setopt INC_APPEND_HISTORY
 # R U N  B E F O R E  P R O M P T 
 pfetch
 cs_spectrum
+
 # P R O M P T - S T A R S H I P
 eval "$(starship init zsh)"
