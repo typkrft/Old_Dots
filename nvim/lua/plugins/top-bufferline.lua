@@ -3,8 +3,9 @@ require("bufferline").setup(
     options = {
       mappings = true,
       show_close_icon = true,
+      offsets = {{filetype = "NvimTree", text = "Explorer"}},
       diagnostics = "nvim_lsp",
-      always_show_bufferline = true,
+      always_show_bufferline = false,
       diagnostics_indicator = function(_, _, diagnostics_dict)
         local s = " "
         for e, n in pairs(diagnostics_dict) do

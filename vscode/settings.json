@@ -122,6 +122,7 @@
         ],
     ],
     "editor.inlayHints.fontFamily": "Iosevka Nerd Font",
-    "editor.fontWeight": semibold
+    "editor.fontWeight": semibold,
+    "editor.formatOnPaste": true 
 
 }

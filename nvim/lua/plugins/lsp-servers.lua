@@ -17,3 +17,4 @@ lspconfig.denols.setup{
     lint = true,
   }
 }
+

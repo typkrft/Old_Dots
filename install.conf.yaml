@@ -12,6 +12,7 @@
     ~/.config/skhd: skhd
     ~/.config/nvim: nvim
     ~/.config/neofetch: neofetch
+    ~/.config/taskell: taskell
     # ~/.config/limelight: limelight
     ~/.config/wal: wal
     ~/.config/bin: bin

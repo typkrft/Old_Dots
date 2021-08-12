@@ -87,15 +87,9 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/dashboard-nvim"
   },
-  ["diagnosticls-nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/diagnosticls-nvim"
-  },
-  ["formatter.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/formatter.nvim"
+  ["format.nvim"] = {
+    loaded = true,
+    path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/format.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -124,11 +118,6 @@ _G.packer_plugins = {
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
-  ["lua-dev.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/lua-dev.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -180,11 +169,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
-  ["startuptime.vim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/startuptime.vim"
-  },
   ["symbols-outline.nvim"] = {
     loaded = true,
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim"
@@ -202,23 +186,12 @@ _G.packer_plugins = {
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["twilight.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/twilight.nvim"
+    loaded = true,
+    path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/twilight.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/vim-commentary"
-  },
-  ["vim-jsx-pretty"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/vim-jsx-pretty"
-  },
-  vimwiki = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/vimwiki"
   },
   ["which-key.nvim"] = {
     loaded = true,
@@ -229,9 +202,8 @@ _G.packer_plugins = {
     path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/wilder.nvim"
   },
   ["zen-mode.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/brandon/.local/share/nvim/site/pack/packer/opt/zen-mode.nvim"
+    loaded = true,
+    path = "/Users/brandon/.local/share/nvim/site/pack/packer/start/zen-mode.nvim"
   }
 }
 
@@ -239,7 +211,6 @@ time([[Defining packer_plugins]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardFindHistory lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardFindHistory", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardFindWord lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardFindWord", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardJumpMarks lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardJumpMarks", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardNewfile lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardNewfile", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
@@ -247,6 +218,7 @@ pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Dashboard lua require("packer.load")({'dashboard-nvim'}, { cmd = "Dashboard", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardChangeColorscheme lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardChangeColorscheme", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardFindFile lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardFindFile", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DashboardFindHistory lua require("packer.load")({'dashboard-nvim'}, { cmd = "DashboardFindHistory", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 if should_profile then save_profiles() end

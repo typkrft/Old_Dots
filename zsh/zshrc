@@ -4,12 +4,14 @@
 source $HOME/.config/zsh/zinit_conf.zsh
 source $HOME/.config/zsh/pfetch.zsh
 # source $HOME/.config/zsh/nnn.zsh
+export EXA_ICON_SPACING=2
 
 # Source asdf
-. /opt/homebrew/opt/asdf/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # A L I A S E S
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
+# alias abrwe="/opt/homebrew/bin/brew"
 alias ols="/bin/ls"
 # alias ls="colorls --sd --report -A --gs"
 alias ls="exa --icons --all --classify --color-scale --group-directories-first "
@@ -17,7 +19,8 @@ alias icat="kitty +kitten icat"
 alias rm="rm-trash"
 alias orm="/bin/rm"
 alias nnn="nnn -e"
-
+alias :="nvim_quick"
+ 
 # NOTE: An example of the setup
 # System Python = python2 = /usr/bin/python
 # brew python@3.7 = python3_7
@@ -30,10 +33,8 @@ alias nnn="nnn -e"
 alias python=/opt/homebrew/bin/python3
 alias pip=/opt/homebrew/bin/pip3
 # Python 3.7 for compatability installs to /usr/local/bin
-alias python3_7=/usr/local/opt/python@3.7/bin/python3
-alias pip3_7=/usr/local/opt/python@3.7/bin/pip3
-
-
+alias python3=/usr/local/opt/python@3.7/bin/python3
+alias pip3=/usr/local/opt/python@3.7/bin/pip3
 
 # P L A C E S
 CODE='/Volumes/Code'
@@ -44,6 +45,8 @@ export GOPATH=$HOME/.go
 # Not sure what the issue is but python programs installed by one version don't seem to see programs installed by other versions it may be wise to defualt to 3.7 pip3_7 install some-package
 # ZSH Specific
 # https://stackoverflow.com/questions/11530090/adding-a-new-entry-to-the-path-variable-in-zsh/18077919#18077919
+path+=("/Users/brandon/.asdf/installs/python/3.7.11/bin")
+path+=("/Users/brandon/.cargo/bin")
 path+=("$HOME/.config/bin")
 path+=("/usr/local/opt/python/libexec/bin")
 path+=("$GOPATH/bin")
@@ -54,6 +57,17 @@ export PATH
 # Remove .DS_Store files recursively in a directory, default .
 function rmdsstore() {
   find "${@:-.}" -type f -name .DS_Store -delete
+}
+
+function nvim_quick() {
+  if [[ -f $1 ]]; then
+    nvim $1 
+  elif [[ -d $1 ]]; then
+    echo "$1/*"
+    nvim $1/*
+  else
+    \:
+  fi
 }
 
 # Install dotfiles and push them to github
@@ -124,9 +138,14 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 export VISUAL=nvim
 export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
 
+# H I S T O R Y
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY
+
 # R U N  B E F O R E  P R O M P T 
 pfetch
 cs_spectrum
 # P R O M P T - S T A R S H I P
 eval "$(starship init zsh)"
-

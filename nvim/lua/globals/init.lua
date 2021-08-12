@@ -11,6 +11,7 @@ g.kyoto_extra_plugins = {
   "rafamadriz/friendly-snippets",
   "norcalli/nvim-colorizer.lua",
   "lukas-reineke/indent-blankline.nvim",
+  "lukas-reineke/format.nvim"
 }
 
 -- uncomment this out if you are experiencing issues with nvim-tree.lua
