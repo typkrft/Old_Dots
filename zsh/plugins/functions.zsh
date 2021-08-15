@@ -27,7 +27,7 @@ function dbot() {
 function auto-color-ls() {
   emulate -L zsh
   echo
-  ls
+  exa --icons --all --classify --color-scale --group-directories-first
 }
 chpwd_functions=(auto-color-ls $chpwd_functions)
 

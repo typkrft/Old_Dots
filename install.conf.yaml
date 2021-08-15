@@ -18,12 +18,11 @@
     ~/.config/starship.toml: zsh/starship/starship.toml
     ~/.config/kitty: kitty
     ~/.config/spacebar: spacebar
-    ~/.zprofile: zsh/zprofile
-    ~/.zshrc: zsh/zshrc
     ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
     ~/.asdfrc: asdf/asdfrc
+    ~/.zprofile: zsh/zprofile
+    ~/.zshrc: zsh/zshrc
     ~/.config/zsh: zsh/plugins
-    ~/.zfm.txt: zsh/zfm.txt
     # ~/.config/limelight: limelight
     
     

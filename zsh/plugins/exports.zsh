@@ -1,12 +1,26 @@
-#!/bin/sh
+# E N V  V A R I A B L E S
+
+# V I S U A L
+export VISUAL=nvim
+
+# G O
+export GOPATH=$HOME/.go
+
+# Z F M 
+export ZFM_BOOKMARKS_FILE="$HOME/.config/zsh/zfm"
+
+# T A T L
+export TATL_FILE="$HOME/.config/zsh/cheatsheet"
+
+# E X A
+export EXA_ICON_SPACING=2
 
 # P F E T C H
-
 # Which information to display.
 # NOTE: If 'ascii' will be used, it must come first.
 # Default: first example below
 # Valid: space separated string
-#
+
 # OFF by default: shell editor wm de palette
 export PF_INFO="ascii title os de wm editor pkgs memory uptime"
 
@@ -81,3 +95,4 @@ export PF_DE="Aqua"
 
 # Which desktop environment to display.
 # XDG_CURRENT_DESKTOP=""
+

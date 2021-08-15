@@ -1,13 +1,13 @@
 # Z S H R C
 
 # I N I T
-source $HOME/.config/zsh/env.zsh
+source $HOME/.config/zsh/exports.zsh
 source $HOME/.config/zsh/paths.zsh
-source $HOME/.config/zsh/zinit_conf.zsh
+source $HOME/.config/zsh/plugins.zsh
 source $HOME/.config/zsh/functions.zsh
 source $HOME/.config/zsh/aliases.zsh
-source $HOME/.config/zsh/pfetch.zsh
-source $HOME/.config/zsh/exa.zsh
+# Once feature complete add it to github and isntall it with zinit
+source $HOME/.config/zsh/tatl.zsh
 # NOTE: Depending on setup ASDF location might differ 
 source /opt/homebrew/opt/asdf/libexec/asdf.sh
 

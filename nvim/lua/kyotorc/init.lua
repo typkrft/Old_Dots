@@ -5,6 +5,8 @@ vim.opt.rnu = false
 vim.opt.clipboard:prepend {"unnamed", "unnamedplus"}
 -- Clear Highlighting wiht leader space, which is space space currently
 vim.api.nvim_set_keymap('n', '<Leader><Space>', ':noh<CR>', { noremap = true, silent = true })
+-- Create file if it doesn't exist with <leader>gf
+vim.api.nvim_set_keymap('n', '<leader>gf', ':e <cfile><cr>', { noremap = true })
 -- Wrap through lines in insert mode
 vim.opt.whichwrap = "<>hl[]"
 -- Syntax Folding

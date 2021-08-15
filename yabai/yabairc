@@ -59,6 +59,7 @@
   # Firefox
     yabai -m rule --add app="^Firefox*" title="^Opening*" manage=off
     yabai -m rule --add app="^Firefox*" title="^Set Desktop Background$" manage=off
+    yabai -m rule --add app="^Firefox*" title="- noVNC$" manage=off
   # Spark
     yabai -m rule --add app="^Spark$" title="^New Message*" manage=off
     yabai -m rule --add app="^Spark$" title="^New Message*" sticky=on
@@ -108,7 +109,3 @@
   yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
-
-# L I M E L I G H T
-#  /usr/bin/killall $HOME/.config/bin/limelight &> /dev/null
-#  $HOME/.config/bin/limelight &> /dev/null &

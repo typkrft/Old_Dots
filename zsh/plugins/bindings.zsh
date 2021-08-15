@@ -1,3 +1,5 @@
+# B I N D I N G S
+
 # O M Z  H I S T O R Y  C O N F
 # This feels more comfortable
 # bindkey '\e[A' history-search-backward

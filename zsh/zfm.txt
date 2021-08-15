@@ -1,3 +1,0 @@
-/Volumes/Code
-/Users/brandon/.config
-/Users/brandon/.dotfiles

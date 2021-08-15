@@ -9,7 +9,8 @@ alias rm="rm-trash"
 alias orm="/bin/rm"
 alias nnn="nnn -e"
 alias :="nvim_quick"
- 
+alias ssh="kitty +kitten ssh" 
+
 # NOTE: An example of the setup
 # System Python = python2 = /usr/bin/python
 # brew python@3.7 = python3_7
