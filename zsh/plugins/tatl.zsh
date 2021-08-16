@@ -29,9 +29,9 @@ function tatl() {
   while getopts "ae" arg; do
     case $arg in
     a)
-      printf "$(tput bold)Enter a description of the command:$(tput normal)\n"
+      printf "$(tput bold)Enter a description of the command:$(tput sgr0)\n"
       read description
-      printf "$(tput bold)Enter the command you would like to save:\n$(tput smul)Remember$(tput rmul) $(tput normal)this will command will run with the -e flag.\n"
+      printf "$(tput bold)Enter the command you would like to save:\n$(tput smul)Remember$(tput rmul) $(tput sgr0)this will command will run with the -e flag.\n"
       read command
       printf "${description} :: ${command}\n" >> $cheat_file
       ;;
@@ -47,4 +47,5 @@ function tatl() {
   if (( $OPTIND == 1 )); then
     print -z -- $(cat $cheat_file | fzf --height=45% | sed -E 's/.*::(.*)/\1/')
   fi
+
 }
