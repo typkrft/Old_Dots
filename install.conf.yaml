@@ -14,6 +14,8 @@
     ~/.config/neofetch: neofetch
     ~/.config/taskell: taskell
     ~/.config/wal: wal
+    ~/.config/wezterm: wezterm
+    ~/.config/sketchybar: sketchybar
     ~/.config/bin: bin
     ~/.config/starship.toml: zsh/starship/starship.toml
     ~/.config/kitty: kitty

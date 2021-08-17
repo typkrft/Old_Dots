@@ -62,6 +62,14 @@ fav_colorscheme() {
   /opt/homebrew/bin/wal -n -s -t -l -p "L_Fav_$L_NUMBER" -i "${WALLPAPER}" &>/dev/null
 }
 
+function unbrew() {
+  brew leaves | fzf --multi --cycle --reverse --preview 'brew info {1}' | xargs -r brew uninstall
+}
+
+function peruse() {
+  brew search '' | fzf --multi --cycle --reverse --preview 'brew info {1}' | xargs -r brew install
+}
+
 # M I S C 
 # Sets the shells title to the current process for Kitty (and others)
 function set-title-precmd() {

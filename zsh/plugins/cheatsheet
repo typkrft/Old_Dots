@@ -1,1 +1,2 @@
 Get External IP Address :: curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'
+IP form default Interface :: ipconfig getifaddr en0

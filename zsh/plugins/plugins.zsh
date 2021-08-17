@@ -32,7 +32,7 @@ zinit light-mode for \
 # Syntax Highlighting
 # Pywal colors Mess this up
 zinit ice lucid wait
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light typkrft/zsh-syntax-highlighting
 # Declare the variable
 typeset -A ZSH_HIGHLIGHT_STYLES
 # To differentiate aliases from other command types
