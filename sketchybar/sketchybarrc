@@ -123,6 +123,7 @@ sketchybar -m set mailIndicator script "~/.config/sketchybar/plugins/mailIndicat
 sketchybar -m set mailIndicator icon_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set mailIndicator icon 
 sketchybar -m set mailIndicator label_padding_left 4
+sketchybar -m set mailIndicator label_padding_right 2
 sketchybar -m set mailIndicator icon_padding_left 10
 sketchybar -m set mailIndicator click_script "osascript -e 'tell application \"Mail\" to activate'"
 
