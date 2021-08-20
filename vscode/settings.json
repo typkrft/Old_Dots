@@ -123,6 +123,6 @@
     ],
     "editor.inlayHints.fontFamily": "Iosevka Nerd Font",
     "editor.fontWeight": semibold,
-    "editor.formatOnPaste": true 
+    "editor.formatOnPaste": trueki 
 
 }

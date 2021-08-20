@@ -111,7 +111,9 @@ sketchybar -m set clock script "~/.config/sketchybar/plugins/clock.sh"
 sketchybar -m set clock icon_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set clock label_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set clock icon 
-sketchybar -m set clock label_padding_left 2
+sketchybar -m set clock label_padding_right 2
+sketchybar -m set clock icon_padding_left 2
+sketchybar -m set clock icon_padding_right 2
 
 sketchybar -m add item mailIndicator right
 # Items can be associated to multiple spaces / displays
@@ -121,9 +123,10 @@ sketchybar -m set mailIndicator associated_space 3
 sketchybar -m set mailIndicator update_freq 10
 sketchybar -m set mailIndicator script "~/.config/sketchybar/plugins/mailIndicator.sh"
 sketchybar -m set mailIndicator icon_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set mailIndicator label_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set mailIndicator icon 
-sketchybar -m set mailIndicator label_padding_left 4
-sketchybar -m set mailIndicator label_padding_right 2
+sketchybar -m set mailIndicator label_padding_left 10
+sketchybar -m set mailIndicator label_padding_right 4
 sketchybar -m set mailIndicator icon_padding_left 10
 sketchybar -m set mailIndicator click_script "osascript -e 'tell application \"Mail\" to activate'"
 

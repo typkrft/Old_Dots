@@ -10,6 +10,8 @@ source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/tatl.zsh
 # NOTE: Depending on setup ASDF location might differ 
 source /opt/homebrew/opt/asdf/libexec/asdf.sh
+# Source Rust 
+source $HOME/.cargo/env
 
 # Add Case Insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -26,3 +28,8 @@ cs_spectrum
 
 # P R O M P T - S T A R S H I P
 eval "$(starship init zsh)"
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -e "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
+# END_KITTY_SHELL_INTEGRATION

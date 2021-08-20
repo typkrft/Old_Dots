@@ -9,7 +9,7 @@ alias rm="$HOME/.config/bin/fzf_trash"
 alias orm="/bin/rm"
 alias nnn="nnn -e"
 alias :="nvim_quick"
-alias ssh="kitty +kitten ssh" 
+# alias ssh="kitty +kitten ssh" 
 
 # NOTE: An example of the setup
 # System Python = python2 = /usr/bin/python

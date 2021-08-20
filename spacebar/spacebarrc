@@ -38,7 +38,7 @@
   spacebar -m config right_shell_icon            '| '
 
 # Colors
-  spacebar -m config background_color            0xaa$background
+  spacebar -m config background_color            0xaa${background:1}
   spacebar -m config foreground_color            0xff${color1:1}
   spacebar -m config power_icon_color            0xff${color3:1}
   spacebar -m config battery_icon_color          0xff${color3:1}

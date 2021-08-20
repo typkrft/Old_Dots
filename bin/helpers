@@ -315,11 +315,8 @@ function toggle_layouts(){
 function kitty_quake() {
   QUAKE=($(yabai -m query --windows --space |jq '.[]|select(.title=="Quake")|.id,.minimized,.border'))
   echo "1) ${QUAKE[0]} 2) ${QUAKE[1]} 3) ${QUAKE[2]} 4) ${QUAKE[3]} 5) ${QUAKE[4]} 6) ${#QUAKE[@]}"
-  
   if [[ ${#QUAKE} -eq 0 ]]; then
-    open -a kitty.app -n --args -1 --title="Quake" -o \
-      tab_title_template="Quake: {index}" --listen-on="tcp:localhost:54889" \
-      &>/dev/null & disown; 
+    open -a kitty.app -n --args -1 --title="Quake"
     while [[ ${#QUAKE[@]} -ne 3 ]];
       do
         QUAKE=($(yabai -m query --windows --space|jq '.[]|select(.title=="Quake")|.id,.minimized,.border'))
@@ -331,7 +328,7 @@ function kitty_quake() {
     yabai -m window "${QUAKE[0]}" --opacity 0.95;
   elif [[ ${QUAKE[1]} -eq 1 ]]; then
     yabai -m window "${QUAKE[0]}" --deminimize;
-    yabai -m window "${QUAKE[0]}" --move abs:0:0;
+    yabai -m wndow "${iQUAKE[0]}" --move abs:0:0;
     yabai -m window "${QUAKE[0]}" --resize abs:10000:450;
     yabai -m window "${QUAKE[0]}" --opacity 0.95;
     yabai -m window "${QUAKE[0]}" --focus "${QUAKE[0]}";
@@ -347,17 +344,19 @@ function kitty_quake() {
 
 # TODO: Setup a title filter instead of hard coding it just for kitty
 function stack_app() {
-  APP=$*
-  WINDOW=$(yabai -m query --windows --window | jq '.app' | sed -E 's/"(.*)"/\1/')
-  TITLE=$(yabai -m query --windows --window | jq '.title' | sed -E 's/"(.*)"/\1/')
-  echo $APP $WINDOW
-  if [[ $APP == $WINDOW ]]; then
-    if [[ $TITLE == *"Quake"* ]]; then
-       osascript -e "tell application \"System Events\" to tell application process \"$APP\" to tell menu 1 of menu bar item 3 of menu bar 1 to click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)"
-      exit 0
+  APP_TO_STACK="$*"
+  CURRENT_APP="$(yabai -m query --windows --window | jq '.app' | sed -E 's/"(.*)"/\1/')"
+  WINDOW_TITLE=$(yabai -m query --windows --window | jq '.title' | sed -E 's/"(.*)"/\1/')
+  
+  if [[ $APP_TO_STACK == $CURRENT_APP ]]; then
+    if [[ $CURRENT_APP == "kitty" ]]; then
+      if [[ $WINDOW_TITLE == "Quake" ]]; then
+        open -a kitty.app -n --args -1 --title="Kitty"
+        exit 0
+      fi
     fi
     yabai -m window --insert stack
-    osascript -e "tell application \"System Events\" to tell application process \"$APP\" to tell menu 1 of menu bar item 3 of menu bar 1 to click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)"
+    osascript -e "tell application \"System Events\" to tell application process \"$CURRENT_APP\" to tell menu 1 of menu bar item 3 of menu bar 1 to click (first menu item whose value of attribute \"AXMenuItemCmdChar\" is \"N\" and value of attribute \"AXMenuItemCmdModifiers\" is 0)"
   fi
 }
 

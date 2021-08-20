@@ -1,3 +1,5 @@
+local vim = vim
+local g = vim.g
 -- V I M  O P T S
 -- turn off relative numbers
 vim.opt.rnu = false
@@ -11,7 +13,7 @@ vim.api.nvim_set_keymap('n', '<leader>gf', ':e <cfile><cr>', { noremap = true })
 vim.opt.whichwrap = "<>hl[]"
 -- Syntax Folding
 -- vim.opt.syntax = "enable"
-vim.opt.foldmethod = "indent"
+-- vim.opt.foldmethod = "indent"
 
 
 -- M O D U L E S

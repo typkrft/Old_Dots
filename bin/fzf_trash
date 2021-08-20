@@ -1,8 +1,6 @@
 # F Z F  T R A S H 
-# TODO: Check if no selection
 
 function fzf_trash() {
-
   if [[ "$#" -eq 0 ]]; then
     files=$(exa --icons --color=always | fzf --ansi --multi)
     split_arr=()
@@ -13,6 +11,8 @@ function fzf_trash() {
 
     # echo ${!split_arr[@]}
     
+    [[ $files ]] && : || exit 0
+
     for val in ${!split_arr[@]}; do
       
       printf "Remove ${split_arr[val]}? [y/n]\n"
@@ -31,8 +31,8 @@ function fzf_trash() {
     done
   
   else
-    command rm "$@"
+    trash "$@"
   fi
 }
 
-fzf_trash
+fzf_trash $@

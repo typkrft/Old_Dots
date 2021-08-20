@@ -75,19 +75,23 @@ window < shift - z : yabai -m window --toggle native-fullscreen; skhd -k "escape
 
 # D E F A U L T
 default < cmd - 0x30 [
-  "firefox" : skhd -k "escape"; skhd -k "ctrl - tab";
+  "firefox" : skhd -k "ctrl - tab";
 ]
 default < cmd + shift - 0x30 [
-  "firefox" : skhd -k "escape"; skhd -k "ctrl + shift - tab";
+  "firefox" : skhd -k "ctrl + shift - tab";
 ]
 default < cmd - n [ 
   "firefox" : $HOME/.config/bin/helpers -T Firefox
   "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
-default < cmd -t [
+default < cmd - t [
   "kitty" : $HOME/.config/bin/helpers -q
 ]
+default < cmd - w [
+  "kitty" : skhd -k "ctrl + shift - w"
+]
+
 
 default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
 default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
