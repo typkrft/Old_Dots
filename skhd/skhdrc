@@ -85,9 +85,9 @@ default < cmd - n [
   "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
-default < cmd - t [
-  "kitty" : $HOME/.config/bin/helpers -q
-]
+# default < cmd - t [
+  # "kitty" : $HOME/.config/bin/helpers -q
+# ]
 default < cmd - w [
   "kitty" : skhd -k "ctrl + shift - w"
 ]

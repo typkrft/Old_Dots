@@ -18,8 +18,6 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 function normal_mode() {
     echo "N O R M A L  M O D E";
 
-    # P A T H S
-
     # C O L O R S
     . $HOME/.cache/wal/colors.sh;
     
@@ -29,18 +27,20 @@ function normal_mode() {
     yabai -m config insert_feedback_color 0xff${color5:1};
 
     # S P A C B A R
-    spacebar -m config background_color 0xaa${background:1};
-    spacebar -m config foreground_color 0xff${color1:1};
-    spacebar -m config power_icon_color 0xff${color3:1};
-    spacebar -m config battery_icon_color 0xff${color3:1};
-    spacebar -m config dnd_icon_color 0xff${color3:1};
-    spacebar -m config clock_icon_color 0xff${color3:1};
-    spacebar -m config right_shell_icon_color 0xff${color3:1};
-    spacebar -m config space_icon_color 0xff${color3:1};
-    spacebar -m config space_icon_color_secondary 0xff${color4:1};
-    spacebar -m config space_icon_color_tertiary 0xff${color5:1};
     spacebar -m config center_shell off
     spacebar -m config title on
+    
+    spacebar -m config background_color 0xaa${background:1} 
+    spacebar -m config foreground_color 0xff${color1:1} 
+    spacebar -m config power_icon_color 0xff${color3:1} 
+    spacebar -m config battery_icon_color 0xff${color3:1} 
+    spacebar -m config dnd_icon_color 0xff${color3:1} 
+    spacebar -m config clock_icon_color 0xff${color3:1} 
+    spacebar -m config right_shell_icon_color 0xff${color3:1} 
+    spacebar -m config space_icon_color 0xff${color3:1} 
+    spacebar -m config space_icon_color_secondary 0xff${color4:1} 
+    spacebar -m config space_icon_color_tertiary 0xff${color5:1} 
+
 }
 
 # W I N D O W  M O D E
@@ -56,6 +56,10 @@ function window_mode() {
     yabai -m config insert_feedback_color 0xff${color3:1};
     
     # S P A C B A R
+    spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
+    spacebar -m config title off 
+    spacebar -m config center_shell on 
+    
     spacebar -m config background_color 0xaa${color3:1};
     spacebar -m config foreground_color 0xff${foreground:1};
     spacebar -m config power_icon_color 0xff${color3:1};
@@ -67,9 +71,6 @@ function window_mode() {
     spacebar -m config space_icon_color_secondary 0xff${color4:1};
     spacebar -m config space_icon_color_tertiary 0xff${color5:1};
 
-    spacebar -m config title off 
-    spacebar -m config center_shell on 
-    spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
 }
 
 # S C R I P T S  M O D E
@@ -85,6 +86,10 @@ function scripts_mode() {
     yabai -m config insert_feedback_color 0xff${color5:1};
 
     # S P A C B A R
+    spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
+    spacebar -m config title off 
+    spacebar -m config center_shell on
+
     spacebar -m config background_color 0xaa${color5:1};
     spacebar -m config foreground_color 0xff${foreground:1};
     spacebar -m config power_icon_color 0xff${color5:1};
@@ -96,9 +101,6 @@ function scripts_mode() {
     spacebar -m config space_icon_color_secondary 0xff${color6:1};
     spacebar -m config space_icon_color_tertiary 0xff${color7:1};
 
-    spacebar -m config title off 
-    spacebar -m config center_shell on
-    spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
 }
 
 # S E T  W A L L P A P E R
@@ -328,7 +330,7 @@ function kitty_quake() {
     yabai -m window "${QUAKE[0]}" --opacity 0.95;
   elif [[ ${QUAKE[1]} -eq 1 ]]; then
     yabai -m window "${QUAKE[0]}" --deminimize;
-    yabai -m wndow "${iQUAKE[0]}" --move abs:0:0;
+    yabai -m window "${QUAKE[0]}" --move abs:0:0;
     yabai -m window "${QUAKE[0]}" --resize abs:10000:450;
     yabai -m window "${QUAKE[0]}" --opacity 0.95;
     yabai -m window "${QUAKE[0]}" --focus "${QUAKE[0]}";
@@ -474,6 +476,7 @@ function toggle_vpn() {
   fi; 
 }
 
+# Unused - No longer needed
 function kitty_quake_tab() {
   QUAKE=($(yabai -m query --windows --window | jq '.|.id,.focused,.title'| sed -E 's/"(.*)"/\1/'))
 
