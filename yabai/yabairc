@@ -1,6 +1,14 @@
 #!/bin/sh
 
 # Y A B A I
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/.go/bin
+export PATH=$PATH:$HOME/.config/bin
+export PATH=$PATH:/Applications/kitty.app/Contents/MacOS
+export PATH=$PATH:/opt/homebrew/sbin
+export PATH=$PATH:/usr/local/opt/python/libexec/bin
+export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 # S C R I P T I N G  A D D I T T I O N S
   sudo yabai --load-sa
@@ -12,9 +20,9 @@
 # S E T U P  D E S K T O P S
   $HOME/.config/bin/helpers -C "5"
   
-  [[ $(pgrep spacebar) ]] && STATUS_BAR_HEIGHT=$(/opt/homebrew/bin/spacebar -m config height) || STATUS_BAR_HEIGHT=0
+  [[ $(pgrep spacebar) ]] && STATUS_BAR_HEIGHT=$(spacebar -m config height) || STATUS_BAR_HEIGHT=0
   
-  [[ $(pgrep sketchybar) ]] && STATUS_BAR_HEIGHT=$(/usr/local/bin/sketchybar -m config height) || STATUS_BAR_HEIGHT=0
+  [[ $(pgrep sketchybar) ]] && STATUS_BAR_HEIGHT=$(sketchybar -m config height) || STATUS_BAR_HEIGHT=0
 
 # T I L I N G 
   yabai -m config external_bar main:$STATUS_BAR_HEIGHT:0
@@ -84,6 +92,8 @@
     yabai -m rule --add app="^Messages$" space=2
   # WeBull
     yabai -m rule --add app="^Webull Desktop$" space=3
+  # Screen Sharing
+    yabai -m rule --add app="^Screen Sharing$" manage=off
   # Music
     yabai -m rule --add app="^Music$" space=4
     yabai -m rule --add app="^Music$" title="MiniPlayer"  manage=off

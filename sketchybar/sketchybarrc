@@ -1,3 +1,4 @@
+#!/bin/sh
 # S K E T C H Y  B A R
 # TODO: Create Defualts with global variables and functions
 
@@ -15,7 +16,6 @@ function seperator() {
   sketchybar -m set $SPACE_SEPERATOR icon 
 }
 
-
 # B A R  O P T S
 sketchybar -m config height                     26
 sketchybar -m config padding_left               10
@@ -23,44 +23,89 @@ sketchybar -m config padding_right              10
 sketchybar -m config bar_color                  0xF0${background:1}
 
 # L E F T
-
 # HOME
 sketchybar -m add component space home left
-component_setup home ﮟ 
-sketchybar -m set home label_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set home associated_display 1
+sketchybar -m set home associated_space 1
 sketchybar -m set home icon_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set home icon ﮟ # # #
 sketchybar -m set home icon_color 0xff${color3:1}
 sketchybar -m set home icon_highlight_color 0xff${color1:1}
 sketchybar -m set home icon_padding_left 3
 sketchybar -m set home click_script "yabai -m space --focus 1"
-# sketchybar -m set home associated_display 1
-sketchybar -m set home associated_space 1
+# sketchybar -m set home label_font "Iosevka Nerd Font:Mono:16.0"
 # sketchybar -m set home label home
 
 seperator 1
 
 # Communication
-sketchybar -m add component space communication left
-sketchybar -m set communication label_font "Iosevka Nerd Font:Mono:16.0"
-sketchybar -m set communication icon_font "Iosevka Nerd Font:Mono:16.0"
-sketchybar -m set communication icon  
-sketchybar -m set communication icon_color 0xff${color3:1}
-sketchybar -m set communication icon_highlight_color 0xff${color1:1}
-sketchybar -m set communication icon_padding_left 3
-sketchybar -m set communication click_script "yabai -m space --focus 2"
-# sketchybar -m set home associated_display 1
-# sketchybar -m set home associated_space 1
-# sketchybar -m set home label home
+sketchybar -m add component space comms left
+sketchybar -m set comms associated_display 1
+sketchybar -m set comms associated_space 2
+sketchybar -m set comms icon_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set comms icon 
+sketchybar -m set comms icon_color 0xff${color3:1}
+sketchybar -m set comms icon_highlight_color 0xff${color1:1}
+sketchybar -m set comms icon_padding_left 3
+sketchybar -m set comms click_script "yabai -m space --focus 2"
+# sketchybar -m set comms label_font "Iosevka Nerd Font:Mono:16.0"
+# sketchybar -m set comms label home
 
 seperator 2
 
+# Music
+sketchybar -m add component space music left
+sketchybar -m set music associated_display 1
+sketchybar -m set music associated_space 3
+sketchybar -m set music icon_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set music icon 
+sketchybar -m set music icon_color 0xff${color3:1}
+sketchybar -m set music icon_highlight_color 0xff${color1:1}
+sketchybar -m set music icon_padding_left 3
+sketchybar -m set music click_script "yabai -m space --focus 3"
+# sketchybar -m set music label_font "Iosevka Nerd Font:Mono:16.0"
+# sketchybar -m set music label home
+
+seperator 3
+
+# Investments
+sketchybar -m add component space investments left
+sketchybar -m set investments associated_display 1
+sketchybar -m set investments associated_space 4
+sketchybar -m set investments icon_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set investments icon 
+sketchybar -m set investments icon_color 0xff${color3:1}
+sketchybar -m set investments icon_highlight_color 0xff${color1:1}
+sketchybar -m set investments icon_padding_left 3
+sketchybar -m set investments click_script "yabai -m space --focus 4"
+# sketchybar -m set investments label_font "Iosevka Nerd Font:Mono:16.0"
+# sketchybar -m set investments label home
+
+seperator 4
+
+# Misc
+sketchybar -m add component space misc left
+sketchybar -m set misc associated_display 1
+sketchybar -m set misc associated_space 5
+sketchybar -m set misc icon_font "Iosevka Nerd Font:Mono:16.0"
+sketchybar -m set misc icon 
+sketchybar -m set misc icon_color 0xff${color3:1}
+sketchybar -m set misc icon_highlight_color 0xff${color1:1}
+sketchybar -m set misc icon_padding_left 3
+sketchybar -m set misc click_script "yabai -m space --focus 5"
+# sketchybar -m set misc label_font "Iosevka Nerd Font:Mono:16.0"
+# sketchybar -m set misc label home
+
 # C E N T E R
 # TODO: Set color
-sketchybar -m add component title window_title center
-sketchybar -m set window_title label_font "Iosevka Nerd Font:Mono:16.0"
-# sketchybar -m set communication label_color 0xff${color3:1}
-# sketchybar -m set windowTitle associated_space 3
+  sketchybar -m add component item window_title center
+  sketchybar -m set window_title label_font "Iosevka Nerd Font:Mono:16.0"
+  # sketchybar -m set window_title label_color 0xff${color3:1}
+  sketchybar -m subscribe window_title window_focus
+  sketchybar -m subscribe window_title front_app_switched
+  sketchybar -m subscribe window_title space_change
+  sketchybar -m subscribe window_title title_change
+  sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.sh"
 
 # R I G H T
 sketchybar -m add item clock right
@@ -74,7 +119,7 @@ sketchybar -m set clock icon_color 0xff${color3:1}
 sketchybar -m set clock label_padding_left 4
 sketchybar -m set clock label_padding_right 6
 # sketchybar -m set clock icon_padding_left 
-# sketchybar -m set clock icon_padding_right 2
+sketchybar -m set clock icon_padding_right 2
 
 # D O N E
 sketchybar -m update
