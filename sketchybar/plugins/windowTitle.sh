@@ -14,13 +14,13 @@ WINDOW_INFO=$(osascript -e '
 
   if (count of windowTitle) is greater than 50 then
     set windowTitle to do shell script "echo " & windowTitle & "| cut -c 1-50"
-    set windowTitle to windowTitle & "..."
+    set windowTitle to windowTitle & "…"
   end if
 
   if windowTitle is not "" then
     return windowTitle
   else
-          return frontAppName
+    return frontAppName
   end if
 ')
 

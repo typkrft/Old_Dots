@@ -27,13 +27,13 @@ if [[ $APP_STATE -gt 2 ]]; then
     # than x just leave it out. I have uncommented the artist and album information
     # beucase I only want to truncate the title. 
     if [[ ${#TITLE} -gt 15 ]]; then
-      TITLE=$(printf "$(echo $TITLE | cut -c 1-12)...")
+      TITLE=$(printf "$(echo $TITLE | cut -c 1-12)…")
     fi
     # if [[ ${#ARTIST} -gt 15 ]]; then
-      # ARTIST=$(printf "$(echo $ARTIST | cut -c 1-12)...")
+      # ARTIST=$(printf "$(echo $ARTIST | cut -c 1-12)…")
     # fi
     # if [[ ${#ALBUM} -gt 15 ]]; then
-      # ALBUM=$(printf "$(echo $ALBUM | cut -c 1-12)...")
+      # ALBUM=$(printf "$(echo $ALBUM | cut -c 1-12)…")
     # fi
 
     # Update Sketchybar
@@ -47,13 +47,13 @@ if [[ $APP_STATE -gt 2 ]]; then
     ARTIST=$(osascript -e 'tell application "Music" to get artist of current track')
     # ALBUM=$(osascript -e 'tell application "Music" to get album of current track')
     if [[ ${#TITLE} -gt 15 ]]; then
-      TITLE=$(printf "$(echo $TITLE | cut -c 1-12)...")
+      TITLE=$(printf "$(echo $TITLE | cut -c 1-12)…")
     fi
     # if [[ ${#ARTIST} -gt 15 ]]; then
-      # ARTIST=$(printf "$(echo $ARTIST | cut -c 1-12)...")
+      # ARTIST=$(printf "$(echo $ARTIST | cut -c 1-12)…")
     # fi
     # if [[ ${#ALBUM} -gt 15 ]]; then
-      # ALBUM=$(printf "$(echo $ALBUM | cut -c 1-12)...")
+      # ALBUM=$(printf "$(echo $ALBUM | cut -c 1-12)…")
     # fi
     sketchybar -m set music_info icon 
     sketchybar -m set music_info label "$TITLE x $ARTIST"

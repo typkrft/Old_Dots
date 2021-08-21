@@ -105,7 +105,7 @@ sketchybar -m set title_sep icon "│"
 sketchybar -m set title_sep icon_color 0xff${color3:1}
 
 
-# C E N T E R
+# Can Set to center
 # TODO: Set color
 sketchybar -m add component item window_title left
 sketchybar -m set window_title label_font "Iosevka Nerd Font:Mono:16.0"

@@ -19,7 +19,7 @@
 Complete Installation
 You might want to read through [DotBots Readme](https://github.com/anishathalye/dotbot) to understand what is going on here first. 
 
-1. `git clone https://github.com/typkrft/Dots`
+1. <code>git clone https://github.com/typkrft/Dots<code>
 2. `cd Dots`
 3. `./install`
 
