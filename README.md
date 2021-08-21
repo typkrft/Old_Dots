@@ -1,4 +1,4 @@
-# <p align="justify"> 💻 D O T S </p>
+# <p align="center"> 💻 D O T S </p>
 
 # F E A T U R E S 
 
