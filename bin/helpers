@@ -60,20 +60,20 @@ function window_mode() {
   yabai -m config insert_feedback_color 0xff${color3:1};
   
   # S P A C B A R
-  spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
-  spacebar -m config title off 
-  spacebar -m config center_shell on 
+  # spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
+  # spacebar -m config title off 
+  # spacebar -m config center_shell on 
   
-  spacebar -m config background_color 0xaa${color3:1};
-  spacebar -m config foreground_color 0xff${foreground:1};
-  spacebar -m config power_icon_color 0xff${color3:1};
-  spacebar -m config battery_icon_color 0xff${color3:1};
-  spacebar -m config dnd_icon_color 0xff${color3:1};
-  spacebar -m config clock_icon_color 0xff${color3:1};
-  spacebar -m config right_shell_icon_color 0xff${color3:1};
-  spacebar -m config space_icon_color 0xff${color3:1};
-  spacebar -m config space_icon_color_secondary 0xff${color4:1};
-  spacebar -m config space_icon_color_tertiary 0xff${color5:1};
+  # spacebar -m config background_color 0xaa${color3:1};
+  # spacebar -m config foreground_color 0xff${foreground:1};
+  # spacebar -m config power_icon_color 0xff${color3:1};
+  # spacebar -m config battery_icon_color 0xff${color3:1};
+  # spacebar -m config dnd_icon_color 0xff${color3:1};
+  # spacebar -m config clock_icon_color 0xff${color3:1};
+  # spacebar -m config right_shell_icon_color 0xff${color3:1};
+  # spacebar -m config space_icon_color 0xff${color3:1};
+  # spacebar -m config space_icon_color_secondary 0xff${color4:1};
+  # spacebar -m config space_icon_color_tertiary 0xff${color5:1};
 
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0xF0${color3:1}
@@ -94,20 +94,20 @@ function scripts_mode() {
   yabai -m config insert_feedback_color 0xff${color5:1};
 
   # S P A C B A R
-  spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
-  spacebar -m config title off 
-  spacebar -m config center_shell on
+  # spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
+  # spacebar -m config title off 
+  # spacebar -m config center_shell on
 
-  spacebar -m config background_color 0xaa${color5:1};
-  spacebar -m config foreground_color 0xff${foreground:1};
-  spacebar -m config power_icon_color 0xff${color5:1};
-  spacebar -m config battery_icon_color 0xff${color5:1};
-  spacebar -m config dnd_icon_color 0xff${color5:1};
-  spacebar -m config clock_icon_color 0xff${color5:1};
-  spacebar -m config right_shell_icon_color 0xff${color5:1};
-  spacebar -m config space_icon_color 0xff${color5:1};
-  spacebar -m config space_icon_color_secondary 0xff${color6:1};
-  spacebar -m config space_icon_color_tertiary 0xff${color7:1};
+  # spacebar -m config background_color 0xaa${color5:1};
+  # spacebar -m config foreground_color 0xff${foreground:1};
+  # spacebar -m config power_icon_color 0xff${color5:1};
+  # spacebar -m config battery_icon_color 0xff${color5:1};
+  # spacebar -m config dnd_icon_color 0xff${color5:1};
+  # spacebar -m config clock_icon_color 0xff${color5:1};
+  # spacebar -m config right_shell_icon_color 0xff${color5:1};
+  # spacebar -m config space_icon_color 0xff${color5:1};
+  # spacebar -m config space_icon_color_secondary 0xff${color6:1};
+  # spacebar -m config space_icon_color_tertiary 0xff${color7:1};
 
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0xF0${color5:1}
@@ -119,63 +119,62 @@ function scripts_mode() {
 # S E T  W A L L P A P E R
 #TODO: CHECK IF this still works
 function set_wallpaper() {
-    CURRENT_DESKTOP=$(yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
-    TOTAL_SPACES=$(yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
-    
-    if [[ $1 = "" ]]; then
-        WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
-    elif [[ $1 != "" ]]; then
-        WALLPAPER=$1
-    fi
+  CURRENT_DESKTOP=$(yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
+  TOTAL_SPACES=$(yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
+  
+  if [[ $1 = "" ]]; then
+    WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
+  elif [[ $1 != "" ]]; then
+    WALLPAPER=$1
+  fi
 
-    [[ $CURRENT_DESKTOP -ne 1 ]] && yabai -m space --focus 1 || :
+  [[ $CURRENT_DESKTOP -ne 1 ]] && yabai -m space --focus 1 || :
 
-    for SPACE in $(seq 1 $TOTAL_SPACES)
-        do
-            yabai -m space --focus $SPACE
-            echo $SPACE
-            sleep .25
-            osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$WALLPAPER\""
-        done
-    yabai -m space --focus $CURRENT_DESKTOP
-
+  for SPACE in $(seq 1 $TOTAL_SPACES)
+    do
+      yabai -m space --focus $SPACE
+      echo $SPACE
+      sleep .25
+      osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$WALLPAPER\""
+    done
+  yabai -m space --focus $CURRENT_DESKTOP
 }
 
 function shuffle_wallpaper(){
-    find /Volumes/Wallpapers -type f -print0 | \
-    shuf -z -n 1| \
-    xargs -I{} \
-    osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""
+  find /Volumes/Wallpapers -type f -print0 | \
+  shuf -z -n 1| \
+  xargs -I{} \
+  osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""
 }
 
 # T O G G L E  S E R V I C E S
 function toggle_service() {
-    SERVICE=$1
+  SERVICE=$1
 
-    case $SERVICE in
-        yabai) 
-            # Yabai requires full forumla in service commands
-            [[ $SERVICE == "yabai" ]] && YABAI=xorpse/formulae/yabai || :;
-            # Other Services Start/Stop
-            pgrep $SERVICE && brew services stop $YABAI || brew services start $YABAI;
-            ;;
-        skhd) 
-            # Don't stop SKHD
-            if [[ $SERVICE == "skhd" ]]; then
-                brew services restart skhd;
-            fi
-            ;;
-        spacebar)
-            pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
-            sleep .25;
-            pgrep spacebar && yabai -m config external_bar main:$(spacebar -m config height):0 || yabai -m config external_bar main:0:0;
-            ;;
-        *) echo default
-            pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
-        ;;
-    esac
-    sleep .25;
-    scripts_mode
+  case $SERVICE in
+    yabai) 
+      # Yabai requires full forumla in service commands
+      [[ $SERVICE == "yabai" ]] && YABAI=xorpse/formulae/yabai || :;
+      # Other Services Start/Stop
+      pgrep $SERVICE && brew services stop $YABAI || brew services start $YABAI;
+    ;;
+    skhd) 
+      # Don't stop SKHD
+      if [[ $SERVICE == "skhd" ]]; then
+        brew services restart skhd;
+      fi
+    ;;
+    spacebar)
+      pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
+      sleep .25;
+      pgrep spacebar && yabai -m config external_bar main:$(spacebar -m config height):0 || yabai -m config external_bar main:0:0;
+    ;;
+    *) echo default
+      pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
+    ;;
+  esac
+  sleep .25;
+  scripts_mode
 }
 
 # TODO: Add Save Colorscheme
@@ -507,72 +506,72 @@ function kitty_quake_tab() {
 # For GETOPTS just use $2 if you need an optional param
 while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Qq" flag
 do
-    case "${flag}" in
-        n) 
-            normal_mode
-            ;;
-        w) 
-            window_mode
-            ;;
-        s) 
-            scripts_mode
-            ;;
-        m) 
-            spacebar_music_info
-            ;;
-        v) 
-            spacebar_vpn_info
-            ;;
-        i) 
-            spacebar_investment_info
-            ;;
-        c) 
-            spacebar_cmd_select
-            ;;
-        t) 
-            toggle_service ${OPTARG}
-            ;;
-        S) 
-            create_spaces_hack ${OPTARG}
-            ;;
-        M) 
-            move_spaces_hack ${OPTARG}
-            ;;
-        C)
-            create_spaces ${OPTARG}
-            ;;
-        W)
-            set_wallpaper $2
-            ;;
-        p)
-            shuffle_wallpaper
-            ;;
-        P) 
-            update_colors ${OPTARG}
-            ;;
-        V) 
-            toggle_vpn
-            ;;
-        l) 
-            toggle_layouts
-            ;;
-        g) 
-            toggle_gabs_and_borders
-            ;;
-        x) 
-            close_window
-            ;;
-        T) 
-            stack_app ${OPTARG}
-            ;;
-        Q) 
-            kitty_quake
-            ;;
-        q)  
-	    kitty_quake_tab
-            ;;
-        *) 
-            echo "Invalid option: -$flag" 
-            ;;
-    esac
+  case "${flag}" in
+    n) 
+      normal_mode
+      ;;
+    w) 
+      window_mode
+      ;;
+    s) 
+      scripts_mode
+      ;;
+    m) 
+      spacebar_music_info
+      ;;
+    v) 
+      spacebar_vpn_info
+      ;;
+    i) 
+      spacebar_investment_info
+      ;;
+    c) 
+      spacebar_cmd_select
+      ;;
+    t) 
+      toggle_service ${OPTARG}
+      ;;
+    S) 
+      create_spaces_hack ${OPTARG}
+      ;;
+    M) 
+      move_spaces_hack ${OPTARG}
+      ;;
+    C)
+      create_spaces ${OPTARG}
+      ;;
+    W)
+      set_wallpaper $2
+      ;;
+    p)
+      shuffle_wallpaper
+      ;;
+    P) 
+      update_colors ${OPTARG}
+      ;;
+    V) 
+      toggle_vpn
+      ;;
+    l) 
+      toggle_layouts
+      ;;
+    g) 
+      toggle_gabs_and_borders
+      ;;
+    x) 
+      close_window
+      ;;
+    T) 
+      stack_app ${OPTARG}
+      ;;
+    Q) 
+      kitty_quake
+      ;;
+    q)  
+      kitty_quake_tab
+      ;;
+    *) 
+      echo "Invalid option: -$flag" 
+      ;;
+  esac
 done
