@@ -1,6 +1,6 @@
 # <p align="center">💻 D O T S</p>
 <p align="center">Asthetically pleasing dotfiles focused on functionality.</p>
-<p align="center">Most of these dots should work with minimal effort in most environments, but are tailored for M1 Macs running the latest stable release of macOS.</p>
+<p align="left"><bold>NOTE:</bold> Most of these dots should work with minimal effort in most environments, but are tailored for M1 Macs running the latest stable release of macOS.</p>
 
 ## S C R E E N S H O T S
 
