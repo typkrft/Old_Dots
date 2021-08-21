@@ -109,7 +109,7 @@ sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.
 
 # R I G H T
 sketchybar -m add item battery right
-sketchybar -m set battery update_freq 10
+sketchybar -m set battery update_freq 3
 sketchybar -m set battery script "~/.config/sketchybar/plugins/power.sh"
 sketchybar -m set battery icon_font "Iosevka Nerd Font:Mono:16.0"
 sketchybar -m set battery label_font "Iosevka Nerd Font:Mono:16.0"
@@ -176,9 +176,49 @@ sketchybar -m set vti update_freq 20
 sketchybar -m set vti icon_color 0xff${color3:1}
 sketchybar -m set vti label_padding_left 4
 sketchybar -m set vti icon_padding_left 4
-sketchybar -m set eth icon_padding_right 4
+sketchybar -m set vti icon_padding_right 4
 sketchybar -m set vti label_padding_right 6
 sketchybar -m set vti script "~/.config/sketchybar/plugins/vti.sh"
+
+seperator 9
+
+sketchybar -m add item music_info right
+sketchybar -m set music_info icon_font "iosevka nerd font:bold:16.0"
+sketchybar -m set music_info label_font "iosevka nerd font:mono:16.0"
+sketchybar -m set music_info icon 
+sketchybar -m set music_info update_freq 5
+sketchybar -m set music_info icon_color 0xff${color3:1}
+sketchybar -m set music_info label_padding_left 4
+sketchybar -m set music_info icon_padding_left 4
+sketchybar -m set music_info icon_padding_right 4
+sketchybar -m set music_info label_padding_right 6
+sketchybar -m set music_info script "~/.config/sketchybar/plugins/music.sh"
+
+# seperator 10
+
+# sketchybar -m add item vpn right
+# sketchybar -m set vpn icon_font "iosevka nerd font:bold:16.0"
+# sketchybar -m set vpn label_font "iosevka nerd font:mono:16.0"
+# sketchybar -m set vpn icon 
+# sketchybar -m set vpn update_freq 5
+# sketchybar -m set vpn icon_color 0xff${color3:1}
+# sketchybar -m set vpn label_padding_left 4
+# sketchybar -m set vpn icon_padding_left 4
+# sketchybar -m set vpn icon_padding_right 4
+# sketchybar -m set vpn label_padding_right 6
+# sketchybar -m set vpn script "~/.config/sketchybar/plugins/vpn.sh"
+
+# sketchybar -m add item mic right
+# sketchybar -m set mic icon_font "iosevka nerd font:bold:16.0"
+# sketchybar -m set mic label_font "iosevka nerd font:mono:16.0"
+# sketchybar -m set mic update_freq 3
+# sketchybar -m set mic icon_color 0xff${color3:1}
+# sketchybar -m set mic label_padding_left 4
+# sketchybar -m set mic icon_padding_left 4
+# sketchybar -m set mic icon_padding_right 4
+# sketchybar -m set mic label_padding_right 6
+# sketchybar -m set mic script "~/.config/sketchybar/plugins/mic.sh"
+# sketchybar -m set mic click_script "~/.config/sketchybar/plugins/mic_click.sh"
 
 # D O N E
 sketchybar -m update

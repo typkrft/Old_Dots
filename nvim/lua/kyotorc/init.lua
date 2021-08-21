@@ -15,6 +15,8 @@ vim.opt.whichwrap = "<>hl[]"
 -- vim.opt.syntax = "enable"
 -- vim.opt.foldmethod = "indent"
 
+-- Navigate lines like macOS
+-- vim.api.nvim_set_keymap('n', '<Esc-f>', 'w', {})
 
 -- M O D U L E S
 -- Snippets

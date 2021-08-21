@@ -16,90 +16,103 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 # S K H D
 # N O R M A L  M O D E 
 function normal_mode() {
-    echo "N O R M A L  M O D E";
+  echo "N O R M A L  M O D E";
 
-    # C O L O R S
-    . $HOME/.cache/wal/colors.sh;
-    
-    # Y A B A I
-    yabai -m config active_window_border_color 0xff${color1:1};
-    yabai -m config normal_window_border_color 0xff${color3:1};
-    yabai -m config insert_feedback_color 0xff${color5:1};
+  # C O L O R S
+  . $HOME/.cache/wal/colors.sh;
+  
+  # Y A B A I
+  yabai -m config active_window_border_color 0xff${color1:1};
+  yabai -m config normal_window_border_color 0xff${color3:1};
+  yabai -m config insert_feedback_color 0xff${color5:1};
 
-    # S P A C B A R
-    spacebar -m config center_shell off
-    spacebar -m config title on
-    
-    spacebar -m config background_color 0xaa${background:1} 
-    spacebar -m config foreground_color 0xff${color1:1} 
-    spacebar -m config power_icon_color 0xff${color3:1} 
-    spacebar -m config battery_icon_color 0xff${color3:1} 
-    spacebar -m config dnd_icon_color 0xff${color3:1} 
-    spacebar -m config clock_icon_color 0xff${color3:1} 
-    spacebar -m config right_shell_icon_color 0xff${color3:1} 
-    spacebar -m config space_icon_color 0xff${color3:1} 
-    spacebar -m config space_icon_color_secondary 0xff${color4:1} 
-    spacebar -m config space_icon_color_tertiary 0xff${color5:1} 
+  # S P A C B A R
+  # spacebar -m config center_shell off
+  # spacebar -m config title on
+  
+  # spacebar -m config background_color 0xaa${background:1} 
+  # spacebar -m config foreground_color 0xff${color1:1} 
+  # spacebar -m config power_icon_color 0xff${color3:1} 
+  # spacebar -m config battery_icon_color 0xff${color3:1} 
+  # spacebar -m config dnd_icon_color 0xff${color3:1} 
+  # spacebar -m config clock_icon_color 0xff${color3:1} 
+  # spacebar -m config right_shell_icon_color 0xff${color3:1} 
+  # spacebar -m config space_icon_color 0xff${color3:1} 
+  # spacebar -m config space_icon_color_secondary 0xff${color4:1} 
+  # spacebar -m config space_icon_color_tertiary 0xff${color5:1} 
 
+  # S K E T C H Y B A R 
+  sketchybar -m config bar_color 0xF0${background:1}
+  sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.sh"
+  sketchybar -m set window_title label "$( [[ $(yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/') != "" ]] && yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/' || yabai -m query --windows --window | jq '.app' | cut -c 1-50 | sed -E 's/"(.*)"/\1/')"
 }
 
 # W I N D O W  M O D E
 function window_mode() {
-    echo "W I N D O W  M O D E";    
+  echo "W I N D O W  M O D E";    
 
-    # C O L O R S
-    . $HOME/.cache/wal/colors.sh;
+  # C O L O R S
+  . $HOME/.cache/wal/colors.sh;
 
-    # Y A B A I
-    yabai -m config active_window_border_color 0xff${color3:1};
-    yabai -m config normal_window_border_color 0xff${color3:1};
-    yabai -m config insert_feedback_color 0xff${color3:1};
-    
-    # S P A C B A R
-    spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
-    spacebar -m config title off 
-    spacebar -m config center_shell on 
-    
-    spacebar -m config background_color 0xaa${color3:1};
-    spacebar -m config foreground_color 0xff${foreground:1};
-    spacebar -m config power_icon_color 0xff${color3:1};
-    spacebar -m config battery_icon_color 0xff${color3:1};
-    spacebar -m config dnd_icon_color 0xff${color3:1};
-    spacebar -m config clock_icon_color 0xff${color3:1};
-    spacebar -m config right_shell_icon_color 0xff${color3:1};
-    spacebar -m config space_icon_color 0xff${color3:1};
-    spacebar -m config space_icon_color_secondary 0xff${color4:1};
-    spacebar -m config space_icon_color_tertiary 0xff${color5:1};
+  # Y A B A I
+  yabai -m config active_window_border_color 0xff${color3:1};
+  yabai -m config normal_window_border_color 0xff${color3:1};
+  yabai -m config insert_feedback_color 0xff${color3:1};
+  
+  # S P A C B A R
+  spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
+  spacebar -m config title off 
+  spacebar -m config center_shell on 
+  
+  spacebar -m config background_color 0xaa${color3:1};
+  spacebar -m config foreground_color 0xff${foreground:1};
+  spacebar -m config power_icon_color 0xff${color3:1};
+  spacebar -m config battery_icon_color 0xff${color3:1};
+  spacebar -m config dnd_icon_color 0xff${color3:1};
+  spacebar -m config clock_icon_color 0xff${color3:1};
+  spacebar -m config right_shell_icon_color 0xff${color3:1};
+  spacebar -m config space_icon_color 0xff${color3:1};
+  spacebar -m config space_icon_color_secondary 0xff${color4:1};
+  spacebar -m config space_icon_color_tertiary 0xff${color5:1};
 
+  # S K E T C H Y B A R 
+  sketchybar -m config bar_color 0xF0${color3:1}
+  sketchybar -m set window_title script ""
+  sketchybar -m set window_title label "W I N D O W  M O D E"
 }
 
 # S C R I P T S  M O D E
 function scripts_mode() {
-    echo "S C R I P T S  M O D E";
+  echo "S C R I P T S  M O D E";
 
-    # C O L O R S
-    . $HOME/.cache/wal/colors.sh;
-    
-    # Y A B A I
-    yabai -m config active_window_border_color 0xff${color5:1};
-    yabai -m config normal_window_border_color 0xff${color5:1};
-    yabai -m config insert_feedback_color 0xff${color5:1};
+  # C O L O R S
+  . $HOME/.cache/wal/colors.sh;
+  
+  # Y A B A I
+  yabai -m config active_window_border_color 0xff${color5:1};
+  yabai -m config normal_window_border_color 0xff${color5:1};
+  yabai -m config insert_feedback_color 0xff${color5:1};
 
-    # S P A C B A R
-    spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
-    spacebar -m config title off 
-    spacebar -m config center_shell on
+  # S P A C B A R
+  spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
+  spacebar -m config title off 
+  spacebar -m config center_shell on
 
-    spacebar -m config background_color 0xaa${color5:1};
-    spacebar -m config foreground_color 0xff${foreground:1};
-    spacebar -m config power_icon_color 0xff${color5:1};
-    spacebar -m config battery_icon_color 0xff${color5:1};
-    spacebar -m config dnd_icon_color 0xff${color5:1};
-    spacebar -m config clock_icon_color 0xff${color5:1};
-    spacebar -m config right_shell_icon_color 0xff${color5:1};
-    spacebar -m config space_icon_color 0xff${color5:1};
-    spacebar -m config space_icon_color_secondary 0xff${color6:1};
-    spacebar -m config space_icon_color_tertiary 0xff${color7:1};
+  spacebar -m config background_color 0xaa${color5:1};
+  spacebar -m config foreground_color 0xff${foreground:1};
+  spacebar -m config power_icon_color 0xff${color5:1};
+  spacebar -m config battery_icon_color 0xff${color5:1};
+  spacebar -m config dnd_icon_color 0xff${color5:1};
+  spacebar -m config clock_icon_color 0xff${color5:1};
+  spacebar -m config right_shell_icon_color 0xff${color5:1};
+  spacebar -m config space_icon_color 0xff${color5:1};
+  spacebar -m config space_icon_color_secondary 0xff${color6:1};
+  spacebar -m config space_icon_color_tertiary 0xff${color7:1};
+
+  # S K E T C H Y B A R 
+  sketchybar -m config bar_color 0xF0${color5:1}
+  sketchybar -m set window_title script ""
+  sketchybar -m set window_title label "S C R I P T S  M O D E"
 
 }
 
