@@ -9,10 +9,10 @@
 - A tailored version of [kyoto.nvim](https://github.com/samrath2007/kyoto.nvim)
 - A Modal Keyboard Shortcut setup powered by [SKHD](https://github.com/koekeishiya/skhd)
 - Ready to Rice with [pywal](https://github.com/dylanaraps/pywal), [pywalfox](https://github.com/Frewacom/pywalfox), and more
-- 
+- Multiple Configurations for firefox that seek to maximize viewable space.
 
 ## I N S T A L L A T I O N 
-**<span style="color:red">DRAGONS:</span>** While these dotfiles can be installed in there entirety, it is strongly recommened that you simply that the configurations that you need, unless you know what you are doing! The installation aims to to safely deploy files. However, this may overwrite files, override settings, and completely bork up your environment. Please backup anything that is important and look through [install.conf.yaml](https://github.com/typkrft/Dots/blob/main/install.conf.yaml) first.
+**HERE BE DRAGONS:** While these dotfiles can be installed in there entirety, it is strongly recommened that you simply that the configurations that you need, unless you know what you are doing! The installation aims to to safely deploy files. However, this may overwrite files, override settings, and completely bork up your environment. Please backup anything that is important and look through [install.conf.yaml](https://github.com/typkrft/Dots/blob/main/install.conf.yaml) first.
 
 **NOTE:** This makes use of and/or includes some programs that maybe out of date for various reasons. This should generally be of no consequence, but you should look at the [/bin/README.md](https://github.com/typkrft/Dots/blob/main/bin/README.md) for more details.
 
@@ -61,3 +61,6 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Brewfile / Get a list of packages to install
 - [ ] Python Package List
 - [ ] NPM Package list
+
+## T H A N K S
+
