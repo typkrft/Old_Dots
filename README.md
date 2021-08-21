@@ -12,6 +12,16 @@
 - 
 
 ## I N S T A L L A T I O N 
+**<span style="color:red">DRAGONS:</span** While these dotfiles can be installed in there entirety, it is strongly recommened that you simply that the configurations that you need, unless you know what you are doing! The installation aims to to safely deploy files. However, this may overwrite files, override settings, and completely bork up your environment. Please backup anything that is important and look through [install.conf.yaml](https://github.com/typkrft/Dots/blob/main/install.conf.yaml) first.
+
+**NOTE:** This makes use of and/or includes some programs that maybe out of date for various reasons. This should generally be of no consequence, but you should look at the [/bin/README.md](https://github.com/typkrft/Dots/blob/main/bin/README.md) for more details.
+
+Complete Installation
+You might want to read through [DotBots Readme](https://github.com/anishathalye/dotbot) to understand what is going on here first. 
+
+1. `git clone https://github.com/typkrft/Dots`
+2. `cd Dots`
+3. `./install`
 
 ## T O D O S
 
