@@ -1,10 +1,15 @@
 # <p align="center">💻 D O T S</p>
 <p align="center">Asthetically pleasing dotfiles focused on functionality.</p>
+<p align="center">Most of these dots should work with minimal effort in most environments, but are tailored for M1 Macs running the latest stable release of macOS.</p>
 
-## S C R E E N S H O O T S
+## S C R E E N S H O T S
 
 
 ## F E A T U R E S 
+- A tailored version of [kyoto.nvim](https://github.com/samrath2007/kyoto.nvim)
+- A Modal Keyboard Shortcut setup powered by [SKHD](https://github.com/koekeishiya/skhd)
+- Ready to Rice with [pywal](https://github.com/dylanaraps/pywal), [pywalfox](https://github.com/Frewacom/pywalfox), and more
+- 
 
 ## I N S T A L L A T I O N 
 
