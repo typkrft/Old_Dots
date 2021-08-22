@@ -16,6 +16,11 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 # Restart Sketchybar
   killall sketchybar; 
+  while [[ $(pgrep sketchybar) ]]
+    do
+      sleep .1
+    done
+
   sketchybar &>/dev/null & disown; 
   while [[ ! $(sketchybar -m config height) -ge 0 ||  ! $(spacebar -m config height) -ge 0 ]]
   do
