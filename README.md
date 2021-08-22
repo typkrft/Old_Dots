@@ -4,7 +4,6 @@
 
 ## S C R E E N S H O T S
 
-
 ## F E A T U R E S 
 - A tailored version of [kyoto.nvim](https://github.com/samrath2007/kyoto.nvim)
 - A Modal Keyboard Shortcut setup powered by [SKHD](https://github.com/koekeishiya/skhd)
@@ -42,6 +41,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 
 ### K I T T Y
 - [ ] Allow Remote Control and add a port so that skhd can update colors
+- [ ] Retheme Tab Bar after color change maybe create another wal template
 
 ### S K H D
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
@@ -57,6 +57,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 
 ### T M U X
 - [ ] Get a Conf setup
+- [ ] Kitty Mapped Keys don't work to move in tmux. Try to map them in skhd not in kitty, then change zsh bindkeys and nvim. Map to some weird hex I'll never use maybe. Also Note Abduco doesn't mess with the keybindings. Both TMUX and Abduco do not have image support though. 
 
 ### P A C K A G E S 
 - [ ] Brewfile / Get a list of packages to install
