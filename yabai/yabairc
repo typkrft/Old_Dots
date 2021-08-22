@@ -14,16 +14,28 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
   sudo yabai --load-sa
   yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
+# Restart Sketchybar
+  killall sketchybar; 
+  sketchybar &>/dev/null & disown; 
+  while [[ ! $(sketchybar -m config height) -ge 0 ||  ! $(spacebar -m config height) -ge 0 ]]
+  do
+    sleep .1
+  done
+
+  sleep .1
+  echo $(sketchybar -m config height)
+  if [[ $(pgrep spacebar) ]]; then
+    STATUS_BAR_HEIGHT=$(spacebar -m config height)
+  elif [[ $(pgrep sketchybar) ]]; then
+    STATUS_BAR_HEIGHT=$(sketchybar -m config height)
+  fi
+  
 # P Y W A L
   . $HOME/.cache/wal/colors.sh
 
 # S E T U P  D E S K T O P S
   $HOME/.config/bin/helpers -C "5"
   
-  [[ $(pgrep spacebar) ]] && STATUS_BAR_HEIGHT=$(spacebar -m config height) || STATUS_BAR_HEIGHT=0
-  
-  [[ $(pgrep sketchybar) ]] && STATUS_BAR_HEIGHT=$(sketchybar -m config height) || STATUS_BAR_HEIGHT=0
-
 # T I L I N G 
   yabai -m config external_bar main:$STATUS_BAR_HEIGHT:0
   yabai -m config window_placement             second_child
@@ -122,3 +134,4 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
   yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
+

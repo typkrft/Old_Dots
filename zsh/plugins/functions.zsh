@@ -56,10 +56,10 @@ function cs_spectrum() {
 
 fav_colorscheme() {
   WALLPAPER=$(grep "wallpaper=" $HOME/.cache/wal/colors.sh | sed -E 's/wallpaper="(.*)"/\1/')
-  D_NUMBER=$[$(find $HOME/.config/wal/colorschemes/dark -maxdepth 1 -type f -name "Fav_*" | wc -l) +1]
-  L_NUMBER=$[$(find $HOME/.config/wal/colorschemes/light -maxdepth 1 -type f -name "Fav_*" | wc -l) + 1]
-  /opt/homebrew/bin/wal -n -s -t -p "D_Fav_$D_NUMBER" -i "${WALLPAPER}" &>/dev/null
-  /opt/homebrew/bin/wal -n -s -t -l -p "L_Fav_$L_NUMBER" -i "${WALLPAPER}" &>/dev/null
+  D_NUMBER=$((( $(find $HOME/.config/wal/colorschemes/dark -type f -name "*Fav*" | wc -l | sed -E 's/([0-9]*)/\1/') + 1 )))
+  L_NUMBER=$((( $(find $HOME/.config/wal/colorschemes/light -type f -name "*Fav*" | wc -l | sed -E 's/([0-9]*)/\1/') + 1 )))
+  wal --saturate 1.0 --backend schemer2 -n -s -t -p "D_Fav_$D_NUMBER" -i "${WALLPAPER}" &>/dev/null
+  wal --saturate 1.0 --backedn schemer2 -n -s -t -l -p "L_Fav_$L_NUMBER" -i "${WALLPAPER}" &>/dev/null
 }
 
 function unbrew() {

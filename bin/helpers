@@ -184,15 +184,15 @@ function update_colors() {
     case $1 in
         c) # Current Wallpaper Colorscheme            
             CURRENT_WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
-            wal --backend schemer2 --saturate 1.0 -n -i "$CURRENT_WALLPAPER"
+            wal --backend schemer2 --saturate 1.0 -n -s -i "$CURRENT_WALLPAPER"
             ;;
         n) # New Walllpaper Colorscheme
             shuffle_wallpaper
             CURRENT_WALLPAPER=$(osascript -e "tell application \"Finder\" to set wallpaper to get POSIX path of (get desktop picture as alias)")
-            wal -n --backend schemer2 --saturate 1.0 -i "$CURRENT_WALLPAPER"
+            wal -n -s --backend schemer2 --saturate 1.0 -i "$CURRENT_WALLPAPER"
             ;;
         s) # Keep Wallpaper, Shuffle Colorsheme
-            wal -n --backend schemer2 --saturate 1.0 --recursive -i /Volumes/Wallpapers
+            wal -n -s --backend schemer2 --saturate 1.0 --recursive -i /Volumes/Wallpapers
             ;;
         S) # Save Scheme
             ;;
@@ -207,7 +207,7 @@ function update_colors() {
     # Update Various App Colorschemes
     osascript -e "tell application \"Alfred 4\" to set theme \"Wal\""
     pywalfox update
-    kitty @ --to="tcp:localhost:54889" set-colors -a -c $HOME/.config/kitty/kitty.conf 
+    kitty @ --to="unix:/tmp/mykitty" set-colors -a -c $HOME/.cache/wal/colors-kitty.conf 
     scripts_mode 
 }
 
@@ -332,7 +332,7 @@ function kitty_quake() {
   if [[ ${#QUAKE} -eq 0 ]]; then
     $(osascript -e '
       set appname to "kitty"
-      do shell script "open -a " & appname & " -n --args -1"
+      do shell script "open -a " & appname & " -n --args -1 --listen-on=unix:/tmp/mykitty"
       tell application "System Events"
         repeat until visible of process appname is false
           set visible of process appname to false
@@ -379,8 +379,7 @@ function stack_app() {
   if [[ $APP_TO_STACK == $CURRENT_APP ]]; then
     if [[ $CURRENT_APP == "kitty" ]]; then
       if [[ $WINDOW_TITLE == "Quake" ]]; then
-        open -a kitty.app -n --args -1 --title="Kitty"
-        # kitty @ launch --type=os-window --window-title=
+        open -a kitty.app -n --args -1
         exit 0
       fi
     fi

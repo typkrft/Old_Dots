@@ -44,7 +44,7 @@ zinit ice lucid wait
 zinit snippet OMZP::history
 # NOTE: # Keep Vi-Mode from overriding keybindings
 # zvm_after_init_commands+=('[ -f $HOME/.config/zsh/omz_history_conf.zsh ] && source $HOME/.config/zsh/omz_history_conf.zsh')
-. $HOME/.config/zsh/bindings.zsh
+# . $HOME/.config/zsh/bindings.zsh
 
 # ZSH Autopair 
 zinit ice lucid wait

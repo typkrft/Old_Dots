@@ -40,10 +40,13 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 ### Y A B A I
 - [ ] Move New Messages Windows (e.g.: Messages, Mail) to center or right side of the screen
 
+### K I T T Y
+- [ ] Allow Remote Control and add a port so that skhd can update colors
+
 ### S K H D
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
 - [ ] Set up Kitty to launch window with tab title changed and may have to edit jq commands
-- [ ] Create Better Keybindings 
+- [ ] Create Better Keybindings
 
 ### S T A R S H I P
 - [ ] Set up Prompt

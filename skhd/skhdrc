@@ -82,8 +82,7 @@ default < cmd + shift - 0x30 [
 ]
 default < cmd - n [ 
   "firefox" : $HOME/.config/bin/helpers -T Firefox
-  # "kitty" : $HOME/.config/bin/helpers -T kitty
-  "kitty" : open -a kitty.app -n --args -1 --hide
+  "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
 # default < cmd - t [

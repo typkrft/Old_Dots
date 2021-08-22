@@ -8,3 +8,8 @@
 # This might be more useful
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+
+bindkey ";3C" forward-word 
+bindkey ";3D" backward-word         
+bindkey ";9C" end-of-line   
+bindkey ";9D" beginning-of-line 

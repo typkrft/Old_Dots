@@ -16,7 +16,18 @@ vim.opt.whichwrap = "<>hl[]"
 -- vim.opt.foldmethod = "indent"
 
 -- Navigate lines like macOS
--- vim.api.nvim_set_keymap('n', '<Esc-f>', 'w', {})
+-- Depends on what arbitrary string cmd/alt + left/right
+-- are mapped to in kitty.conf
+-- CMD
+vim.api.nvim_set_keymap('n', 'S4', '0', { noremap = true })
+vim.api.nvim_set_keymap('n', '12', '$', { noremap = true })
+vim.api.nvim_set_keymap('i', 'S4', '<Esc>0i', { noremap = true })
+vim.api.nvim_set_keymap('i', '12', '<Esc>$a', { noremap = true })
+-- ALT
+vim.api.nvim_set_keymap('n', 'S591', 'b', { noremap = true })
+vim.api.nvim_set_keymap('n', 'Q949', 'w', { noremap = true })
+vim.api.nvim_set_keymap('i', 'S591', '<Esc>bi', { noremap = true })
+vim.api.nvim_set_keymap('i', 'Q949', '<Esc>wwi', { noremap = true })
 
 -- M O D U L E S
 -- Snippets
