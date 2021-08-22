@@ -19,9 +19,9 @@
 Complete Installation
 You might want to read through [DotBots Readme](https://github.com/anishathalye/dotbot) to understand what is going on here first. 
 
-1. ```git clone https://github.com/typkrft/Dots```
-2. <code>cd Dots</code>
-3. <code>./install</code>
+1. `git clone https://github.com/typkrft/Dots`
+2. `cd Dots`
+3. `./install`
 
 ## T O D O S
 
@@ -41,8 +41,6 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Move New Messages Windows (e.g.: Messages, Mail) to center or right side of the screen
 
 ### S K H D
-- [ ] Set PATHS in each file so it's less obnoxious
-- [ ] Setup Env Variables in .zshrc and myabe in dots if needed
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
 - [ ] Set up Kitty to launch window with tab title changed and may have to edit jq commands
 - [ ] Create Better Keybindings 
