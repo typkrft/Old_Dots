@@ -9,6 +9,7 @@
 - A Modal Keyboard Shortcut setup powered by [SKHD](https://github.com/koekeishiya/skhd)
 - Ready to Rice with [pywal](https://github.com/dylanaraps/pywal), [pywalfox](https://github.com/Frewacom/pywalfox), and more
 - Multiple Configurations for firefox that seek to maximize viewable space.
+- Native Mac Motion Keys on the command line and in NVim.
 
 ## I N S T A L L A T I O N 
 **HERE BE DRAGONS:** While these dotfiles can be installed in there entirety, it is strongly recommened that you simply that the configurations that you need, unless you know what you are doing! The installation aims to to safely deploy files. However, this may overwrite files, override settings, and completely bork up your environment. Please backup anything that is important and look through [install.conf.yaml](https://github.com/typkrft/Dots/blob/main/install.conf.yaml) first.
@@ -33,6 +34,12 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Setup / Generate an ENV File
 - [ ] Checks for OS and Shell
 
+### S K E T C H Y  B A R 
+- [ ] Create Mode Item e.g.: [N] [V] [I]
+- [ ] Show and hide widgets for depending on criteria e.g.: Weekend stop VTI
+- [ ] Fix VTI Plugin
+- [ ] Add Color to battery icon when Low
+
 ### F I R E F O X
 - [ ] Install extensions [Stack Question](https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line)
 
@@ -45,15 +52,10 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 
 ### S K H D
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
-- [ ] Set up Kitty to launch window with tab title changed and may have to edit jq commands
 - [ ] Create Better Keybindings
 
 ### S T A R S H I P
 - [ ] Set up Prompt
-
-### Z S H _ H I S T O R Y
-- [ ] History symlink keeps getting replaced
-- [ ] Remove URLs and other sensitive commands prior to uploading
 
 ### T M U X
 - [ ] Get a Conf setup
