@@ -34,6 +34,9 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Setup / Generate an ENV File
 - [ ] Checks for OS and Shell
 
+### N V I M
+- [ ] Setup Cmdline key maps described on [SO](https://stackoverflow.com/a/21207170)
+
 ### S K E T C H Y  B A R 
 - [ ] Create Mode Item e.g.: [N] [V] [I]
 - [ ] Show and hide widgets for depending on criteria e.g.: Weekend stop VTI

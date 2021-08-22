@@ -23,6 +23,8 @@ vim.api.nvim_set_keymap('n', 'Zd2e4fdd', '0', { noremap = true })
 vim.api.nvim_set_keymap('n', 'Zd2sdf2', '$', { noremap = true })
 vim.api.nvim_set_keymap('i', 'Zd2e4fdd', '<Esc>0i', { noremap = true })
 vim.api.nvim_set_keymap('i', 'Zd2sdf2', '<Esc>$a', { noremap = true })
+vim.api.nvim_set_keymap('c', 'Zd2e4fdd', '<C-B>', {})
+vim.api.nvim_set_keymap('c', 'Zd2sdf2', '<C-E>', {})
 -- CMD + Backspace
 vim.api.nvim_set_keymap('n', 'Y223r', 'a<C-u><Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'Y223r', '<C-u>', { noremap = true })
