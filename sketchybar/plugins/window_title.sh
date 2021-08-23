@@ -24,5 +24,5 @@ WINDOW_INFO=$(osascript -e '
   end if
 ')
 
-sketchybar -m set title label "│$WINDOW_INFO"
+sketchybar -m set title label " │ $WINDOW_INFO"
 

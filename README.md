@@ -38,12 +38,13 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 ### N V I M
 - [ ] Setup Cmdline key maps described on [SO](https://stackoverflow.com/a/21207170)
 - [ ] Pick unbound letter in all modes and change kitty keybindings
+- [ ] Map Cmd + F to search 
 
 ### S K E T C H Y  B A R 
-- [ ] Create Mode Item e.g.: [N] [V] [I]
+- [x] Create Mode Item e.g.: [N] [V] [I]
 - [ ] Show and hide widgets for depending on criteria e.g.: Weekend stop VTI
 - [ ] Fix VTI Plugin
-- [ ] Add Color to battery icon when Low
+- [x] Add Color to battery icon when Low
 
 ### F I R E F O X
 - [ ] Install extensions [Stack Question](https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line)
@@ -58,6 +59,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 ### S K H D
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc
 - [ ] Create Better Keybindings
+- [ ] Cmd + Tab switch tabs in Kitty
 
 ### S T A R S H I P
 - [ ] Set up Prompt
