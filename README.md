@@ -39,6 +39,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Setup Cmdline key maps described on [SO](https://stackoverflow.com/a/21207170)
 - [ ] Pick unbound letter in all modes and change kitty keybindings
 - [ ] Map Cmd + F to search 
+- [ ] Map Cmd + A to select everything
 
 ### S K E T C H Y  B A R 
 - [x] Create Mode Item e.g.: [N] [V] [I]
@@ -53,7 +54,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Move New Messages Windows (e.g.: Messages, Mail) to center or right side of the screen
 
 ### K I T T Y
-- [ ] Allow Remote Control and add a port so that skhd can update colors
+- [x] Allow Remote Control and add a port so that skhd can update colors
 - [ ] Retheme Tab Bar after color change maybe create another wal template
 
 ### S K H D
