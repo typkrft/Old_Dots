@@ -6,6 +6,7 @@
 
 ## F E A T U R E S 
 - A tailored version of [kyoto.nvim](https://github.com/samrath2007/kyoto.nvim)
+  - NVIM Status In Sketchybar
 - A Modal Keyboard Shortcut setup powered by [SKHD](https://github.com/koekeishiya/skhd)
 - Ready to Rice with [pywal](https://github.com/dylanaraps/pywal), [pywalfox](https://github.com/Frewacom/pywalfox), and more
 - Multiple Configurations for firefox that seek to maximize viewable space.
@@ -36,6 +37,7 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 
 ### N V I M
 - [ ] Setup Cmdline key maps described on [SO](https://stackoverflow.com/a/21207170)
+- [ ] Pick unbound letter in all modes and change kitty keybindings
 
 ### S K E T C H Y  B A R 
 - [ ] Create Mode Item e.g.: [N] [V] [I]
@@ -59,6 +61,9 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 
 ### S T A R S H I P
 - [ ] Set up Prompt
+
+## RM Function
+- [ ] Add preview for files
 
 ### T M U X
 - [ ] Get a Conf setup

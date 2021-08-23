@@ -1,5 +1,17 @@
 local vim = vim
 
+-- U S E R  A D D E D  -  S T A R T
+local function modes() 
+  
+  local m = string.upper(vim.api.nvim_eval('mode()'))
+  if m == 'no' then m = "OP" end
+  if m == '' then m = "VB" end
+  if m == '' then m = "SB" end
+  return m
+end 
+
+-- E N D E D
+
 local function clock()
   return " " .. os.date("%H:%M")
 end
@@ -42,7 +54,7 @@ require("lualine").setup {
     -- component_separators = {"", ""}
   },
   sections = {
-    lualine_a = {"mode"},
+    lualine_a = {modes},
     lualine_b = {"branch"},
     lualine_c = {{"diagnostics", sources = {"nvim_lsp"}}, "filename"},
     lualine_x = {"filetype", lsp_progress},

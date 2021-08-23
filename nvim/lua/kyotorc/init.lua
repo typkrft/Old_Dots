@@ -3,6 +3,8 @@ local g = vim.g
 -- V I M  O P T S
 -- turn off relative numbers
 vim.opt.rnu = false
+-- Don't show modes in Cmdline e.g.: --INSERT--
+vim.cmd('set noshowmode')
 -- Use System Clipboard
 vim.opt.clipboard:prepend {"unnamed", "unnamedplus"}
 -- Clear Highlighting wiht leader space, which is space space currently
@@ -48,6 +50,14 @@ vim.api.nvim_set_keymap('i', 'Zd2e4wd', '<Esc>wwi', { noremap = true })
 vim.api.nvim_set_keymap('n', 'Y2e43', 'dvb', { noremap = true })
 vim.api.nvim_set_keymap('i', 'Y2e43', '<Esc>dvbi', { noremap = true })
 
+vim.cmd([[
+  let &titlestring = "NVim: " . '%t %r %m'
+  if &term == "screen"
+    set t_ts=^[k
+    set t_fs=^[\
+  endif
+  set title
+]])
 
 -- M O D U L E S
 -- Snippets

@@ -43,11 +43,11 @@ function normal_mode() {
 
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0xF0${background:1}
-  sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.sh"
+  # sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.sh"
   # sketchybar -m set window_title label "$( [[ $(yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/') != "" ]] && yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/' || yabai -m query --windows --window | jq '.app' | cut -c 1-50 | sed -E 's/"(.*)"/\1/')"
 
-  sketchybar -m set title_sep label_color 0xF0${foreground:1}
-  sketchybar -m set title_sep label "[N]"
+  sketchybar -m set modal label_color 0xF0${foreground:1}
+  sketchybar -m set modal label "[N]"
 }
 
 # W I N D O W  M O D E
@@ -83,8 +83,8 @@ function window_mode() {
   # sketchybar -m set window_title script ""
   # sketchybar -m set window_title label "W I N D O W  M O D E"
 
-  sketchybar -m set title_sep label_color 0xF0${foreground:1}
-  sketchybar -m set title_sep label "[W]"
+  sketchybar -m set modal label_color 0xF0${foreground:1}
+  sketchybar -m set modal label "[W]"
 }
 
 # S C R I P T S  M O D E
@@ -99,12 +99,12 @@ function scripts_mode() {
   yabai -m config normal_window_border_color 0xff${color5:1};
   yabai -m config insert_feedback_color 0xff${color5:1};
 
-  sketchybar -m set title_sep label_color 0xF0${foreground:1}
-  sketchybar -m set title_sep label "[S]"
+  sketchybar -m set modal label_color 0xF0${foreground:1}
+  sketchybar -m set modal label "[S]"
 
   # S P A C B A R
   # spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
-  # spacebar -m config title off 
+  # spacebar -m config title off
   # spacebar -m config center_shell on
 
   # spacebar -m config background_color 0xaa${color5:1};
