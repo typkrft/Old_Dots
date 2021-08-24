@@ -1,6 +1,6 @@
 # <p align="center">💻 D O T S</p>
 <p align="center">Asthetically pleasing dotfiles focused on functionality.</p>
-<p align="left"><strong>NOTE:</strong> This is still very much a work in progress I would strongly recommend not using the install script as of now. In addition while, most of these dots should work with minimal effort in most environments, but are tailored for M1 Macs running the latest stable release of macOS.</p>
+<p align="left"><strong>NOTE:</strong> This is still very much a work in progress I would strongly recommend not using the install script as of now. In addition while, most of these dots should work with minimal effort in most environments, they are tailored for M1 Macs running the latest stable release of macOS.</p>
 
 
 ## S C R E E N S H O T S
