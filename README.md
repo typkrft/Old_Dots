@@ -20,9 +20,20 @@
 Complete Installation
 You might want to read through [DotBots Readme](https://github.com/anishathalye/dotbot) to understand what is going on here first. 
 
-1. `git clone https://github.com/typkrft/Dots`
-2. `cd Dots`
-3. `./install`
+1. 
+```SHELL
+git clone https://github.com/typkrft/Dots
+```
+
+2. 
+```SHELL
+cd Dots
+```
+
+3. 
+```SHELL
+./install
+```
 
 ## T O D O S
 
@@ -40,22 +51,28 @@ You might want to read through [DotBots Readme](https://github.com/anishathalye/
 - [ ] Pick unbound letter in all modes and change kitty keybindings
 - [ ] Map Cmd + F to search 
 - [ ] Map Cmd + A to select everything
+- [ ] Switch tabs with shift tab maybe
+- [ ] Indent with tab
 
 ### S K E T C H Y  B A R 
 - [x] Create Mode Item e.g.: [N] [V] [I]
 - [ ] Show and hide widgets for depending on criteria e.g.: Weekend stop VTI
 - [ ] Fix VTI Plugin
 - [x] Add Color to battery icon when Low
+- [ ] Update Sketchy Bar to use Enable/ Disable and Yabai Signals
 
 ### F I R E F O X
 - [ ] Install extensions [Stack Question](https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line)
+- [ ] Update themes so that vibrancy works again. [macOS Vibrant](https://github.com/Tnings/MacosVibrant)
 
 ### Y A B A I
 - [ ] Move New Messages Windows (e.g.: Messages, Mail) to center or right side of the screen
+- [ ] Fix or remove Yabai Kitty Singal
 
 ### K I T T Y
 - [x] Allow Remote Control and add a port so that skhd can update colors
 - [ ] Retheme Tab Bar after color change maybe create another wal template
+- [ ] Check if there is a way to stop activating the last window if all other windows close
 
 ### S K H D
 - [ ] Keybindings can be per app Alt-Right could switch browser or vscode tabscc

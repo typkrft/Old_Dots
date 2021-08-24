@@ -126,10 +126,14 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 # S I G N A L S
   
   # Kitty
-  yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="yabai -m window $YABAI_WINDOW_ID --opacity 0.95; yabai -m window $YABAI_WINDOW_ID --move abs:0:0; yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450"
+  # yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="yabai -m window $YABAI_WINDOW_ID --opacity 0.95; yabai -m window $YABAI_WINDOW_ID --move abs:0:0; yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450"
   # Test border funcitonality more calling it exlicity from skhd is faster than a signal but if it focuses on 
   # if [[ ($(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .border') -ne 1) &&  ]]; then yabai -m window $(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .id') --toggle border; fi; 
 
+  # Sketchybar
+    yabai -m signal --add event=window_focused action="sketchybar -m trigger window_focus &> /dev/null"
+    yabai -m signal --add event=window_title_changed action="sketchybar -m trigger title_change &> /dev/null"
+  
 # B O R D E R S  
   yabai -m config window_border                on
   yabai -m config window_border_width          8
@@ -139,4 +143,3 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
   yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
-
