@@ -12,8 +12,12 @@ if [[ $APP_STATE -gt 2 ]]; then
   if [[ $PLAYER_STATE == "stopped" ]]; then
     sketchybar -m set music_info icon 
     sketchybar -m set music_info label "Stopped"
+    sketchybar -m set music_info hidden on
+    sketchybar -m set music_info_sep hidden on
     exit 0
   elif [[ $PLAYER_STATE == "paused" ]]; then
+    sketchybar -m set music_info hidden off
+    sketchybar -m set music_info_sep hidden off
     TITLE=$(osascript -e 'tell application "Music" to get name of current track')
     ARTIST=$(osascript -e 'tell application "Music" to get artist of current track')
     # ALBUM=$(osascript -e 'tell application "Music" to get album of current track')
@@ -42,6 +46,8 @@ if [[ $APP_STATE -gt 2 ]]; then
     # information I usually care about at a glance. 
     sketchybar -m set music_info label "${TITLE} x ${ARTIST}"
   elif [[ $PLAYER_STATE == "playing" ]]; then
+    sketchybar -m set music_info hidden off
+    sketchybar -m set music_sep hidden off
     # NOTE: All of the notes in the elif block above apply here.
     TITLE=$(osascript -e 'tell application "Music" to get name of current track')
     ARTIST=$(osascript -e 'tell application "Music" to get artist of current track')
@@ -58,8 +64,4 @@ if [[ $APP_STATE -gt 2 ]]; then
     sketchybar -m set music_info icon 
     sketchybar -m set music_info label "$TITLE x $ARTIST"
   fi
-else
-  sketchybar -m set music_info icon
-  sketchybar -m set music_info label
-  exit 0
 fi

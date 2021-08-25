@@ -95,5 +95,9 @@ cd Dots
 - [ ] Python Package List
 - [ ] NPM Package list
 
+### Z S H R C 
+- [ ] ZLE Widget for cmd + a to select the entire buffer
+- [ ] Create a rg --vimgrep function [SO](rg --vimgrep --color ansi | fzf --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g)
+
 ## T H A N K S
 

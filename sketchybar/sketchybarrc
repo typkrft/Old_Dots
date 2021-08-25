@@ -15,6 +15,8 @@
 # TODO: Add conditional modules. Could make a bar mode in skhd then add various plugins, reload whole bar
   # when you want to remove them
 # TODO: Click script to turn off vpn
+# TODO: Rethink how seperators should work
+# TODO: Create Events to control when plugins are shown
 
 # P Y W A L
 . $HOME/.cache/wal/colors.sh
@@ -29,30 +31,28 @@ sketchybar -m config display                           all
 # D E F A U L T S
 sketchybar -m default label_font                       "Iosevka Nerd Font:Bold:16.0"
 sketchybar -m default label_color                      0xFF${foreground:1}  
-sketchybar -m default label_padding_left               4 
-sketchybar -m default label_padding_left               4
+sketchybar -m default label_padding_left               2 
+sketchybar -m default label_padding_right              2
 sketchybar -m default icon_font                        "Iosevka Nerd Font:Bold:16.0"
 sketchybar -m default icon_color                       0xFF${color3:1}
-sketchybar -m default icon_padding_left                4
-sketchybar -m default icon_padding_right               4
+sketchybar -m default icon_padding_left                2
+sketchybar -m default icon_padding_right               2
 
 # E V E N T S
 sketchybar -m add event window_focus
 sketchybar -m add event title_change
-sketchybar -m add event test
-sketchybar -m add event test2
 
 # L E F T
 # M O D A L  I N D I C A T O R 
 sketchybar -m add item modal                           left 
 sketchybar -m set modal label                          [N]
 sketchybar -m add item modal_sep                       left
-sketchybar -m set modal_sep icon_padding_right         8
-sketchybar -m set modal_sep icon                       ""
-sketchybar -m set modal icon_padding_left              0
-sketchybar -m set modal icon_padding_right             0
-sketchybar -m label_padding_left                       6
-sketchybar -m set mdoal label_padding_right            8
+# sketchybar -m set modal_sep icon_padding_right         8
+# sketchybar -m set modal_sep icon                       ""
+# sketchybar -m set modal icon_padding_left              0
+# sketchybar -m set modal icon_padding_right             0
+# sketchybar -m set modal label_padding_left                   6
+sketchybar -m set modal label_padding_right            4
 
 # S P A C E  1  -  H O M E
 sketchybar -m add component space home                 left
@@ -121,9 +121,11 @@ sketchybar -m set battery label_padding_right          6
 sketchybar -m add item clock                           right 
 sketchybar -m set clock icon                           
 sketchybar -m set clock script                         "~/.config/sketchybar/plugins/clock.sh"
+sketchybar -m set clock update_freq                    5
 sketchybar -m add item clock_sep                       right
 sketchybar -m set clock enabled                        on
 sketchybar -m set clock_sep label_padding_left         2  
+
 # R E M I N D E R S
 sketchybar -m add item reminders                       right 
 sketchybar -m set reminders update_freq                20
@@ -155,6 +157,7 @@ sketchybar -m set vti icon                             VTI
 sketchybar -m set vti script                           "~/.config/sketchybar/plugins/vti.sh"
 sketchybar -m add item vti_sep                         right
 sketchybar -m set vti enabled                          on
+sketchybar -m set vti_sep enabled                      off
 
 # M I C
 sketchybar -m add item mic                             right 
@@ -171,13 +174,14 @@ sketchybar -m set vpn icon                             
 sketchybar -m set vpn script                           "~/.config/sketchybar/plugins/vpn.sh"
 sketchybar -m add item vpn_sep                         right
 sketchybar -m set vpn enabled                          off
+sketchybar -m set vpn_sep enabled                      off
 
 # M U S I C
-sketchybar -m add item music                           right 
-sketchybar -m set music update_freq                    20
-sketchybar -m set music script                         "~/.config/sketchybar/plugins/music.sh"
+sketchybar -m add item music_info                      right 
+sketchybar -m set music_info update_freq               10
+sketchybar -m set music_info script                    "~/.config/sketchybar/plugins/music.sh"
 sketchybar -m add item music_sep                       right
-sketchybar -m set music enabled                        on
+sketchybar -m set music_info enabled                   on
 
 # D O N E
 sketchybar -m update

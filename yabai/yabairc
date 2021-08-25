@@ -131,8 +131,8 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
   # if [[ ($(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .border') -ne 1) &&  ]]; then yabai -m window $(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .id') --toggle border; fi; 
 
   # Sketchybar
-    yabai -m signal --add event=window_focused action="sketchybar -m trigger window_focus &> /dev/null"
-    yabai -m signal --add event=window_title_changed action="sketchybar -m trigger title_change &> /dev/null"
+    yabai -m signal --add event=window_focused action="/Users/brandon/.config/bin/sketchybar -m trigger window_focus &> /dev/null"
+    yabai -m signal --add event=window_title_changed action="/Users/brandon/.config/bin/sketchybar -m trigger title_change &> /dev/null"
   
 # B O R D E R S  
   yabai -m config window_border                on
