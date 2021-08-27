@@ -1,5 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-BTC=$(curl -L -s "https://www.coingecko.com/en/coins/bitcoin" | grep -E -o "[-|+]*[0-9]{1,5}\.[0-9]{1,2}%" | sed '1,1!d')
+import requests
+import os
 
-sketchybar -m set btc label "$BTC"
+response = requests.get('https://api.gemini.com/v1/pricefeed')
+jsonResponse = response.json()
+
+for i in jsonResponse:
+    if i["pair"] == "BTCUSD":
+        percentChange = str(round((float(i["percentChange24h"]) * 100), 2))
+        os.system('sketchybar -m set btc label '+ percentChange + '%')
+        break

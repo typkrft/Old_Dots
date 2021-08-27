@@ -1,5 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-ETH=$(curl -L -s "https://www.coingecko.com/en/coins/ethereum" | grep -E -o "[-|+]*[0-9]{1,5}\.[0-9]{1,2}%" | sed '1,1!d')
+import requests
+import os
 
-sketchybar -m set eth label "$ETH"
+response = requests.get('https://api.gemini.com/v1/pricefeed')
+jsonResponse = response.json()
+
+for i in jsonResponse:
+    if i["pair"] == "ETHUSD":
+        percentChange = str(round((float(i["percentChange24h"]) * 100), 2))
+        os.system('sketchybar -m set eth label '+ percentChange + '%')
+        break

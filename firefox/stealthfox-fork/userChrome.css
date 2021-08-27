@@ -1,11 +1,123 @@
+/* 
+NAME: F L Y E R F O X 
+AUTHOR: B R A N D O N  S H O C K L E Y
+
+NOTES: You must enable userchrome.css ...
+*/
+
+/* P Y W A L
+DESCRIPTION: Use Colors generated from pywal. 
+NOTES: This will not live reload. use must create this template
+or use the one in the repo. 
+*/
+@import url("file:///Users/brandon/.cache/wal/rgb-colors.css");
+
+/*  V I B R A N C Y   
+DESCRIPTION: Enable vibrancy for parts of the browser
+
+NOTES: This is set up to work on Big Sur and later. You can try 
+to change the 1 to a 0 in the @media selector. If you'd like to 
+use macOS vibrancy uncomment the section below. If you want light
+vibrancy just change -moz-mac-vibrant-titlebar-dark to 
+-moz-mac-vibrant-titlebar-light.
+CREDIT: https://github.com/bpwned/protovibrant
+
+TODO: Automatically change tab text color based on -moz-appeance 
+if possible
+TODO: See if all of this is needed
+*/
+@media (-moz-mac-big-sur-theme: 1) {
+
+        #main-window { background: transparent !important; }
+
+        #navigator-toolbox, #nav-bar 
+        { background-color: transparent !important; }
+
+        #TabsToolbar, #nav-bar, .table-widget-empty-text 
+        { -moz-appearance: -moz-mac-vibrant-titlebar-dark !important; }
+
+        #TabsToolbar:-moz-lwtheme-brighttext,
+        .table-widget-empty-text:-moz-lwtheme-brighttext
+        { -moz-appearance: -moz-mac-vibrant-titlebar-dark !important;}
+
+        .tabbrowser-tab[selected="true"] .tab-label:-moz-lwtheme-brighttext
+        { color:black !important; }
+
+        .tabbrowser-tab .tab-label:-moz-lwtheme-brighttext
+        { color:rgba(255,255,255,0.7) !important;}
+
+        .tabbrowser-tab[selected="true"] .tab-background:-moz-lwtheme-brighttext
+        { box-shadow: inset 0em -4em 0em var(--toolbar-bgcolor) !important; }
+
+        .tabbrowser-tab:not([visuallyselected="true"], [multiselected]), 
+        .tabbrowser-tab:-moz-lwtheme
+        { color: white; }
+}
+
+/* R A D I U S
+DESCRIPTION: Nuke radii
+*/
+:root * { 
+        border-radius: 0px !important; 
+        --arrowpanel-border-radius: 0px !important;
+}
 
 
+/* T R A N S P A R E N C Y 
+DESCRIPTION: Enable transparency in various UI elements
+*/
+
+/* Urlbar */
+#urlbar { --toolbar-field-focus-background-color: rgba(var(--color6), 95%); }
+/* Panel Body Color */
+:root * { --arrowpanel-background: rgba(var(--color2), 80%) !important; } 
+
+
+/* H I D D E N 
+DESCRIPTION: Hide various UI elements
+*/
+@media (-moz-mac-big-sur-theme: 1) {
+        /* Remove Title (x)(-)(+) */
+        hbox.titlebar-buttonbox-container { visibility: collapse !important; }
+
+        /* Remove Spacers without Breaking scrolling */
+        .titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] 
+        { visibility:  collapse}
+}
+
+/* Tracking Icon In URL Bar */
+#tracking-protection-icon-container { visibility: collapse !important; }
+/* Sidebar Header */
+#sidebar-header { display: none; }
+/* No Sidebar Icon in URL bar */
+#pageAction-urlbar-side-view_mozilla_org { visibility: collapse !important; }
+/* No Foxytab Icon in URL Bar */
+#pageAction-urlbar-foxytab_eros_man {visibility: collapse !important;}
+/* No Start Button in URL Bar */
+#star-button-box { visibility: collapse !important; }
+/* No back/forward buttons */
+#back-button { visibility: collapse !important; }
+#forward-button { visibility: collapse !important; }
+/* Hide One Off Searches */
+#urlbar .search-one-offs:not([hidden]) {
+        visibility: collapse !important;
+        position: fixed !important;
+        padding-block: unset !important;
+}
+#urlbar .search-one-offs .search-panel-header 
+{ display: none !important; }
+
+#aHTMLTooltip, #remoteBrowserTooltip { display: none }
+
+/* H I D E  T A B  B A R
+DESCRIPTION: Hide native tab bar
+*/
 #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
-  opacity: 0;
-  pointer-events: none;
+        opacity: 0;
+        pointer-events: none;
 }
 #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
-    visibility: collapse !important;
+        visibility: collapse !important;
 }
 
 #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar .titlebar-spacer {
@@ -14,100 +126,104 @@
 
 /* Adding empty space for buttons */
 #nav-bar {
-	margin-right:140px;
+        margin-right:100%;
 }
 
-/* 15px for dragging whole window by mouse*/
+/* Add space for dragging/themeing */
 #titlebar {
-	appearance: none !important;
-	height: 0px;
+        height: 0px !important;
+        min-height: 4px !important;
 }
 
-/* Fix for main menu calling by Alt button */
-#titlebar > #toolbar-menubar {
-	margin-top: 7px;
+
+/* A U T O H I D E  N A V I G A T O R  T O O L B O X
+DESCRIPTION: Auto hide Navbar
+NOTE: If you comment the above it will auto hide everything
+*/
+:root:not([customizing]) #navigator-toolbox:not(:hover) {
+        height: 4px !important; /* Adjusts gap to hover over */
+        min-height: 0px !important;
+        overflow: hidden !important;
 }
 
-/* Move minimize/restore/close buttons to empty space */
-#TabsToolbar > .titlebar-buttonbox-container {
-	display: block;
-	position: absolute;
-	top: 10px;
-	right: 1px;
-}
-
-/* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
-  display: none !important;
-}
-/* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-  visibility: collapse;
-}
-
-/* Shrink sidebar until hovered, when using Tree Style Tab. */
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-  min-width: var(--wide-tab-width) !important;
-  max-width: none !important;
-}
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
-  overflow: hidden !important;
-  position: relative !important;
-  transition: all 200ms !important;
-  min-width: var(--thin-tab-width) !important;
-  max-width: var(--thin-tab-width) !important;
-  z-index: 1;
-}
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover,
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
-  transition: all 200ms !important;
-  min-width: var(--wide-tab-width) !important;
-  max-width: var(--wide-tab-width) !important;
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
-  z-index: 1;
-}
-
-:root { --thin-tab-width: 35px; }
-:root { --wide-tab-width: 300px; }
-
-
-/* Test  */
-#titlebar {
-  visibility: collapse !important;
-}
-
-#nav-bar {
-  margin-right: 0px !important;
-}
-
-/* A U T O  H I D E */
-/* Uncomment relavent Sections */
-
-/* Configuration 1 - START */
-/* Hide Unless focused with CMD/Ctrl - L or In a New Tab */
-/* Adapted from https://superuser.com/a/1497982/1189696 */
-
-/* @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
- */
-
-#navigator-toolbox:not(:hover) {
-  height: 4px !important; /* Adjusts gap to hover over */
-  min-height: 0px !important;
-  overflow: hidden !important;
-}
-
-#navigator-toolbox:focus,
-#navigator-toolbox:focus-within,
-#navigator-toolbox:active,
-#urlbar[focused="true"] {
-  height: auto !important;  
-  overflow: visible !important;
+:root:not([customizing]) #navigator-toolbox:focus,
+:root:not([customizing]) #navigator-toolbox:focus-within,
+:root:not([customizing]) #navigator-toolbox:active,
+:root:not([customizing]) #urlbar[focused="true"] {
+        height: auto !important;  
+        overflow: visible !important;
 } 
-/* Configuration 1 - END */
 
-#wrapper-forward-button {display: none !important;}
-#wrapper-back-button {display: none !important;}
-#forward-button {display: none !important;}
-#back-button {display: none !important;}
-#star-button {display: none !important;}
-#pageAction-urlbar-foxytab_eros_man > image:nth-child(1) {display: none !important;} 
+
+
+/* A U T O H I D E  S I D E B E R R Y  */
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar 
+{ visibility: collapse !important; }
+/* Sidebar min and max width removal */
+#sidebar {
+        max-width: none !important;
+        min-width: 0px !important;
+}
+/* Hide splitter, when using SideBerry. */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] + #sidebar-splitter {
+        display: none !important;
+}
+/* Shrink sidebar until hovered, when using Sideberry. */
+:root {
+        --thin-tab-width: 41px;
+        --wide-tab-width: 300px;
+}
+#sidebar-box:not([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) {
+        min-width: var(--wide-tab-width) !important;
+        max-width: none !important;
+}
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+        position: relative !important;
+        transition: all 75ms !important;
+        min-width: var(--thin-tab-width) !important;
+        max-width: var(--thin-tab-width) !important;
+}
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
+        transition: all 200ms !important;
+        min-width: var(--wide-tab-width) !important;
+        max-width: var(--wide-tab-width) !important;
+        margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+        z-index: 1;
+}
+
+/* T W E A K S
+DESCRIPTION: Various UI Tweaks
+*/
+/* MAKE URL BAR DRAGGABLE */
+#urlbar[breakout][breakout-extend] > #urlbar-background 
+{ -moz-window-dragging: drag; }
+
+/* Override URLbar Text Colors */
+/* #urlbar-container * { color: black; } */
+
+/* Override Tab Bar Text Colors *
+NOTE: You may want to undo this depending on your color schemes
+*/
+.tab-label:not(:active) { color: white; }
+
+/* Override Panel Border Colors */
+:root * {--arrowpanel-border-color: none !important;  }
+
+/* Remove border at bottom of navbar */
+#navigator-toolbox { border-bottom: 0px !important; }
+
+/* Remove Sidebar Border */
+.sidebar-splitter { visibility: collapse !important; }
+
+/* Hide Tabs Toolbar Only in Fullscreen */
+#TabsToolbar[inFullscreen="true"] { display: none; } 
+
+/* Make Sideberry Sidebar Transparent 
+NOTE: This Makes the Text and Icons Lighter
+*/
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
+        opacity: 100% !important;
+}
+
+/* T E S T */
+

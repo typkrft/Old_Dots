@@ -17,6 +17,8 @@
 # TODO: Click script to turn off vpn
 # TODO: Rethink how seperators should work
 # TODO: Create Events to control when plugins are shown
+# TODO: Set default update_freq
+# TODO: Reload Colors with wal
 
 # P Y W A L
 . $HOME/.cache/wal/colors.sh

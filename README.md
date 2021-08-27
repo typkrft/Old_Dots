@@ -2,7 +2,6 @@
 <p align="center">Asthetically pleasing dotfiles focused on functionality.</p>
 <p align="left"><strong>NOTE:</strong> This is still very much a work in progress I would strongly recommend not using the install script as of now. In addition while, most of these dots should work with minimal effort in most environments, they are tailored for M1 Macs running the latest stable release of macOS.</p>
 
-
 ## S C R E E N S H O T S
 
 ## F E A T U R E S 
@@ -40,6 +39,7 @@ cd Dots
 
 ### G E N E R A L
 - [ ] Add paths needed to scripts and clean them up
+- [ ] Ripgrep all the todos in here
 
 ### I N S T A L L . C O N F . Y A M L
 - [ ] Clean up and Organize
@@ -61,6 +61,7 @@ cd Dots
 - [ ] Fix VTI Plugin
 - [x] Add Color to battery icon when Low
 - [ ] Update Sketchy Bar to use Enable/ Disable and Yabai Signals
+- [ ] Create App Event to change icon of current space to app icon if available.
 
 ### F I R E F O X
 - [ ] Install extensions [Stack Question](https://stackoverflow.com/questions/37728865/install-webextensions-on-firefox-from-the-command-line)
