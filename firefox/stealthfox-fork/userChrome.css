@@ -26,7 +26,7 @@ TODO: Automatically change tab text color based on -moz-appeance
 if possible
 TODO: See if all of this is needed
 */
-@media (-moz-mac-big-sur-theme: 1) {
+/* @media (-moz-mac-big-sur-theme: 1) {
 
         #main-window { background: transparent !important; }
 
@@ -52,6 +52,29 @@ TODO: See if all of this is needed
         .tabbrowser-tab:not([visuallyselected="true"], [multiselected]), 
         .tabbrowser-tab:-moz-lwtheme
         { color: white; }
+} */
+
+/* C O N T E X T  M E N U S
+DESCRIPTION: Color various Context Menus, including the right click menu
+NOTES: I am not sure if this works on other outside of macOS
+*/
+menupopup,
+menuitem,
+menu {
+  -moz-appearance: none !important;   
+}
+
+
+menupopup, panel {
+	appearance: auto;
+	-moz-default-appearance: menupopup;
+        background-color: rgba(var(--color6), 95%) !important;
+	--panel-padding: 0;
+	--panel-border-radius: 0px !important;
+}
+
+menu[_moz-menuactive="true"], menuitem[_moz-menuactive="true"] {
+  background-color: rgba(var(--color5),100%) !important;
 }
 
 /* R A D I U S
@@ -70,7 +93,7 @@ DESCRIPTION: Enable transparency in various UI elements
 /* Urlbar */
 #urlbar { --toolbar-field-focus-background-color: rgba(var(--color6), 95%); }
 /* Panel Body Color */
-:root * { --arrowpanel-background: rgba(var(--color2), 80%) !important; } 
+:root * { --arrowpanel-background: rgba(var(--color4), 80%) !important; } 
 
 
 /* H I D D E N 
@@ -213,7 +236,7 @@ NOTE: You may want to undo this depending on your color schemes
 #navigator-toolbox { border-bottom: 0px !important; }
 
 /* Remove Sidebar Border */
-.sidebar-splitter { visibility: collapse !important; }
+/* .sidebar-splitter { visibility: collapse !important; } */
 
 /* Hide Tabs Toolbar Only in Fullscreen */
 #TabsToolbar[inFullscreen="true"] { display: none; } 
@@ -224,6 +247,71 @@ NOTE: This Makes the Text and Icons Lighter
 #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
         opacity: 100% !important;
 }
+/* Hide Native Tabs if only one left */
+/* #tabbrowser-tabs tab[first-visible-tab="true"][last-visible-tab="true"]:not([pinned]),
+#tabbrowser-tabs tab[first-visible-tab="true"][last-visible-tab="true"]:not([pinned]) ~ toolbarbutton {
+  visibility: collapse;
+} */
+/* Font */
+:root * { font-family: "Iosevka Nerd Font" }
+
+/* S I D E B E R R Y 
+DESCRIPTION: CSS to use in Sideberry
+NOTES: Alt. way to fill svg (filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
+)
+*/
+
+/*
+.fav > * {
+  transform: scale(1.5) !important;
+  margin-left: 7px;
+}
+
+.Tab {
+  margin-top: 5px;
+}
+
+.title {
+  margin-left: 15px;
+}
+
+.audio > * {
+  transform: scale(1.5) !important;
+  margin-left: 6.75px;
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(0deg)
+}
+
+.Tab[data-audible="true"] {
+ background-color: rgba(40, 249, 142, .7);
+}
+
+.Tab[data-audible="true"] .title {
+  color: black
+}
+
+
+.Tab[title*="moz-extension:"], .Tab[title*="about:"] {
+  background-color: rgba(434, 44, 44, .4);
+}
+
+#icon_ff > * {
+fill: orange
+}
+
+#icon_settings > * {
+  fill: #fff;
+}
+
+.close > * {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(0deg)
+}
+
+:root > * {
+  font-family: "Iosevka Nerd Font"
+}
+*/
+
 
 /* T E S T */
+
 

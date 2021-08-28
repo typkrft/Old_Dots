@@ -43,12 +43,15 @@ sketchybar -m default icon_padding_right               2
 # E V E N T S
 sketchybar -m add event window_focus
 sketchybar -m add event title_change
+sketchybar -m add event test com.microsoft.teams
 
 # L E F T
 # M O D A L  I N D I C A T O R 
 sketchybar -m add item modal                           left 
 sketchybar -m set modal label                          [N]
 sketchybar -m add item modal_sep                       left
+sketchybar -m subscribe modal test
+sketchybar -m set modal script "~/testnoti.sh"
 # sketchybar -m set modal_sep icon_padding_right         8
 # sketchybar -m set modal_sep icon                       ""
 # sketchybar -m set modal icon_padding_left              0

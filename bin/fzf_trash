@@ -2,7 +2,7 @@
 
 function fzf_trash() {
   if [[ "$#" -eq 0 ]]; then
-    files=$(exa --icons --color=always | fzf --ansi --multi)
+    files=$(exa -a --icons --color=always | fzf --ansi --cycle --multi --preview 'bat --style=header,grid --line-range :300 --color=always {2}' )
     split_arr=()
     
     while read -r line; do
@@ -18,9 +18,11 @@ function fzf_trash() {
       printf "Remove ${split_arr[val]}? [y/n]\n"
       read decision
       decision=$(echo $decision |  awk '{print tolower($0)}')
-
       if [[ $decision =~ ^([y]|yes)?$ ]]; then
-        printf "%q" "$(pwd)/${split_arr[val]:3}" | xargs -I % trash -v "%"
+        RM_FILE=$(echo ${split_arr[val]} | awk '{$1=""; print $0}' | sed -E "s/(.*)( ->.*)/\1/")
+        RM_FILE=$(printf "%q" "$(pwd)/${RM_FILE:1}")
+        echo $RM_FILE
+        echo $RM_FILE | xargs  -I % trash -v "%"
       elif [[ $decision =~ ^([n]|no)?$ ]]; then
         :
       else
