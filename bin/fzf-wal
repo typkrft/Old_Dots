@@ -11,12 +11,12 @@ if [ -n "$1" ]; then
     THEME=$(wal -n --theme |
             sed '1,/Light Themes/d;/Extra/,$d' |
             sed -e '/^\S/d' -e 's/ - //' |
-            fzf --preview='wal -qetl --n -theme {} && wal --preview && kitty @ set-colors -a -c $HOME/.cache/wal/colors-kitty.conf')
+            fzf --preview='wal -qetl -n -s -theme {} && wal --preview && kitty @ set-colors -a -c $HOME/.cache/wal/colors-kitty.conf')
 else
     THEME=$(wal -n --theme |
             sed '/Light Themes/,$d' |
             sed -e '/^\S/d' -e 's/ - //' |
-            fzf --preview='wal -qet -n --theme {} && wal --preview && kitty @ set-colors -a -c $HOME/.cache/wal/colors-kitty.conf')
+            fzf --preview='wal -qet -n -s --theme {} && wal --preview && kitty @ set-colors -a -c $HOME/.cache/wal/colors-kitty.conf')
 fi
 
 

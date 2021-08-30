@@ -10,16 +10,18 @@ window, scripts < escape ; default
 default, window < lctrl - escape ; scripts
 
 # S C R I P T S
+# Toggle Sketchybar
+scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Spacebar
 scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
 # Toggle Yabai
 scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
 # Show Desktop
-scripts < d :yabai -m space --toggle show-desktop; 
+scripts < d :yabai -m space --toggle show-desktop
 # Change Wallpaper
 scripts < 0x0D : $HOME/.config/bin/helpers -p 
 # Set All Desktops to the same Wallpaper
-scripts < a : $HOME/.config/bin/helpers -W;
+scripts < a : $HOME/.config/bin/helpers -W
 # Update Colors Based on Current Wallpaper
 scripts < c : $HOME/.config/bin/helpers -P c
 # Change Wallpaper and Update Colors
@@ -91,7 +93,6 @@ default < cmd - n [
 default < cmd - w [
   "kitty" : skhd -k "ctrl + shift - w"
 ]
-
 
 default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
 default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last

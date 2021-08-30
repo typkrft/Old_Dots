@@ -11,14 +11,12 @@
 # other spaces/items around. 
 # TODO: Update Plugins to match new space names.
 # TODO: Create Calendar Plugin
-# TODO: Update Colorscheme
-# TODO: Add conditional modules. Could make a bar mode in skhd then add various plugins, reload whole bar
-  # when you want to remove them
+# TODO: Add conditional modules. Could make a bar mode in skhd then add various plugins, reload whole bar when you want to remove them
 # TODO: Click script to turn off vpn
-# TODO: Rethink how seperators should work
 # TODO: Create Events to control when plugins are shown
-# TODO: Set default update_freq
-# TODO: Reload Colors with wal
+# TODO: Create an event script that shows various statuses of apps like whether its running etc and then use that to control what is showed and what isn't 
+# TODO: Make Wrapper to add TODOS from projects to reminders list
+# TODO: Sort out colors in helpers(window modes) pywalfox yabai sketchybar NVIM
 
 # P Y W A L
 . $HOME/.cache/wal/colors.sh
@@ -27,7 +25,7 @@
 sketchybar -m config height                            26
 sketchybar -m config padding_left                      10
 sketchybar -m config padding_right                     10
-sketchybar -m config bar_color                         0xF0${background:1}
+sketchybar -m config bar_color                         0xF0${color4:1}
 sketchybar -m config display                           all
 
 # D E F A U L T S
@@ -36,157 +34,149 @@ sketchybar -m default label_color                      0xFF${foreground:1}
 sketchybar -m default label_padding_left               2 
 sketchybar -m default label_padding_right              2
 sketchybar -m default icon_font                        "Iosevka Nerd Font:Bold:16.0"
-sketchybar -m default icon_color                       0xFF${color3:1}
+sketchybar -m default icon_color                       0xFF${color5:1}
 sketchybar -m default icon_padding_left                2
 sketchybar -m default icon_padding_right               2
+sketchybar -m default update_freq                      10
+sketchybar -m default icon_highlight_color             0xFF${color7:1} 
 
 # E V E N T S
 sketchybar -m add event window_focus
 sketchybar -m add event title_change
-sketchybar -m add event test com.microsoft.teams
+sketchybar -m add event song_update com.apple.Music.playerInfo
 
 # L E F T
 # M O D A L  I N D I C A T O R 
 sketchybar -m add item modal                           left 
-sketchybar -m set modal label                          [N]
-sketchybar -m add item modal_sep                       left
-sketchybar -m subscribe modal test
-sketchybar -m set modal script "~/testnoti.sh"
+sketchybar -m set modal icon                           [N]
+sketchybar -m set modal icon_color                     0xFF83A1F1
+# sketchybar -m set modal label_padding_right            4
 # sketchybar -m set modal_sep icon_padding_right         8
 # sketchybar -m set modal_sep icon                       ""
 # sketchybar -m set modal icon_padding_left              0
 # sketchybar -m set modal icon_padding_right             0
-# sketchybar -m set modal label_padding_left                   6
-sketchybar -m set modal label_padding_right            4
+# sketchybar -m set modal label_padding_left             6
 
 # S P A C E  1  -  H O M E
+sketchybar -m add item home_sep                        left
 sketchybar -m add component space home                 left
 sketchybar -m set home associated_space                1   
 sketchybar -m set home associated_display              1
 sketchybar -m set home icon                            ﮟ
 sketchybar -m set home icon_highlight_color            0xFF${foreground:1}
 sketchybar -m set home click_script                    "yabai -m space --focus 1"
-sketchybar -m add item home_sep                        left
 
 # S P A C E  2  -  C O M M S
+sketchybar -m add item comms_sep                       left
 sketchybar -m add component space comms                left
 sketchybar -m set comms associated_space               2   
 sketchybar -m set comms associated_display             1
 sketchybar -m set comms icon                           
-sketchybar -m set comms icon_highlight_color           0xFF${foreground:1}
 sketchybar -m set comms click_script                   "yabai -m space --focus 2"
-sketchybar -m add item comms_sep                       left
 
 # S P A C E  3  -  M U S I C
+sketchybar -m add item music_sep                       left
 sketchybar -m add component space music                left
 sketchybar -m set music associated_space               3   
 sketchybar -m set music associated_display             1
 sketchybar -m set music icon                           
-sketchybar -m set music icon_highlight_color           0xFF${foreground:1}
 sketchybar -m set music click_script                   "yabai -m space --focus 3"
-sketchybar -m add item music_sep                       left
 
 # S P A C E  4  -  I N V E S T M E N T S
+sketchybar -m add item invest_sep                      left
 sketchybar -m add component space invest               left
 sketchybar -m set invest associated_space              4   
 sketchybar -m set invest associated_display            1
 sketchybar -m set invest icon                          
-sketchybar -m set invest icon_highlight_color          0xFF${foreground:1}
 sketchybar -m set invest click_script                  "yabai -m space --focus 4"
-sketchybar -m add item invest_sep                      left
 
 # S P A C E  5  -  M I S C
+sketchybar -m add item misc_sep                        left
 sketchybar -m add component space misc                 left
 sketchybar -m set misc associated_space                5   
 sketchybar -m set misc associated_display              1
 sketchybar -m set misc icon                            
-sketchybar -m set misc icon_color                      0xFF${color3:1}
-sketchybar -m set misc icon_highlight_color            0xFF${foreground:1}
 sketchybar -m set misc click_script                    "yabai -m space --focus 5"
 
 # W I N D O W  T I T L E 
+sketchybar -m add item title_sep                       left
 sketchybar -m add item title                           left
 sketchybar -m set title script                         "$HOME/.dotfiles/sketchybar/plugins/window_title.sh"
 sketchybar -m subscribe title window_focus
 sketchybar -m subscribe title front_app_switched
 sketchybar -m subscribe title space_change
 sketchybar -m subscribe title title_change
-sketchybar -m set title enabled                        on
 
 # R I G H T 
 # B A T T E R Y 
 sketchybar -m add item battery                         right
 sketchybar -m set battery update_freq                  10
 sketchybar -m set battery script                       "~/.config/sketchybar/plugins/power.sh"
-sketchybar -m add item battery_sep                     right
-sketchybar -m set battery enabled                      on
 sketchybar -m set battery label_padding_right          6
 
 # C L O C K 
+sketchybar -m add item clock_sep                       right
 sketchybar -m add item clock                           right 
 sketchybar -m set clock icon                           
 sketchybar -m set clock script                         "~/.config/sketchybar/plugins/clock.sh"
 sketchybar -m set clock update_freq                    5
-sketchybar -m add item clock_sep                       right
-sketchybar -m set clock enabled                        on
 sketchybar -m set clock_sep label_padding_left         2  
 
 # R E M I N D E R S
+sketchybar -m add item reminders_sep                   right
 sketchybar -m add item reminders                       right 
 sketchybar -m set reminders update_freq                20
 sketchybar -m set reminders script                     "~/.config/sketchybar/plugins/reminders.sh"
 sketchybar -m set reminders click_script               "~/.config/sketchybar/plugins/reminders_click.sh"
-sketchybar -m add item reminders_sep                   right
-sketchybar -m set reminders enabled                    on
 
 # B T C
+sketchybar -m add item btc_sep                         right
 sketchybar -m add item btc                             right 
 sketchybar -m set btc update_freq                      20
 sketchybar -m set btc icon                             
 sketchybar -m set btc script                           "~/.config/sketchybar/plugins/btc.sh"
-sketchybar -m add item btc_sep                         right
-sketchybar -m set btc enabled                          on
 
 # E T H
+sketchybar -m add item eth_sep                         right
 sketchybar -m add item eth                             right 
 sketchybar -m set eth update_freq                      20
 sketchybar -m set eth icon                             ﲹ
 sketchybar -m set eth script                           "~/.config/sketchybar/plugins/eth.sh"
-sketchybar -m add item eth_sep                         right
-sketchybar -m set eth enabled                          on
 
 # V T I
+sketchybar -m add item vti_sep                         right
 sketchybar -m add item vti                             right 
 sketchybar -m set vti update_freq                      20
 sketchybar -m set vti icon                             VTI
 sketchybar -m set vti script                           "~/.config/sketchybar/plugins/vti.sh"
-sketchybar -m add item vti_sep                         right
 sketchybar -m set vti enabled                          on
-sketchybar -m set vti_sep enabled                      off
+sketchybar -m set vti_sep enabled                      on
 
 # M I C
+sketchybar -m add item mic_sep                         right
 sketchybar -m add item mic                             right 
+sketchybar -m set mic_sep enabled                      off
+sketchybar -m set mic enabled                          off
 sketchybar -m set mic update_freq                      20
 sketchybar -m set mic script                           "~/.config/sketchybar/plugins/mic.sh"
 sketchybar -m set mic click_script                     "~/.config/sketchybar/plugins/mic_click.sh"
-sketchybar -m add item mic_sep                         right
-sketchybar -m set mic enabled                          off
 
 # V P N
+sketchybar -m add item vpn_sep                         right
 sketchybar -m add item vpn                             right 
 sketchybar -m set vpn update_freq                      20
-sketchybar -m set vpn icon                             
+sketchybar -m set vpn icon                             
 sketchybar -m set vpn script                           "~/.config/sketchybar/plugins/vpn.sh"
-sketchybar -m add item vpn_sep                         right
 sketchybar -m set vpn enabled                          off
 sketchybar -m set vpn_sep enabled                      off
 
 # M U S I C
+sketchybar -m add item music_info_sep                  right
 sketchybar -m add item music_info                      right 
-sketchybar -m set music_info update_freq               10
+# sketchybar -m set music_info update_freq               3
 sketchybar -m set music_info script                    "~/.config/sketchybar/plugins/music.sh"
-sketchybar -m add item music_sep                       right
-sketchybar -m set music_info enabled                   on
+sketchybar -m set music_info click_script              "~/.config/sketchybar/plugins/music_click.sh"
+sketchybar -m subscribe music_info                     song_update
 
 # D O N E
 sketchybar -m update

@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# TODOS:
+# - [ ] Fix Colors
+
 . ~/.cache/wal/colors.sh
 BATT_PERCENT=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
 if [[ $CHARGING != "" ]]; then
-  sketchybar -m set battery icon_color 0xFF${color3:1} 
+  sketchybar -m set battery icon_color 0xFF${color5:1} 
   sketchybar -m set battery icon 
   sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
   exit 0

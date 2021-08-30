@@ -22,32 +22,16 @@ function normal_mode() {
   . $HOME/.cache/wal/colors.sh;
   
   # Y A B A I
-  yabai -m config active_window_border_color 0xff${color1:1};
-  yabai -m config normal_window_border_color 0xff${color3:1};
+  yabai -m config active_window_border_color 0xff${color5:1};
+  yabai -m config normal_window_border_color 0xff${color8:1};
   yabai -m config insert_feedback_color 0xff${color5:1};
 
-  # S P A C B A R
-  # spacebar -m config center_shell off
-  # spacebar -m config title on
-  
-  # spacebar -m config background_color 0xaa${background:1} 
-  # spacebar -m config foreground_color 0xff${color1:1} 
-  # spacebar -m config power_icon_color 0xff${color3:1} 
-  # spacebar -m config battery_icon_color 0xff${color3:1} 
-  # spacebar -m config dnd_icon_color 0xff${color3:1} 
-  # spacebar -m config clock_icon_color 0xff${color3:1} 
-  # spacebar -m config right_shell_icon_color 0xff${color3:1} 
-  # spacebar -m config space_icon_color 0xff${color3:1} 
-  # spacebar -m config space_icon_color_secondary 0xff${color4:1} 
-  # spacebar -m config space_icon_color_tertiary 0xff${color5:1} 
-
   # S K E T C H Y B A R 
-  sketchybar -m config bar_color 0xF0${background:1}
-  # sketchybar -m set window_title script "~/.config/sketchybar/plugins/windowTitle.sh"
-  # sketchybar -m set window_title label "$( [[ $(yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/') != "" ]] && yabai -m query --windows --window | jq '.title' | cut -c 1-50 | sed -E 's/"(.*)"/\1/' || yabai -m query --windows --window | jq '.app' | cut -c 1-50 | sed -E 's/"(.*)"/\1/')"
-
-  sketchybar -m set modal label_color 0xF0${foreground:1}
-  sketchybar -m set modal label "[N]"
+  sketchybar -m config bar_color 0xF0${color4:1}
+  sketchybar -m default label_color 0xFF${foreground:1}  
+  sketchybar -m default icon_color  0xFF${color5:1}
+  sketchybar -m set modal icon_color 0xFF83A1F1
+  sketchybar -m set modal icon "[N]"
 }
 
 # W I N D O W  M O D E
@@ -61,30 +45,13 @@ function window_mode() {
   yabai -m config active_window_border_color 0xff${color3:1};
   yabai -m config normal_window_border_color 0xff${color3:1};
   yabai -m config insert_feedback_color 0xff${color3:1};
-  
-  # S P A C B A R
-  # spacebar -m config center_shell_command "echo \"W I N D O W  M O D E\"" 
-  # spacebar -m config title off 
-  # spacebar -m config center_shell on 
-  
-  # spacebar -m config background_color 0xaa${color3:1};
-  # spacebar -m config foreground_color 0xff${foreground:1};
-  # spacebar -m config power_icon_color 0xff${color3:1};
-  # spacebar -m config battery_icon_color 0xff${color3:1};
-  # spacebar -m config dnd_icon_color 0xff${color3:1};
-  # spacebar -m config clock_icon_color 0xff${color3:1};
-  # spacebar -m config right_shell_icon_color 0xff${color3:1};
-  # spacebar -m config space_icon_color 0xff${color3:1};
-  # spacebar -m config space_icon_color_secondary 0xff${color4:1};
-  # spacebar -m config space_icon_color_tertiary 0xff${color5:1};
 
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0xF0${color3:1}
-  # sketchybar -m set window_title script ""
-  # sketchybar -m set window_title label "W I N D O W  M O D E"
-
-  sketchybar -m set modal label_color 0xF0${foreground:1}
-  sketchybar -m set modal label "[W]"
+  sketchybar -m default label_color 0xFF${foreground:1}  
+  sketchybar -m default icon_color 0xFF${background:1}
+  sketchybar -m set modal icon_color 0xFFA8CD76
+  sketchybar -m set modal icon "[W]"
 }
 
 # S C R I P T S  M O D E
@@ -99,34 +66,15 @@ function scripts_mode() {
   yabai -m config normal_window_border_color 0xff${color5:1};
   yabai -m config insert_feedback_color 0xff${color5:1};
 
-  sketchybar -m set modal label_color 0xF0${foreground:1}
-  sketchybar -m set modal label "[S]"
-
-  # S P A C B A R
-  # spacebar -m config center_shell_command "echo \"S C R I P T S  M O D E\""
-  # spacebar -m config title off
-  # spacebar -m config center_shell on
-
-  # spacebar -m config background_color 0xaa${color5:1};
-  # spacebar -m config foreground_color 0xff${foreground:1};
-  # spacebar -m config power_icon_color 0xff${color5:1};
-  # spacebar -m config battery_icon_color 0xff${color5:1};
-  # spacebar -m config dnd_icon_color 0xff${color5:1};
-  # spacebar -m config clock_icon_color 0xff${color5:1};
-  # spacebar -m config right_shell_icon_color 0xff${color5:1};
-  # spacebar -m config space_icon_color 0xff${color5:1};
-  # spacebar -m config space_icon_color_secondary 0xff${color6:1};
-  # spacebar -m config space_icon_color_tertiary 0xff${color7:1};
-
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0xF0${color5:1}
-  # sketchybar -m set window_title script ""
-  # sketchybar -m set window_title label "S C R I P T S  M O D E"
-
+  sketchybar -m default label_color 0xFF${foreground:1}  
+  sketchybar -m default icon_color 0xFF${color6:1}
+  sketchybar -m set modal icon_color 0xFFF29B9B
+  sketchybar -m set modal icon "[S]"
 }
 
 # S E T  W A L L P A P E R
-#TODO: CHECK IF this still works
 function set_wallpaper() {
   CURRENT_DESKTOP=$(yabai -m query --spaces | grep -a5 \"focused\":1 | grep index | sed -r 's/.*([[:digit:]]).*/\1/')
   TOTAL_SPACES=$(yabai -m query --spaces | jq '.[]|.["native-fullscreen"]' | grep -c 0)
@@ -150,7 +98,8 @@ function set_wallpaper() {
 }
 
 function shuffle_wallpaper(){
-  find /Volumes/Wallpapers -type f -print0 | \
+  [[ -d /Volumes/Wallpapers ]] && WALL_DIR="/Volumes/Wallpapers" || WALL_DIR="/Users/brandon/Documents/Personal/Brandon/Photos/Wallpapers"
+  find $WALL_DIR -type f -print0 | \
   shuf -z -n 1| \
   xargs -I{} \
   osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"{}\""
@@ -177,6 +126,11 @@ function toggle_service() {
       pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
       sleep .25;
       pgrep spacebar && yabai -m config external_bar main:$(spacebar -m config height):0 || yabai -m config external_bar main:0:0;
+    ;;
+    sketchybar)
+      pgrep sketchybar && killall sketchybar || sketchybar &>/dev/null & disown
+      sleep .25
+      pgrep sketchybar && yabai -m config external_bar main:$(sketchybar -m config height):0 || yabai -m config external_bar main:0:0;
     ;;
     *) echo default
       pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
@@ -218,78 +172,6 @@ function update_colors() {
     pywalfox update
     kitty @ --to="unix:/tmp/mykitty" set-colors -a -c $HOME/.cache/wal/colors-kitty.conf 
     scripts_mode 
-}
-
-# S P A C E B A R
-# M U S I C
-# NOTE: Sure how to dynamically change the Player Icon
-function spacebar_music_info() {
-
-    PLAYER_STATE=$(osascript -e "tell application \"Music\" to set playerState to (get player state) as text") || echo
-    TITLE=$(osascript -e "tell application \"Music\" to set theTrack to get name of current track") || echo
-    ARTIST=$(osascript -e "tell application \"Music\" to set theTrack to get artist of current track")
-    ALBUM=$(osascript -e "tell application \"Music\" to set theTrack to get album of current track") || echo
-    
-    if [[ $PLAYER_STATE == "stopped" ]]; then
-        printf " Music Stopped "
-        return 0
-    elif [[ $PLAYER_STATE == "paused" ]]; then
-    printf " $TITLE x $ARTIST" # Should probably manipulate this text and show the album as well if line is x characters eg | cut -c 1-80 or something more intelligent 
-        return 1
-    elif [[ $PLAYER_STATE == "playing" ]]; then
-    printf " $TITLE x $ARTIST" # Should probably manipulate this text and show the album as well if line is x characters eg | cut -c 1-80 or something more intelligent 
-        return 2
-    else
-        return 3
-    fi    
-}
-
-# V P N 
-function spacebar_vpn_info() {
-    if [[ $(scutil --nc list | grep Connected) ]]; then
-        VPN_NAME=$(scutil --nc list| sed -r 's/.*"(.*)".*/\1/'|tail -n1);
-        printf " $VPN_NAME Connected ";
-    else
-        printf " No VPN Connected "
-    fi
-}
-
-# I N V E S T M E N T S
-function spacebar_investment_info() {
-    ETH=$(/usr/bin/curl -s 'rate.sx/eth@1d' | /usr/bin/grep change| /usr/bin/sed -r 's/.*\((.*)\).*/\1/' | /opt/homebrew/bin/strip-ansi); 
-
-    BTC=$(/usr/bin/curl -s 'rate.sx/btc@1d' | /usr/bin/grep change| /usr/bin/sed -r 's/.*\((.*)\).*/\1/' | /opt/homebrew/bin/strip-ansi); 
-
-    VTI=$(/usr/bin/curl -s https://terminal-stocks.herokuapp.com/VTI | /usr/bin/grep - | head -n1 | /opt/homebrew/bin/strip-ansi |/usr/local/opt/python@3.9/libexec/bin/python -c "import sys,re;[sys.stdout.write(re.sub('│.*?│.*?│.*?│\w*?(.*?)\w*?│.*', r'\1', line)) for line in sys.stdin]" | /usr/bin/sed 's/ //g');     
-
-    echo " BTC: $BTC ETH: $ETH VTI: $VTI%" | strip-ansi | rev | cut -c2-| rev | /usr/bin/sed -e 's/$/\%/g'
-}
-
-# S P A C E B A R  C M D  S E L E C T
-function spacebar_cmd_select() {
-    current_selection=$(spacebar -m config right_shell_command)
-    if [[ $current_selection == *"-m"* ]]; then
-       spacebar -m config right_shell_icon '| '
-       spacebar -m config right_shell_command "$HOME/.config/bin/helpers -v;"
-    elif [[ $current_selection == *"-v"* ]]; then
-       spacebar -m config right_shell_icon '| '
-       spacebar -m config right_shell_command "echo" # Delay before information displayed 
-       spacebar -m config right_shell_command "$HOME/.config/bin/helpers -i;"
-    elif [[ $current_selection == *"-i"* ]]; then
-        # spacebar_music_info
-        # PLAYER_STATE=$?
-        # if [[ ${PLAYER_STATE} -eq 0 ]]; then
-        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
-        # elif [[ ${PLAYER_STATE} -eq 1 ]]; then
-        #     $HOMEBREW/spacebar -m config right_shell_icon '| '        
-        # elif [[ ${PLAYER_STATE} -eq 2 ]]; then
-        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
-        # else
-        #     $HOMEBREW/spacebar -m config right_shell_icon '| '
-        # fi
-       spacebar -m config right_shell_icon '| '
-       spacebar -m config right_shell_command "$HOME/.config/bin/helpers -m;" 
-    fi
 }
 
 # Y A B A I
@@ -503,26 +385,17 @@ function toggle_vpn() {
   VPN_STATUS=$(networksetup -showpppoestatus "Myrtle Beach Office VPN")
   if [[ $VPN_STATUS == "disconnected"  ]]; then
     networksetup -connectpppoeservice "Myrtle Beach Office VPN";
-    spacebar -m config right_shell_icon '| '
+    sketchybar -m set vpn enabled on
+    sketchybar -m set vpn_sep enabled on
     spacebar -m config right_shell_command "$HOME/.config/bin/helpers -v"
   elif [[ $VPN_STATUS == "connected"  ]]; then
     networksetup -disconnectpppoeservice "Myrtle Beach Office VPN";
     normal_mode
+    sketchybar -m set vpn enabled off
+    sketchybar -m set vpn_sep enabled off
   fi; 
 }
 
-# Unused - No longer needed
-function kitty_quake_tab() {
-  QUAKE=($(yabai -m query --windows --window | jq '.|.id,.focused,.title'| sed -E 's/"(.*)"/\1/'))
-
-  if [[ ${QUAKE[2]} == "Quake" ]]; then
-    echo test
-    kitty @ --to="tcp:localhost:54889" launch --type=tab --window-title "Quake" --tab-title="Quake: {index}"
-  else
-    echo test2
-    skhd -k "ctrl + shift - t"
-  fi
-}
 
 # P A R S E  O P T S
 # For GETOPT : = required param :: = optional param 
