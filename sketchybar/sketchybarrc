@@ -107,6 +107,18 @@ sketchybar -m subscribe title front_app_switched
 sketchybar -m subscribe title space_change
 sketchybar -m subscribe title title_change
 
+# S T A C K  I N D I C A T O R 
+sketchybar -m add item stack_sep                       center
+sketchybar -m add item stack                           center
+sketchybar -m set stack script                         "$HOME/.dotfiles/sketchybar/plugins/stack.sh"
+sketchybar -m subscribe stack window_focus
+sketchybar -m subscribe stack front_app_switched
+sketchybar -m subscribe stack space_change
+sketchybar -m subscribe stack title_change
+sketchybar -m set stack_sep hidden on
+sketchybar -m set stack hidden on
+sketchybar -m set stack update_freq                  0
+
 # R I G H T 
 # B A T T E R Y 
 sketchybar -m add item battery                         right
