@@ -1,2 +1,3 @@
 Get External IP Address :: curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'
 IP form default Interface :: ipconfig getifaddr en0
+osascript -l JavaScript -e 'Application("System Events").processes["kitty"].menuBars[0].menuBarItems.byName("Shell").menus[0].menuItems.byName('Close OS Window').click()' :: JXA Clicking Menubar Items

@@ -122,6 +122,8 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
     yabai -m rule --add app="^FaceTime$" title="Window"  manage=off
   # Font Book
     yabai -m rule --add app="^Font Book$" manage=off
+  # Epson Scanner
+    yabai -m rule --add app="^Epson.*" manage=off
 
 # S I G N A L S
   

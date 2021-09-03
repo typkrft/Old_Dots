@@ -13,7 +13,7 @@ default, window < lctrl - escape ; scripts
 # Toggle Sketchybar
 scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Spacebar
-scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
+# scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
 # Toggle Yabai
 scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
 # Show Desktop
@@ -34,6 +34,8 @@ scripts < 0x09 : skhd -k "escape"; $HOME/.config/bin/helpers -V
 scripts < 0x24 : $HOME/.config/bin/helpers -c
 # Play My Radio Station
 scripts < play : osascript -e "open location \"itmss://music.apple.com/us/station/brandon-shockleys-station/ra.u-587d437ed2fe0dc61abb70ff757aa95f\""   
+# Paste text from clipboard
+scripts < p : skhd -k "escape"; $HOME/.config/bin/helpers -e
 
 # W I N D O W S
 # Balance Space

@@ -70,6 +70,10 @@ function peruse() {
   brew search '' | fzf --multi --cycle --reverse --preview 'brew info {1}' | xargs -r brew install
 }
 
+function wal-cache() {
+  find $HOME/.cache/wal/schemes -type f -name "*.json" | fzf --preview='wal -qetl -n -s --theme {} && wal --preview && kitty @ set-colors -a -c $HOME/.cache/wal/colors-kitty.conf'
+}
+
 # M I S C 
 # Sets the shells title to the current process for Kitty (and others)
 function set-title-precmd() {

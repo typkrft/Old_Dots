@@ -27,7 +27,7 @@ function normal_mode() {
   yabai -m config insert_feedback_color 0xff${color5:1};
 
   # S K E T C H Y B A R 
-  sketchybar -m config bar_color 0xF0${color4:1}
+  sketchybar -m config bar_color 0xF0${color0:1}
   sketchybar -m default label_color 0xFF${foreground:1}  
   sketchybar -m default icon_color  0xFF${color5:1}
   sketchybar -m set modal icon_color 0xFF83A1F1
@@ -415,11 +415,18 @@ function toggle_vpn() {
   fi; 
 }
 
+# P A S S W O R D
+# NOTE: this is for password entry fields that don't let you paste in them
+function paste_text() {
+  osascript -e '
+    tell application "System Events" to keystroke (the clipboard as text)
+  '
+}
 
 # P A R S E  O P T S
 # For GETOPT : = required param :: = optional param 
 # For GETOPTS just use $2 if you need an optional param
-while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Qq" flag
+while getopts "nwsmvict:S:M:w:C:WpP:VlgxT:Qqe" flag
 do
   case "${flag}" in
     n) 
@@ -484,6 +491,9 @@ do
       ;;
     q)  
       kitty_quake_tab
+      ;;
+    e)
+      paste_text
       ;;
     *) 
       echo "Invalid option: -$flag" 
