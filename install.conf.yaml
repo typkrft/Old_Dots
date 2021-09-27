@@ -29,6 +29,7 @@
     ~/.config/joplin-desktop: joplin/gui/settings.json
     ~/.config/joplin-desktop: joplin/gui/userchrome.css
     ~/.config/joplin: joplin/cli/settings.json
+    
     # ~/.config/limelight: limelight
 # FIREFOX
 # - shell:
