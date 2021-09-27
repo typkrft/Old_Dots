@@ -2,14 +2,15 @@
 
 # TODO: ADD add Paths and Universally Used Variables out of function scope
 
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$HOME/.go/bin
-export PATH=$PATH:$HOME/.config/bin
-export PATH=$PATH:/Applications/kitty.app/Contents/MacOS
-export PATH=$PATH:/opt/homebrew/sbin
-export PATH=$PATH:/usr/local/opt/python/libexec/bin
-export PATH=$PATH:$HOME/Library/Python/3.7/bin
+export PATH=$HOME/.cache/wal:$PATH
+export PATH=$HOME/.config/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/bin:$PATH
+export PATH=$HOME/.go/bin:$PATH
+export PATH=/Applications/kitty.app/Contents/MacOS:$PATH
+export PATH=/usr/sbin/:$PATH
 
 # H E L P E R  F U N C T I O N S
 
@@ -19,12 +20,12 @@ function normal_mode() {
   echo "N O R M A L  M O D E";
 
   # C O L O R S
-  . $HOME/.cache/wal/colors.sh;
+  source colors.sh
   
   # Y A B A I
-  yabai -m config active_window_border_color 0xff${color5:1};
-  yabai -m config normal_window_border_color 0xff${color8:1};
-  yabai -m config insert_feedback_color 0xff${color5:1};
+  yabai -m config active_window_border_color 0xff${color5:1}
+  yabai -m config normal_window_border_color 0xff${color8:1}
+  yabai -m config insert_feedback_color 0xff${color5:1}
 
   # S K E T C H Y B A R 
   sketchybar -m config bar_color 0x5F${color0:1}
@@ -39,7 +40,7 @@ function window_mode() {
   echo "W I N D O W  M O D E";    
 
   # C O L O R S
-  . $HOME/.cache/wal/colors.sh;
+  source colors.sh;
 
   # Y A B A I
   yabai -m config active_window_border_color 0xff${color3:1};
@@ -59,7 +60,7 @@ function scripts_mode() {
   echo "S C R I P T S  M O D E";
 
   # C O L O R S
-  . $HOME/.cache/wal/colors.sh;
+  source colors.sh;
   
   # Y A B A I
   yabai -m config active_window_border_color 0xff${color5:1};
@@ -182,13 +183,17 @@ function update_colors() {
 # C L O S E  W I N D O W S
 function close_window() {
   if [[ $(yabai -m query --windows --window |grep \"native-fullscreen\":1) ]]; then
-    yabai -m window --toggle native-fullscreen;
-    yabai -m window --close;
+    osascript -l JavaScript -e "
+      var frontAppName = Application('System Events').processes.whose({frontmost: {'=': true }})[0].name(); 
+      var frontApp = Application(frontAppName); 
+      var theCurrentWindow = frontApp.windows[0]; 
+      theCurrentWindow.close();"
     skhd -k "escape";
   else
     yabai -m window --close;
   fi
 }
+
 # T O G G L E  G A P S  A N D  B O R D E R S
 function toggle_gabs_and_borders() {
   if [[ $(yabai -m config window_border) == on ]]; then
@@ -201,6 +206,7 @@ function toggle_gabs_and_borders() {
   fi
   skhd -k "escape"
 }
+
 # T O G G L E  W I N D O W  L A Y O U T S
 function toggle_layouts(){
   if [[ $(yabai -m query --spaces | jq '[.[]|select(.focused==1)][0].type') == *"bsp"* ]]; then
