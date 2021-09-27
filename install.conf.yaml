@@ -26,9 +26,9 @@
     ~/.zprofile: zsh/zprofile
     ~/.zshrc: zsh/zshrc
     ~/.config/zsh: zsh/plugins
-    ~/.config/joplin-desktop/settings.json: joplin/gui/settings.json
+    # ~/.config/joplin-desktop/settings.json: joplin/gui/settings.json
     ~/.config/joplin-desktop/userchrome.json: joplin/gui/userchrome.css
-    ~/.config/joplin/settings.json: joplin/cli/settings.json
+    # ~/.config/joplin/settings.json: joplin/cli/settings.json
 
     # ~/.config/limelight: limelight
 # FIREFOX
