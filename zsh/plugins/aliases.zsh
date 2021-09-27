@@ -26,4 +26,4 @@ alias pip=/opt/homebrew/bin/pip3
 alias python3=/usr/local/opt/python@3.7/bin/python3
 alias pip3=/usr/local/opt/python@3.7/bin/pip3
 
-alias joplin=joplin --profile ~/.config/joplin-desktop
+alias joplin="joplin --profile $HOME/.config/joplin-desktop"
