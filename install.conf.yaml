@@ -14,6 +14,7 @@
     ~/.config/neofetch: neofetch
     ~/.config/taskell: taskell
     ~/.config/wal: wal
+    ~/.config/Figlet Fonts: fonts/Figlet Fonts
     ~/.config/wezterm: wezterm
     ~/.config/sketchybar: sketchybar
     ~/.config/bin: bin
@@ -26,8 +27,6 @@
     ~/.zshrc: zsh/zshrc
     ~/.config/zsh: zsh/plugins
     # ~/.config/limelight: limelight
-    
-    
 # FIREFOX
 # - shell:
 #     # Firefox Profile Setup besure to set variables
