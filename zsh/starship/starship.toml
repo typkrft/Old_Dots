@@ -4,6 +4,16 @@
 # [│](bold green)$directory$rust$package
 # [└─>](bold green) """
 
+# format = "✌︎"
+format = """ 
+$directory$git_state$git_branch$git_status$python
+$battery[❯](fg:1)[❯](fg:6)[❯](fg:4) """
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false
+
 # Example Module
 # [custom.foo]
 # command = "echo foo"  # shows output of command

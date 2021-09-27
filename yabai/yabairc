@@ -1,48 +1,37 @@
 #!/bin/sh
 
-# Y A B A I
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$HOME/.go/bin
-export PATH=$PATH:$HOME/.config/bin
-export PATH=$PATH:/Applications/kitty.app/Contents/MacOS
-export PATH=$PATH:/opt/homebrew/sbin
-export PATH=$PATH:/usr/local/opt/python/libexec/bin
-export PATH=$PATH:$HOME/Library/Python/3.7/bin
+#                      d8b                  d8,
+#                      ?88                 `8P 
+#                       88b                    
+# ?88   d8P  d888b8b    888888b  d888b8b    88b
+# d88   88  d8P' ?88    88P `?8bd8P' ?88    88P
+# ?8(  d88  88b  ,88b  d88,  d8888b  ,88b  d88 
+# `?88P'?8b `?88P'`88bd88'`?88P'`?88P'`88bd88' 
+#        )88                                   
+#       ,d8P                                   
+#    `?888P'                                   
+
+
+# P A T H S
+  export PATH=$HOME/.config/bin:$PATH
+  export PATH=$HOME/.cache/wal:$PATH
 
 # S C R I P T I N G  A D D I T T I O N S
   sudo yabai --load-sa
   yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # Restart Sketchybar
-  killall sketchybar; 
-  while [[ $(pgrep sketchybar) ]]
-    do
-      sleep .1
-    done
-
-  sketchybar &>/dev/null & disown; 
-  while [[ ! $(sketchybar -m config height) -ge 0 ||  ! $(spacebar -m config height) -ge 0 ]]
-  do
-    sleep .1
-  done
-
-  sleep .1
-  echo $(sketchybar -m config height)
-  if [[ $(pgrep spacebar) ]]; then
-    STATUS_BAR_HEIGHT=$(spacebar -m config height)
-  elif [[ $(pgrep sketchybar) ]]; then
-    STATUS_BAR_HEIGHT=$(sketchybar -m config height)
-  fi
+  killall sketchybar &> /dev/null 
+  sketchybar &>/dev/null &
   
 # P Y W A L
-  . $HOME/.cache/wal/colors.sh
+  source colors.sh
 
 # S E T U P  D E S K T O P S
-  $HOME/.config/bin/helpers -C "5"
+  helpers -C "5"
   
 # T I L I N G 
-  yabai -m config external_bar main:$STATUS_BAR_HEIGHT:0
+  yabai -m config external_bar main:26:0
   yabai -m config window_placement             second_child
   yabai -m config window_topmost               on
   yabai -m config split_ratio                  0.50
@@ -128,7 +117,13 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 # S I G N A L S
   
   # Kitty
-  # yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="yabai -m window $YABAI_WINDOW_ID --opacity 0.95; yabai -m window $YABAI_WINDOW_ID --move abs:0:0; yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450"
+  yabai -m signal --add app="^kitty$" title="^Quake$" event="window_deminimized" action="
+  WINDOWS=`osascript -l JavaScript -e \"Application('System Events').processes.byName('kitty').windows.length\"`;
+  [[ $WINDOWS -gt 1 ]] && exit 0 || : ;
+  yabai -m window $YABAI_WINDOW_ID --opacity 0.95; 
+  yabai -m window $YABAI_WINDOW_ID --move abs:0:0; 
+  yabai -m window $YABAI_WINDOW_ID --resize abs:10000:450; 
+  [[ `yabai -m query --windows --window $YABAI_WINDOW_ID | jq \".border\"` -eq 1 ]] && : ||  yabai -m window $YABAI_WINDOW_ID --toggle border"
   # Test border funcitonality more calling it exlicity from skhd is faster than a signal but if it focuses on 
   # if [[ ($(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .border') -ne 1) &&  ]]; then yabai -m window $(yabai -m query --windows --space 1 | jq '.[]| select(.title=="Quake")| .id') --toggle border; fi; 
 

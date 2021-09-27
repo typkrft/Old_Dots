@@ -27,9 +27,9 @@ function normal_mode() {
   yabai -m config insert_feedback_color 0xff${color5:1};
 
   # S K E T C H Y B A R 
-  sketchybar -m config bar_color 0xF0${color0:1}
+  sketchybar -m config bar_color 0x5F${color0:1}
   sketchybar -m default label_color 0xFF${foreground:1}  
-  sketchybar -m default icon_color  0xFF${color5:1}
+  sketchybar -m default icon_color 0xFF${color5:1}
   sketchybar -m set modal icon_color 0xFF83A1F1
   sketchybar -m set modal icon "[N]"
 }
@@ -47,7 +47,7 @@ function window_mode() {
   yabai -m config insert_feedback_color 0xff${color3:1};
 
   # S K E T C H Y B A R 
-  sketchybar -m config bar_color 0xF0${color3:1}
+  sketchybar -m config bar_color 0x5F${color3:1}
   sketchybar -m default label_color 0xFF${foreground:1}  
   sketchybar -m default icon_color 0xFF${background:1}
   sketchybar -m set modal icon_color 0xFFA8CD76
@@ -67,7 +67,7 @@ function scripts_mode() {
   yabai -m config insert_feedback_color 0xff${color5:1};
 
   # S K E T C H Y B A R 
-  sketchybar -m config bar_color 0xF0${color5:1}
+  sketchybar -m config bar_color 0x5F${color5:1}
   sketchybar -m default label_color 0xFF${foreground:1}  
   sketchybar -m default icon_color 0xFF${color6:1}
   sketchybar -m set modal icon_color 0xFFF29B9B
@@ -123,14 +123,17 @@ function toggle_service() {
       fi
     ;;
     spacebar)
-      pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
+      pgrep -x $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
       sleep .25;
       pgrep spacebar && yabai -m config external_bar main:$(spacebar -m config height):0 || yabai -m config external_bar main:0:0;
     ;;
     sketchybar)
-      pgrep sketchybar && killall sketchybar || sketchybar &>/dev/null & disown
-      sleep .25
-      pgrep sketchybar && yabai -m config external_bar main:$(sketchybar -m config height):0 || yabai -m config external_bar main:0:0;
+      if [[ $(pgrep sketchybar) = "" ]]; then
+        sketchybar &>/dev/null & disown;
+        yabai -m config external_bar main:$(sketchybar -m config height):0
+       else
+        yabai -m config external_bar main:0:0
+      fi
     ;;
     *) echo default
       pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
@@ -220,62 +223,61 @@ function toggle_layouts(){
 function kitty_quake() {
   KITTY=$(pgrep -a -f ".*kitty.*")  
   QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
-  echo $KITTY 
-  echo $QUAKE
   if [[ $KITTY == "" ]]; then
-    echo 1
-    open -a kitty -n --args -1 --listen-on=unix:/tmp/kitty
+    open -a kitty -n --args -1 --listen-on=unix:/tmp/kitty -o macos_quit_when_last_window_closed=no false
     while [[ $KITTY == "" ]]
     do
       KITTY=$(pgrep -a -f ".*kitty.*")  
-      sleep .25
+      # sleep .25
     done
-    osascript -l JavaScript -e "Application('kitty').activate()" -e "Application('System Events').processes['kitty'].menuBars[0].menuBarItems.byName('Shell').menus[0].menuItems.byName('Close OS Window').click()"
+    # osascript -l JavaScript -e "Application('kitty').activate()" -e "Application('System Events').processes['kitty'].menuBars[0].menuBarItems.byName('Shell').menus[0].menuItems.byName('Close OS Window').click()"
     open -a kitty -n --args -1 --listen-on=unix:/tmp/kitty --title=Quake
     while [[ $QUAKE != "Quake" ]]
     do
       QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
-      sleep .1
+      # sleep .1
     done
-    osascript -l JavaScript -e "Application('kitty').activate()"
-    WINDOW_ID=$(yabai -m query --windows --window | jq '.id')
+    # osascript -l JavaScript -e "Application('kitty').activate()"
+    WINDOW_ID=$(GetWindowID kitty 'Quake')
     yabai -m window $WINDOW_ID --toggle sticky
     yabai -m window $WINDOW_ID --move abs:0:0
     yabai -m window $WINDOW_ID --resize abs:10000:450
     yabai -m window $WINDOW_ID --opacity 0.95
     exit 0    
   elif [[ $KITTY != "" && $QUAKE == "" ]]; then
-    echo 2
     open -a kitty -n --args -1 --listen-on=unix:/tmp/kitty --title=Quake
-        while [[ $QUAKE != "Quake" ]]
+    while [[ $QUAKE != "Quake" ]]
     do
       QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
-      sleep .1
+      # sleep .1
     done
+    WINDOW_ID=$(GetWindowID kitty 'Quake')
     yabai -m window $WINDOW_ID --toggle sticky
     yabai -m window $WINDOW_ID --move abs:0:0
     yabai -m window $WINDOW_ID --resize abs:10000:450
     yabai -m window $WINDOW_ID --opacity 0.95
   elif [[ $KITTY != "" && $QUAKE != "" ]]; then
-    echo 3
-    INFO=$(yabai -m query --windows | jq '.[]|select(.title=="Quake")|.minimized,.id,.border')
-    MINI=$(echo $INFO | awk '{print $1}')
-    ID=$(echo $INFO | awk '{print $2}')
-    BORDER=$(echo $INFO | awk '{print $3}')
+    WINDOW_ID=$(GetWindowID kitty 'Quake')
+    INFO=$(yabai -m query --windows --window $WINDOW_ID | jq '.border, .minimized')
+    BORDER=$(echo $INFO | awk '{print $1}')
+    MINI=$(echo $INFO | awk '{print $2}')
+    # MINI=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()[0][0]')
+    # INFO=$(yabai -m query --windows --window $ID | jq '.[]|select(.title=="Quake")|.minimized,.id,.border')
+    # ID=$(echo $INFO | awk '{print $2}')
     if [[ $MINI -eq 1 ]]; then
-      echo 4
-      [[ $BORDER -eq 1 ]] && yabai -m window "$ID" --toggle border || :
-      yabai -m window "$ID" --deminimize;
-      yabai -m window "$ID" --move abs:0:0;
-      yabai -m window "$ID" --resize abs:10000:450;
-      yabai -m window "$ID" --opacity 0.95;
-      yabai -m window "$ID" --toggle border      
-      yabai -m window "$ID" --focus "$ID";
+      [[ $BORDER -eq 1 ]] && yabai -m window "$WNDOW_ID" --toggle border || :
+      yabai -m window "$WINDOW_ID" --deminimize;
+      # yabai -m window "$ID" --move abs:0:0;
+      # yabai -m window "$ID" --resize abs:10000:450;
+      yabai -m window "$WINDOW_ID" --opacity 0.95;
+      [[ $BORDER -eq 0 ]] && yabai -m window "$WNDOW_ID" --toggle border || :
+      yabai -m window "$WINDOW_ID" --focus "$WINDOW_ID";
+      exit 0
     elif [[ $MINI -eq 0 ]]; then
-      [[ $BORDER -eq 1 ]] && yabai -m window "$ID" --toggle border || :
-      echo 5
-      yabai -m window "$ID" --opacity 0.001;
-      yabai -m window "$ID" --minimize;
+      [[ $BORDER -eq 1 ]] && yabai -m window "$WINDOW_ID" --toggle border || :
+      yabai -m window "$WINDOW_ID" --opacity 0.001;
+      yabai -m window "$WINDOW_ID" --minimize;
+      exit 0
     fi
   fi
 }

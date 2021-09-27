@@ -2,11 +2,11 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "editor.fontFamily": "Iosevka Nerd Font",
-    "editor.fontSize": 14,
-    "terminal.integrated.fontSize": 14,
+    "editor.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "VictorMono Nerd Font",
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "spaceduck",
+    "workbench.colorTheme": "Celestial Mr",
     "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/libexec/bin/python",
     "customizeUI.titleBar": "frameless",
     "customizeUI.activityBar": "bottom",
@@ -21,7 +21,7 @@
     },
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "editor.wordWrap": "bounded",
+    "editor.wordWrap": "wordWrapColumn",
     "python.languageServer": "Pylance",
     "workbench.activityBar.visible": false,
     "autoHide.autoHidePanel": false,
@@ -79,7 +79,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "workbench.sideBar.location": "right",
-    "editor.wordWrapColumn": 120,
     "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "vscode-neovim.mouseSelectionStartVisualMode": true,
@@ -122,7 +121,7 @@
         ],
     ],
     "editor.inlayHints.fontFamily": "Iosevka Nerd Font",
-    "editor.fontWeight": semibold,
-    "editor.formatOnPaste": trueki 
+    "editor.fontWeight": "semibold",
+    "editor.formatOnPaste": "trueki" 
 
 }

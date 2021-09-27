@@ -1,57 +1,34 @@
 #!/bin/bash
 
-# TODOS:
-# - [ ] Fix Colors
-
 . ~/.cache/wal/colors.sh
 BATT_PERCENT=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
 if [[ $CHARGING != "" ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
+  sketchybar -m batch --set battery \
+    icon_color=0xFF5DFE67 \
+    icon= \
+    label=$(printf "${BATT_PERCENT}%%")
   exit 0
 fi
 
-if [[ $BATT_PERCENT -ge 0 ]] && [[ $BATT_PERCENT -le 10 ]]; then
-  sketchybar -m set battery icon_color 0xFFff0000
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 11 ]] && [[ $BATT_PERCENT -le 20 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 21 ]] && [[ $BATT_PERCENT -le 30 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 31 ]] && [[ $BATT_PERCENT -le 40 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 41 ]] && [[ $BATT_PERCENT -le 50 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1}   
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 51 ]] && [[ $BATT_PERCENT -le 60 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 61 ]] && [[ $BATT_PERCENT -le 70 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 71 ]] && [[ $BATT_PERCENT -le 80 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 81 ]] && [[ $BATT_PERCENT -le 90 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-elif [[ $BATT_PERCENT -ge 91 ]] && [[ $BATT_PERCENT -le 100 ]]; then
-  sketchybar -m set battery icon_color 0xFF${color5:1} 
-  sketchybar -m set battery icon 
-  sketchybar -m set battery label $(printf "${BATT_PERCENT}%%")
-fi
+[[ ${BATT_PERCENT} -gt 10 ]] && COLOR=0xFF${color5:1} || COLOR=0xFFFF0000
+
+case ${BATT_PERCENT} in
+   100) ICON="" ;;
+    9[0-9]) ICON="" ;;
+    8[0-9]) ICON="" ;;
+    7[0-9]) ICON="" ;;
+    6[0-9]) ICON="" ;;
+    5[0-9]) ICON="" ;;
+    4[0-9]) ICON="" ;;
+    3[0-9]) ICON="" ;;
+    2[0-9]) ICON="" ;;
+    1[0-9]) ICON="" ;;
+    *) ICON=""
+esac
+
+sketchybar -m batch --set battery\
+  icon_color=$COLOR \
+  icon=$ICON \
+  label=$(printf "${BATT_PERCENT}%%")

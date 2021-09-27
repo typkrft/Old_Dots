@@ -89,6 +89,11 @@ default < cmd - n [
   "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
+default < cmd + shift - n [
+  "firefox" : osascript -l JavaScript -e "Application('Firefox').activate(); Application('System Events').processes.byName('Firefox').menuBars[0].menuBarItems.byName('File').menus[0].menuItems.byName('New Window').click()"
+]
+
+
 # default < cmd - t [
   # "kitty" : $HOME/.config/bin/helpers -q
 # ]
