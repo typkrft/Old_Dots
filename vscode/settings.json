@@ -6,11 +6,12 @@
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "VictorMono Nerd Font",
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "Celestial",
+    "workbench.colorTheme": "Wal",
     "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/libexec/bin/python",
     "customizeUI.titleBar": "frameless",
     "customizeUI.activityBar": "bottom",
     "launch": {
+
 
 
         "configurations": [],
@@ -19,6 +20,9 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
+    "typescript.suggest.paths": false,
+    "path-intellisense.extensionOnImport": true,
+    "path-intellisense.showHiddenFiles": true,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.wordWrap": "wordWrapColumn",
@@ -28,6 +32,7 @@
     "files.autoSave": "afterDelay",
     "customizeUI.font.monospace": "VictorMono Nerd Font",
     "customizeUI.font.regular": "VictorMono Nerd Font",
+    "path-intellisense.absolutePathToWorkspace": false,
     "vim.useSystemClipboard": true,
     "focus.highlightRange": "fixed",
     "vim.statusBarColorControl": false,
@@ -42,6 +47,10 @@
     "vim.statusBarColors.easymotionmode": "#007ACC",
     "vim.statusBarColors.easymotioninputmode": "#007ACC",
     "vim.statusBarColors.surroundinputmode": "#007ACC",
+    "path-autocomplete.extensionOnImport": true,
+    "path-autocomplete.includeExtension": true,
+    "autocomplete.triggerOutsideStrings": true,
+    "path-autocomplete.triggerOutsideStrings": true,
     "colorize.languages": [
         "css",
         "sass",
@@ -63,13 +72,11 @@
     "window.titleBarStyle": "native",
     "terminal.integrated.rendererType": "dom",
     "vscode_vibrancy.imports": [
-    
-
         "$theme-style$"
     ],
     "vscode_vibrancy.opacity": 1,
     "terminal.explorerKind": "external",
-    "terminal.external.osxExec": "iTerm2 x86.app",
+    "terminal.external.osxExec": "kitty.app",
     "debug.allowBreakpointsEverywhere": true,
     "debug.console.fontSize": 14,
     "prettier.documentSelectors": [
@@ -77,6 +84,11 @@
     ],
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "path-intellisense.mappings": {
+            "/": "${workspaceFolder}",
+            "lib": "${workspaceFolder}/lib",
+            "global": "/"
     },
     "workbench.sideBar.location": "right",
     "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
@@ -92,6 +104,7 @@
         "**/*.scss",
         "**/*.php",
         "**/*.rb",
+        "**/*.sh",
         "**/*.txt",
         "**/*.mdown",
         "**/*.md",
@@ -118,10 +131,17 @@
         "Orchid",
         "LightSkyBlue",
         "Red"
-        ],
+        ]
     ],
-    "editor.inlayHints.fontFamily": "Iosevka Nerd Font",
-    "editor.fontWeight": "semibold",
-    "editor.formatOnPaste": "trueki" 
+    "editor.inlayHints.fontFamily": "VictorMono Nerd Font",
+    "editor.fontWeight": "normal",
+    "editor.formatOnPaste": true,
+    "AREPL.defaultFilterTypes": [
 
+        "<class 'module'>",
+        "<class 'function'>"
+    ],
+    "search.quickOpen.includeSymbols": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "editor.suggest.showStatusBar": true
 }
