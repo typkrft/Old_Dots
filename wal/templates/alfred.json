@@ -5,20 +5,20 @@
         "subtext" : {{
           "size" : 12,
           "colorSelected" : "#FFFFFFFF",
-          "font" : "VictorMono Nerd Font",
+          "font" : "Iosevka Nerd Font",
           "color" : "#FFFFFF7E"
         }},
         "shortcut" : {{
           "size" : 16,
           "colorSelected" : "#FFFFFFFF",
-          "font" : "VictorMono Nerd Font",
-          "color" : "{color5}FF"
+          "font" : "Iosevka Nerd Font",
+          "color" : "{color4}FF"
         }},
-        "backgroundSelected" : "{color1}FF",
+        "backgroundSelected" : "{color14}FF",
         "text" : {{
           "size" : 18,
-          "colorSelected" : "#FFFFFFFF",
-          "font" : "VictorMono Nerd Font",
+          "colorSelected" : "{color1}FF",
+          "font" : "Iosevka Nerd Font",
           "color" : "#FFFFFFCB"
         }},
         "iconPaddingHorizontal" : 4,
@@ -32,19 +32,19 @@
         "text" : {{
           "size" : 34,
           "colorSelected" : "#FFFFFFFF",
-          "font" : "VictorMono Nerd Font",
+          "font" : "Iosevka Nerd Font",
           "color" : "#FFFFFFFF"
         }},
-        "backgroundSelected" : "#45A9B3FF"
+        "backgroundSelected" : "{color7}FF"
       }},
       "window" : {{
-        "color" : "{color3}9B",
+        "color" : "{background}9B",
         "paddingHorizontal" : 9,
         "width" : 671,
         "borderPadding" : 0,
         "borderColor" : "#0000007F",
         "blur" : 28,
-        "roundness" : 10,
+        "roundness" : 0,
         "paddingVertical" : 8
       }},
       "credit" : "Brandon Shockley",
@@ -53,7 +53,7 @@
         "thickness" : 0
       }},
       "scrollbar" : {{
-        "color" : "E5",
+        "color" : "{color9}E5",
         "thickness" : 2
       }},
       "name" : "Wal"
