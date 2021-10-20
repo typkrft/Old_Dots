@@ -3,10 +3,10 @@
 # Exit if Not in Stack
 CURRENT=$(yabai -m query --windows --window | jq '.["stack-index"]')
 if [[ $CURRENT -eq 0 ]]; then
-  sketchybar -m batch --set stack \
+  sketchybar -m batch --set stack_indicator \
     label="" \
     drawing=off
-  sketchybar -m set stack_sep drawing off
+  # sketchybar -m set stack_sep drawing off
   exit 0
 fi
 
@@ -14,14 +14,14 @@ fi
 # Use a larger font for the unicode dots
 LAST=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
 if [[ $LAST -gt 10 ]]; then
-  sketchybar -m batch --set stack \
+  sketchybar -m batch --set stack_indicator \
     label_font="Iosevka Nerd Font:Bold:16.0" \
     label=$(printf "[%s/%s]" "$CURRENT" "$LAST") \
     drawing=on
-  sketchybar -m set stack_sep drawing=on
+  # sketchybar -m set stack_sep drawing=on
   exit 0
 else
-  sketchybar -m set stack label_font "Iosevka Nerd Font:Bold:22.0"
+  sketchybar -m set stack_indicator label_font "Iosevka Nerd Font:Bold:22.0"
 fi
 
 # Create Stack Indicator
@@ -41,7 +41,7 @@ do
 done
 
 # Display Indicator
-sketchybar -m set stack_sep drawing on
-sketchybar -m batch --set stack \
+# sketchybar -m set stack_sep drawing on
+sketchybar -m batch --set stack_indicator \
   label=$(printf "%s" ${dots[@]}) \
   drawing=on

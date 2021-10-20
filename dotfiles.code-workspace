@@ -4,5 +4,9 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"todohighlight.defaultStyle": {
+			"backgroundColor": "#00f8bd"
+		}
+	}
 }

@@ -3,14 +3,14 @@
 APP_STATE=$(pgrep -x Music)
 if [[ ! $APP_STATE ]]; then 
   sketchybar -m set music_info drawing on
-  sketchybar -m set music_info_sep drawing on
   exit 0
+else
+  sketchybar -m set music_info drawing off
 fi
 
 PLAYER_STATE=$(osascript -e "tell application \"Music\" to set playerState to (get player state) as text")
 if [[ $PLAYER_STATE == "stopped" ]]; then
-  sketchybar -m set music_info drawing on
-  sketchybar -m set music_info_sep drawing on
+  sketchybar -m set music_info drawing off
   exit 0
 fi
 
@@ -39,5 +39,4 @@ fi
 
 sketchybar -m set music_info icon "$ICON"
 sketchybar -m set music_info label "${TITLE} x ${ARTIST}"
-sketchybar -m set music_info drawing off
-sketchybar -m set music_info_sep drawing off
+sketchybar -m set music_info drawing on

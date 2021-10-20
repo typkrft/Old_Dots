@@ -1,18 +1,17 @@
 {
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "editor.fontFamily": "VictorMono Nerd Font",
+    "editor.fontFamily": "Iosevka Nerd Font Mono",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "VictorMono Nerd Font",
+    "terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "Wal",
+    "workbench.colorTheme": "Tokyo Night",
     "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/libexec/bin/python",
+    "window.titleBarStyle": "native",
     "customizeUI.titleBar": "frameless",
     "customizeUI.activityBar": "bottom",
     "launch": {
-
-
 
         "configurations": [],
         "compounds": []
@@ -21,37 +20,18 @@
         "*.ipynb": "jupyter-notebook"
     },
     "typescript.suggest.paths": false,
-    "path-intellisense.extensionOnImport": true,
-    "path-intellisense.showHiddenFiles": true,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.wordWrap": "wordWrapColumn",
     "python.languageServer": "Pylance",
-    "workbench.activityBar.visible": false,
-    "autoHide.autoHidePanel": false,
     "files.autoSave": "afterDelay",
-    "customizeUI.font.monospace": "VictorMono Nerd Font",
-    "customizeUI.font.regular": "VictorMono Nerd Font",
-    "path-intellisense.absolutePathToWorkspace": false,
-    "vim.useSystemClipboard": true,
-    "focus.highlightRange": "fixed",
-    "vim.statusBarColorControl": false,
-    "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
-    "vim.statusBarColors.insert": "#BF616A",
-    "vim.statusBarColors.visual": "#B48EAD",
-    "vim.statusBarColors.visualline": "#B48EAD",
-    "vim.statusBarColors.visualblock": "#A3BE8C",
-    "vim.statusBarColors.replace": "#D08770",
-    "vim.statusBarColors.commandlineinprogress": "#007ACC",
-    "vim.statusBarColors.searchinprogressmode": "#007ACC",
-    "vim.statusBarColors.easymotionmode": "#007ACC",
-    "vim.statusBarColors.easymotioninputmode": "#007ACC",
-    "vim.statusBarColors.surroundinputmode": "#007ACC",
+    "customizeUI.font.monospace": "Iosevka Nerd Font",
+    "customizeUI.font.regular": "Iosevka Nerd Font Mono",
     "path-autocomplete.extensionOnImport": true,
     "path-autocomplete.includeExtension": true,
-    "autocomplete.triggerOutsideStrings": true,
     "path-autocomplete.triggerOutsideStrings": true,
     "colorize.languages": [
+        "json",
         "css",
         "sass",
         "scss",
@@ -69,30 +49,19 @@
         "editor.tabSize": 2,
         "editor.autoIndent": "advanced"
     },
-    "window.titleBarStyle": "native",
-    "terminal.integrated.rendererType": "dom",
-    "vscode_vibrancy.imports": [
-        "$theme-style$"
-    ],
-    "vscode_vibrancy.opacity": 1,
     "terminal.explorerKind": "external",
     "terminal.external.osxExec": "kitty.app",
     "debug.allowBreakpointsEverywhere": true,
-    "debug.console.fontSize": 14,
+    "debug.console.fontSize": 16,
     "prettier.documentSelectors": [
         "**/*.{ts,js,py}"
     ],
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "path-intellisense.mappings": {
-            "/": "${workspaceFolder}",
-            "lib": "${workspaceFolder}/lib",
-            "global": "/"
-    },
     "workbench.sideBar.location": "right",
     "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
-    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
     "vscode-neovim.mouseSelectionStartVisualMode": true,
     "todohighlight.include": [
         "**/*.js",
@@ -117,7 +86,6 @@
         "NOTE:",
         "FIXME:"
     ],
-    "workbench.statusBar.visible": false,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "terminal.integrated.gpuAcceleration": "no",
@@ -133,15 +101,59 @@
         "Red"
         ]
     ],
-    "editor.inlayHints.fontFamily": "VictorMono Nerd Font",
+    "[python]": {
+        "editor.formatOnPaste": false
+    },
+    "editor.inlayHints.fontFamily": "Iosevka Nerd Font Mono",
     "editor.fontWeight": "normal",
     "editor.formatOnPaste": true,
     "AREPL.defaultFilterTypes": [
-
         "<class 'module'>",
         "<class 'function'>"
     ],
     "search.quickOpen.includeSymbols": true,
     "emmet.showSuggestionsAsSnippets": true,
-    "editor.suggest.showStatusBar": true
+    "editor.suggest.showStatusBar": true,
+    "everforest.italicKeywords": true,
+    "todohighlight.defaultStyle": {
+    "backgroundColor": "#00f8bd"
+    },
+    "window.zoomLevel": 1,
+    "workbench.iconTheme": "bearded-icons",
+    "notebook.lineNumbers": "on",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.lineHeight": 1.65,
+    "workbench.activityBar.visible": false,
+    "workbench.preferredDarkColorTheme": "Feel Better",
+    "workbench.preferredLightColorTheme": "Horizon Bright Italic",
+    "workbench.statusBar.visible": false,
+    "breadcrumbs.enabled": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "debug.console.fontFamily": "Iosevka Nerd Font Mono",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.confirmOnExit": "hasChildProcesses",
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.enableBell": true,
+    "terminal.integrated.scrollback": 5000,
+    "notebook.consolidatedRunButton": true,
+    "notebook.outline.showCodeCells": true,
+    "telemetry.telemetryLevel": "off",
+    "applescript.alwaysShowOutput": true,
+    "AREPL.telemetry": false,
+    "firefox.port": 63106,
+    "firefox.profile": "/Applications/Firefox.app/Contents/MacOS/firefox-bin",
+    "firefox.profileDir": "/Users/brandon/.config/Firefox/typkrft",
+    "jupyter.themeMatplotlibPlots": true,
+    "vscode-neovim.textDecorationsAtTop": true,
+    "cSpell.userWords": [
+        "socom"
+    ],
+    "editor.codeLensFontFamily": "Iosevka Nerd Font Mono",
+    "markdown.preview.fontFamily": "Iosevka Nerd Font Mono, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+    "markdown.preview.fontSize": 16,
+    "pgsql.resultsFontFamily": "Iosevka Nerd Font Mono, -apple-system,BlinkMacSystemFont,Segoe WPC,Segoe UI,HelveticaNeue-Light,Ubuntu,Droid Sans,sans-serif",
+    "csv-edit.fontSizeInPx": 166,
+    "pgsql.resultsFontSize": 16,
 }

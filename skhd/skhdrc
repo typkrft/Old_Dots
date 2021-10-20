@@ -1,5 +1,6 @@
 # S K H D
 
+#TODO: make script to minimize VSCODDE
 # M O D E S
 :: default : $HOME/.config/bin/helpers -n
 :: window @ : $HOME/.config/bin/helpers -w
@@ -89,8 +90,10 @@ default < cmd - n [
   "kitty" : $HOME/.config/bin/helpers -T kitty
   "script editor" : $HOME/.config/bin/helpers -T "Script Editor"
 ]
+
 default < cmd + shift - n [
   "firefox" : osascript -l JavaScript -e "Application('Firefox').activate(); Application('System Events').processes.byName('Firefox').menuBars[0].menuBarItems.byName('File').menus[0].menuItems.byName('New Window').click()"
+  "Code" : $HOME/.config/bin/helpers -T "Code"
 ]
 
 # default < cmd - t [

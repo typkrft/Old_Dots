@@ -30,7 +30,7 @@
   helpers -C "5"
   
 # T I L I N G 
-  yabai -m config external_bar main:26:0
+  yabai -m config external_bar                 main:40:0
   yabai -m config window_placement             second_child
   yabai -m config window_topmost               on
   yabai -m config split_ratio                  0.50
@@ -132,10 +132,10 @@
   
 # B O R D E R S  
   yabai -m config window_border                on
-  yabai -m config window_border_width          8
+  yabai -m config window_border_width          6
   yabai -m config active_window_border_color   0xff${color1:1}
-  yabai -m config normal_window_border_color   0xff${color3:1}
-  yabai -m config insert_feedback_color        0xff${color5:1}
-  yabai -m config window_opacity_duration      0.0
+  yabai -m config normal_window_border_color   0xff${color4:1}
+  yabai -m config insert_feedback_color        0xff${color3:1}
+  # yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
