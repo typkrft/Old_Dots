@@ -33,6 +33,18 @@ function normal_mode() {
   # sketchybar -m default icon_color 0xFF${color5:1}
   sketchybar -m set modal_indicator icon_color 0xFF${color4:1}
   sketchybar -m set modal_indicator icon "N"
+  sketchybar -m batch                                              \
+    --set music_info background_color="0xAB${background:1}"        \
+    --set vpn background_color="0xAB${background:1}"               \
+    --set mic background_color="0xAB${background:1}"               \
+    --set investments background_color="0xAB${background:1}"       \
+    --set reminders background_color="0xAB${background:1}"         \
+    --set date background_color="0xAB${background:1}"              \
+    --set clock background_color="0xAB${background:1}"             \
+    --set battery background_color="0xAB${background:1}"           \
+    --set window_information background_color="0xAB${background:1}"\
+    --set primary_spaces background_color="0xAB${background:1}"    \
+    --set modal_indicator background_color="0xAB${background:1}" 
 }
 
 # W I N D O W  M O D E
@@ -55,6 +67,18 @@ function window_mode() {
   # sketchybar -m set modal icon "[W]"
   sketchybar -m set modal_indicator icon_color 0xFF${color9:1}
   sketchybar -m set modal_indicator icon "W"
+  sketchybar -m batch                                          \
+    --set music_info background_color="0xAB${color4:1}"        \
+    --set vpn background_color="0xAB${color4:1}"               \
+    --set mic background_color="0xAB${color4:1}"               \
+    --set investments background_color="0xAB${color4:1}"       \
+    --set reminders background_color="0xAB${color4:1}"         \
+    --set date background_color="0xAB${color4:1}"              \
+    --set clock background_color="0xAB${color4:1}"             \
+    --set battery background_color="0xAB${color4:1}"           \
+    --set window_information background_color="0xAB${color4:1}"\
+    --set primary_spaces background_color="0xAB${color4:1}"    \
+    --set modal_indicator background_color="0xAB${color4:1}" 
 }
 
 # S C R I P T S  M O D E
@@ -75,8 +99,20 @@ function scripts_mode() {
   # sketchybar -m default icon_color 0xFF${color6:1}
   # sketchybar -m set modal icon_color 0xFFF29B9B
   # sketchybar -m set modal icon "[S]"
-  sketchybar -m set modal_indicator icon_color 0xFF${color1 :1}
+  sketchybar -m set modal_indicator icon_color 0xFF${color1:1}
   sketchybar -m set modal_indicator icon "S"
+  sketchybar -m batch                                          \
+    --set music_info background_color="0xAB${color7:1}"        \
+    --set vpn background_color="0xAB${color7:1}"               \
+    --set mic background_color="0xAB${color7:1}"               \
+    --set investments background_color="0xAB${color7:1}"       \
+    --set reminders background_color="0xAB${color7:1}"         \
+    --set date background_color="0xAB${color7:1}"              \
+    --set clock background_color="0xAB${color7:1}"             \
+    --set battery background_color="0xAB${color7:1}"           \
+    --set window_information background_color="0xAB${color7:1}"\
+    --set primary_spaces background_color="0xAB${color7:1}"    \
+    --set modal_indicator background_color="0xAB${color7:1}" 
 }
 
 # S E T  W A L L P A P E R

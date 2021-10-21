@@ -1,17 +1,12 @@
 #!/bin/sh
 
-#                      d8b                  d8,
-#                      ?88                 `8P 
-#                       88b                    
-# ?88   d8P  d888b8b    888888b  d888b8b    88b
-# d88   88  d8P' ?88    88P `?8bd8P' ?88    88P
-# ?8(  d88  88b  ,88b  d88,  d8888b  ,88b  d88 
-# `?88P'?8b `?88P'`88bd88'`?88P'`?88P'`88bd88' 
-#        )88                                   
-#       ,d8P                                   
-#    `?888P'                                   
-
-
+# ██╗   ██╗       █████╗       ██████╗        █████╗       ██╗
+# ╚██╗ ██╔╝      ██╔══██╗      ██╔══██╗      ██╔══██╗      ██║
+#  ╚████╔╝       ███████║      ██████╔╝      ███████║      ██║
+#   ╚██╔╝        ██╔══██║      ██╔══██╗      ██╔══██║      ██║
+#    ██║         ██║  ██║      ██████╔╝      ██║  ██║      ██║
+#    ╚═╝         ╚═╝  ╚═╝      ╚═════╝       ╚═╝  ╚═╝      ╚═╝
+                                    
 # P A T H S
   export PATH=$HOME/.config/bin:$PATH
   export PATH=$HOME/.cache/wal:$PATH
@@ -39,8 +34,8 @@
 # W I N D O W S
   yabai -m config window_shadow                float
   yabai -m config window_opacity               off
-  yabai -m config active_window_opacity        1.0
-  yabai -m config normal_window_opacity        0.95
+  # yabai -m config active_window_opacity        1.0
+  # yabai -m config normal_window_opacity        0.95
 
 # M O U S E
   yabai -m config mouse_modifier               fn
@@ -139,3 +134,4 @@
   # yabai -m config window_opacity_duration      0.0
 
 echo "yabai configuration loaded.."
+

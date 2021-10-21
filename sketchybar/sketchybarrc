@@ -137,7 +137,6 @@ sketchybar -m batch                                                \
 sketchybar -m batch                                                \
     --add item title left                                          \
     --set title                                                    \
-        background_color="0xAB${background:1}"                     \
         icon=""                                                    \
         icon_color="0xFF${cursor:1}"                               \
         icon_padding_left=10                                       \
@@ -169,7 +168,7 @@ sketchybar -m batch                                                \
     --set window_information                                       \
         background_color="0xAB${background:1}"
 
-# TEST
+# P L U G I N S
 sketchybar -m batch                                                \
     --add item battery right                                       \
     --set battery                                                  \
@@ -297,7 +296,10 @@ sketchybar -m batch                                                \
         drawing=off                                                \
     --subscribe music_info                                         \
         song_update                               
-        
+
 # D O N E
 sketchybar -m update
 echo "sketchybar configuration loaded.."
+
+        
+
