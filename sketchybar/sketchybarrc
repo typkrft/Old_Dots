@@ -53,8 +53,8 @@ sketchybar -m batch --bar                                          \
     # BACKGROUNDS
     sketchybar -m batch --default                                  \
         background_height=32                                       \
-        background_border_color="0xFF${color14:1}"                  \
-        background_border_width=3                        
+        background_border_color="0xFF${color14:1}"                 \
+        background_border_width=3                                  \
         # background_corner_radius=0                               \
         # background_color="0xFF${color3:1}"                       \
         # draws_background=on                                      \
@@ -186,25 +186,25 @@ sketchybar -m batch                                                \
     --add item clock right                                         \
     --set clock                                                    \
         icon=                                                     \
-        label=$(date +"%H:%M")                                     \
         update_freq=5                                              \
         y_offset=1                                                 \
         icon_padding_left=10                                       \
         icon_padding_right=2                                       \
         label_padding_right=10                                     \
         background_color="0xAB${background:1}"                     \
+        script="$PLUGINS_DIR/clock.sh"                             \
         background_padding_left=10                                 \
                                                                    \
     --add item date right                                          \
     --set date                                                     \
         icon=                                                     \
-        label=$(date +"%m/%d/%y")                                  \
         update_freq=5                                              \
         y_offset=1                                                 \
         icon_padding_left=10                                       \
         icon_padding_right=2                                       \
         label_padding_right=10                                     \
         background_color="0xAB${background:1}"                     \
+        script="$PLUGINS_DIR/date.sh"                              \
         background_padding_left=10                                 \
                                                                    \
     --add item reminders right                                     \

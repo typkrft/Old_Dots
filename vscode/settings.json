@@ -13,6 +13,7 @@
     "customizeUI.activityBar": "bottom",
     "launch": {
 
+
         "configurations": [],
         "compounds": []
     },
@@ -30,6 +31,11 @@
     "path-autocomplete.extensionOnImport": true,
     "path-autocomplete.includeExtension": true,
     "path-autocomplete.triggerOutsideStrings": true,
+    "colorize.colorized_colors": [
+        "HEXA",
+        "RGB",
+        "ARGB"
+    ],
     "colorize.languages": [
         "json",
         "css",
