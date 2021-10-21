@@ -75,7 +75,7 @@ function scripts_mode() {
   # sketchybar -m default icon_color 0xFF${color6:1}
   # sketchybar -m set modal icon_color 0xFFF29B9B
   # sketchybar -m set modal icon "[S]"
-  sketchybar -m set modal_indicator icon_color 0xFF${color1:1}
+  sketchybar -m set modal_indicator icon_color 0xFF${color1 :1}
   sketchybar -m set modal_indicator icon "S"
 }
 

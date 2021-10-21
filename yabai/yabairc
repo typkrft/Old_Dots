@@ -38,7 +38,7 @@
 
 # W I N D O W S
   yabai -m config window_shadow                float
-  yabai -m config window_opacity               on
+  yabai -m config window_opacity               off
   yabai -m config active_window_opacity        1.0
   yabai -m config normal_window_opacity        0.95
 

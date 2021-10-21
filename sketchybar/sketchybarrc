@@ -139,7 +139,7 @@ sketchybar -m batch                                                \
     --set title                                                    \
         background_color="0xAB${background:1}"                     \
         icon=""                                                    \
-        icon_color="0xFF${foreground:1}"                           \
+        icon_color="0xFF${cursor:1}"                               \
         icon_padding_left=10                                       \
         icon_padding_right=6                                       \
         icon_font="Iosevka Nerd Font Mono:Bold:18.0"               \
@@ -283,8 +283,8 @@ sketchybar -m batch                                                \
         background_color="0xAB${background:1}"                     \
         background_padding_right=10                                \
                                                                    \
-    --add item music_info right                                         \
-    --set music_info                                                    \
+    --add item music_info right                                    \
+    --set music_info                                               \
         y_offset=1                                                 \
         icon_padding_left=10                                       \
         icon_padding_right=2                                       \
@@ -297,6 +297,7 @@ sketchybar -m batch                                                \
         drawing=off                                                \
     --subscribe music_info                                         \
         song_update                               
+        
 # D O N E
 sketchybar -m update
 echo "sketchybar configuration loaded.."
