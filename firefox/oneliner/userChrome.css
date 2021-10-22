@@ -1,0 +1,372 @@
+/*  
+TODO: Comment and Clean Up 
+TODO: Change Intro
+TODO: Fix Radii on Panel Drop Downs
+TODO: Theme Right Click Menus w/ Pywal
+TODO: Instructions on setup. EG: Compact Density, etc.
+TODO: Hide Other Elements in Certain Cases
+TODO: Hide Bar with only one tab 
+*/
+
+/*=============================================================================*
+ *                               ONELINE PROTON                                *
+ *                                                                             *
+ * description    : An oneline userChrome.css theme for Firefox, which aims to *
+ *                  keep the Proton experience.                                *
+ * compatibility  : Firefox 89+                                                *
+ * repository     : https://github.com/lr-tech/OnelineProton/                  *
+ *                                                                             *
+ * THANKS FOR USING MY USERCHROME! <3                                          *
+ *============================================================================*/
+
+/* S E T T I N G S */
+:root {
+  --navbarWidth: 460px !important;
+  /* Set width of navbar. Use px for a fixed width or vw for a percentage of your window. */
+  --animationSpeed: 0.15s;
+}
+
+/* FIXME: The Three Settings Below, potentially conflicting and need to be combined -- START */
+:root[uidensity="compact"] #nav-bar {
+  margin-top: -37px !important;
+  height: -31px !important;
+}
+:root:not([uidensity="compact"]):not([uidensity="touch"]) #nav-bar {
+  margin-top: -44px !important;
+  height: 44px !important;
+}
+:root[uidensity="touch"] #nav-bar {
+  margin-top: -49px !important;
+  height: 49px !important;
+}
+/* -- END */
+
+/* H I D I N G   E L E M E N T S */
+/* Comment or uncomment depending of what elements you want to hide */
+
+/* Back button */
+/* #back-button { display: none !important } */
+
+/* Hide back button only when disabled */
+#back-button[disabled="true"] {
+  display: none !important;
+}
+
+/* Forward button */
+/* #forward-button { display: none !important } */
+
+/* Hide forward button only when disabled */
+#forward-button[disabled="true"] {
+  display: none !important;
+}
+
+/* "Shield" icon */
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+/* Site information button */
+#identity-box {
+  display: none !important;
+}
+
+/* This is the "Search with" indicator on the urlbar */
+/* #urlbar-search-mode-indicator { display: none !important } */
+
+/* Zoom button */
+/* #urlbar-zoom-button { display: none !important } */
+
+/* Page action (right three dash button) */
+/* #pageActionButton { display: none !important } */
+
+/* These are the buttons on the right of the urlbar */
+/* #page-action-buttons { display: none !important } */
+
+/* #urlbar-label-box { display: none !important } */
+
+/* This one is the hamburger menu! */
+/* CAUTION: if you hide this some popups may be bugged */
+/* #PanelUI-button { display: none !important } */
+
+/* Tab close button */
+/* .tab-close-button { display: none !important } */
+
+/* Enable this to show the tab close button when hovering the tab */
+.tabbrowser-tab:hover .tab-close-button {
+  display: -moz-inline-box !important;
+}
+
+/*============================================================================*/
+
+/* Oneline tweak */
+
+#TabsToolbar {
+  margin-left: var(--navbarWidth) !important;
+}
+
+#nav-bar {
+  margin-right: calc(100vw - var(--navbarWidth)) !important;
+}
+
+#urlbar-container {
+  min-width: 0 !important;
+}
+
+/* Dragging space */
+:root[sizemode="maximized"] #TabsToolbar {
+  margin-top: 1px;
+}
+
+#TabsToolbar {
+  margin-top: 44px;
+}
+
+/* Simplifying interface */
+
+#nav-bar {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox {
+  border: none !important;
+}
+
+.titlebar-spacer {
+  display: none !important;
+}
+
+#urlbar-background {
+  border: none !important;
+}
+#urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
+  box-shadow: none !important;
+  background: none !important;
+}
+
+/* Hide urlbar elements when not active */
+
+#userContext-indicator,
+#userContext-label,
+.urlbar-icon {
+  fill: transparent !important;
+  background: transparent !important;
+  color: transparent !important;
+}
+#urlbar:active .urlbar-icon,
+#urlbar:hover .urlbar-icon,
+#urlbar[focused] .urlbar-icon {
+  fill: var(--toolbar-color) !important;
+}
+
+/* animations */
+#identity-box,
+#identity-box image,
+#tracking-protection-icon,
+#tracking-protection-icon-container,
+#urlbar-background,
+#userContext-indicator,
+#userContext-label,
+.subviewbutton,
+.tab-close-button,
+.toolbarbutton-icon,
+.urlbar-icon,
+.urlbar-icon-wrapper,
+.urlbar-input-box,
+[anonid="urlbar-go-button"],
+stack,
+tab:not(:active) .tab-background,
+tab:not([beforeselected-visible])::after,
+tab[visuallyselected] .tab-background::before,
+tab[visuallyselected] .tab-background::before,
+toolbarbutton,
+vbox {
+  transition: var(--animationSpeed) !important;
+}
+
+/* remove (x)(-)(+) buttons */
+.titlebar-buttonbox-container:-moz-locale-dir(ltr) {
+  display: none;
+}
+
+#back-button,
+#forward-button {
+  display: none;
+}
+
+#urlbar-container[breakout] {
+  margin-left: 10px;
+}
+
+/* hide closest arrow when all they way to either said */
+#tabbrowser-arrowscrollbox[scrolledtoend="true"]::part(scrollbutton-down),
+#tabbrowser-arrowscrollbox[scrolledtostart="true"]::part(scrollbutton-up),
+:root:not([customizing]) .toolbarbutton-1[disabled="true"],
+#nav-bar-overflow-button[disabled="true"],
+#PanelUI-menu-button[disabled="true"] {
+  /* 	opacity: 0; */
+  /* 	display: none; */
+}
+
+#PanelUI-menu-button {
+  display: none;
+}
+
+#tabbrowser-arrowscrollbox::part(scrollbutton-down),
+#tabbrowser-arrowscrollbox::part(scrollbutton-up) {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  #TabsToolbar #new-tab-button,
+  #tabs-newtab-button {
+    display: none;
+  }
+
+  #TabsToolbar .toolbarbutton-1 {
+    display: none;
+  }
+
+  #tabbrowser-arrowscrollbox::part(scrollbutton-down),
+  #tabbrowser-arrowscrollbox::part(scrollbutton-up) {
+    display: none;
+  }
+  :root {
+    --navbarWidth: 260px !important;
+  }
+
+  #page-action-buttons {
+    display: none;
+  }
+}
+/* end media query */
+#pageAction-urlbar-_testpilot-containers:not(:hover),
+#pageAction-urlbar-foxytab_eros_man,
+#star-button-box {
+  display: none !important;
+  /*   opacity: 0 !important; */
+}
+
+#scrollbutton-down,
+#scrollbutton-up {
+  display: none;
+}
+
+#urlbar-zoom-button {
+  display: none;
+}
+:root:not([chromehidden~="toolbar"])
+  #nav-bar[nonemptyoverflow]
+  > .overflow-button,
+#nav-bar[customizing] > .overflow-button {
+  -moz-box-ordinal-group: 0 !important;
+}
+
+toolbar {
+  margin-top: 4px !important;
+}
+
+#nav-bar {
+  /*   padding-top: px !important; */
+}
+/* #page-action-buttons *:not(:hover) {
+ opacity: 0 !important; 
+} */
+
+#tabbrowser-arrowscrollbox {
+  margin-bottom: 0 !important;
+}
+
+#tabbrowser-arrowscrollbox::part(overflow-end-indicator),
+#tabbrowser-arrowscrollbox::part(overflow-start-indicator) {
+  /* 	visibility: collapse; */
+  /*   z-index: -3 !important; */
+  /*   border: none !important; */
+}
+#tabbrowser-tabs:not([movingtab]) {
+  --uc-scroll-visibility: hidden;
+}
+/* #tabbrowser-tabs[overflow]{ --uc-scrollbox-margin: -28px } */
+
+/* #scrollbutton-up{ position: relative;z-index: 1 } */
+
+#scrollbutton-down,
+#scrollbutton-up,
+#scrollbutton-up ~ spacer {
+  visibility: var(--uc-scroll-visibility, visible);
+}
+
+:root[uidensity="compact"] {
+  --tab-min-height: 28px !important;
+}
+
+/* move find box to the top */
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/centered_top_statuspanel.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+#tabbrowser-tabpanels .browserContainer {
+  -moz-box-direction: reverse !important;
+}
+#tabbrowser-tabpanels .browserContainer > notificationbox {
+  -moz-box-ordinal-group: 2;
+}
+/* #statuspanel{
+  margin-top: 0 !important;
+  margin-left: 50%;
+}
+#statuspanel-inner{
+  -moz-box-align: start !important;
+  margin-left: -50%;
+}
+#statuspanel-label{
+    border-width: 0 1px 1px 1px;     
+    border-style: none solid solid solid !important;
+} */
+
+/* Not sure if this has some performance impact but or if it would cause other problems, but it allows the statuspanel to be centered to content even if sidebar is visible */
+/* .browserContainer{ transform: translateX(0) } */
+
+/* remove status panel */
+#statuspanel {
+  visibility: collapse !important;
+}
+
+/* add padding to urlbar container text */
+html#main-window
+  body
+  box
+  toolbox#navigator-toolbox
+  toolbar#nav-bar.browser-toolbar
+  hbox#nav-bar-customization-target.customization-target
+  toolbaritem#urlbar-container.chromeclass-location
+  hbox#urlbar
+  hbox#urlbar-input-container
+  moz-input-box.urlbar-input-box {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+/* remove radii */
+:root * {
+  border-radius: 0 !important;
+}
+
+/* Hide Bar when Firefox not focused */
+#navigator-toolbox {
+  max-height: 0;
+  overflow: hidden;
+  /*   transition: ease all 1s; */
+}
+
+#main-window:hover #navigator-toolbox {
+  max-height: 100vh;
+  /*   animation: 0s pop-in;
+  animation-fill-mode: both;
+  animation-delay: 5s; */
+}
+
+/* @keyframes pop-in {
+  from {overflow: hidden}
+  to {overflow: unset}
+} */
+
+* { font-family:Iosevka Nerd Font !important }

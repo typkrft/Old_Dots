@@ -18,6 +18,7 @@
     ~/.config/wezterm: wezterm
     ~/.config/sketchybar: sketchybar
     ~/.config/bin: bin
+    ~/.config/bat: bat
     ~/.config/starship.toml: zsh/starship/starship.toml
     ~/.config/kitty: kitty
     ~/.config/spacebar: spacebar
