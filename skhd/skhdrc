@@ -14,7 +14,7 @@ default, window < lctrl - escape ; scripts
 # Toggle Sketchybar
 scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Spacebar
-# scripts < 0x01 : $HOME/.config/bin/helpers -t spacebar
+scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Yabai
 scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
 # Show Desktop

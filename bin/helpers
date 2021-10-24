@@ -151,9 +151,9 @@ function toggle_service() {
   case $SERVICE in
     yabai) 
       # Yabai requires full forumla in service commands
-      [[ $SERVICE == "yabai" ]] && YABAI=xorpse/formulae/yabai || :;
+      [[ $SERVICE == "yabai" ]] && YABAI=yassinebridi/formulae/yabai || :
       # Other Services Start/Stop
-      pgrep $SERVICE && brew services stop $YABAI || brew services start $YABAI;
+      pgrep $SERVICE && brew services stop $YABAI || brew services start $YABAI
     ;;
     skhd) 
       # Don't stop SKHD
@@ -167,12 +167,24 @@ function toggle_service() {
       pgrep spacebar && yabai -m config external_bar main:$(spacebar -m config height):0 || yabai -m config external_bar main:0:0;
     ;;
     sketchybar)
-      if [[ $(pgrep sketchybar) = "" ]]; then
-        sketchybar &>/dev/null & disown;
-        yabai -m config external_bar main:$(sketchybar -m config height):0
-       else
-        yabai -m config external_bar main:0:0
+      RUNNING=$([[ $(ps aux | awk -F, '/.*\.[0-9]+ sketchybar$/ {count++} END{print count}') ]] && echo 1 || echo 0)
+
+
+      if [[ $RUNNING -eq 1 ]]; then
+          while [[ $RUNNING -eq 1 ]]; do
+              killall sketchybar
+              RUNNING=$([[ $(ps aux | awk -F, '/.*\.[0-9]+ sketchybar$/ {count++} END{print count}') ]] && echo 1 || echo 0)
+          done
+          yabai -m config external_bar main:0:0
+      elif [[ $RUNNING -eq 0 ]]; then
+          sketchybar &>/dev/null & disown;
+          while [[ ! $Y_OFFSET =~ ^-?[0-9]+$ ]]; do
+              Y_OFFSET=$(sketchybar -m query bar | jq -r '[.[]][0].y_offset')
+              HEIGHT=$(sketchybar -m query bar | jq -r '[.[]][0].height')
+          done
+          yabai -m config external_bar main:$(($HEIGHT + $Y_OFFSET)):0
       fi
+
     ;;
     *) echo default
       pgrep $SERVICE && brew services stop $SERVICE || brew services start $SERVICE;
@@ -267,6 +279,17 @@ function toggle_layouts(){
 # TODO: Refactor so that It tries to de/minimize first to try and improve speed
 # TODO: Yabai Batch Commands?
 
+# UNUSED:    
+   # MINI=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()[0][0]')
+
+    # BORDER=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()' )
+    # INFO=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()')
+    # BORDER=$(echo $INFO | awk '{print $1}')
+    # INFO=$(yabai -m query --windows --window $ID | jq '.[]|select(.title=="Quake")|.border')
+    # ID=$(echo $INFO | awk '{print $2}')
+    # osascript -l JavaScript -e "Application('kitty').activate()" -e "Application('System Events').processes['kitty'].menuBars[0].menuBarItems.byName('Shell').menus[0].menuItems.byName('Close OS Window').click()"
+     # osascript -l JavaScript -e "Application('kitty').activate()"
+
 function kitty_quake() {
   KITTY=$(pgrep -a -f ".*kitty.*")  
   QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
@@ -276,13 +299,11 @@ function kitty_quake() {
     do
       KITTY=$(pgrep -a -f ".*kitty.*")  
     done
-    # osascript -l JavaScript -e "Application('kitty').activate()" -e "Application('System Events').processes['kitty'].menuBars[0].menuBarItems.byName('Shell').menus[0].menuItems.byName('Close OS Window').click()"
     open -a kitty -n --args -1 --listen-on=unix:/tmp/kitty --title=Quake
     while [[ $QUAKE != "Quake" ]]
     do
       QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
     done
-    # osascript -l JavaScript -e "Application('kitty').activate()"
     WINDOW_ID=$(GetWindowID kitty 'Quake')
     yabai -m window $WINDOW_ID --toggle sticky 
     yabai -m window $WINDOW_ID --move abs:0:0
@@ -294,7 +315,6 @@ function kitty_quake() {
     while [[ $QUAKE != "Quake" ]]
     do
       QUAKE=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).name()')
-      # sleep .1
     done
     WINDOW_ID=$(GetWindowID kitty 'Quake')
     yabai -m window $WINDOW_ID --toggle sticky
@@ -304,25 +324,12 @@ function kitty_quake() {
   elif [[ $KITTY != "" && $QUAKE != "" ]]; then
     WINDOW_ID=$(GetWindowID kitty 'Quake')
     MINI=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()' | grep -c true)
-    # MINI=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()[0][0]')
-
-    # BORDER=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()' )
-    # INFO=$(osascript -l JavaScript -e 'Application("System Events").processes.whose({name: "kitty"}).windows.whose({name: "Quake"}).attributes.byName("AXMinimized").value()')
-    # BORDER=$(echo $INFO | awk '{print $1}')
-    # INFO=$(yabai -m query --windows --window $ID | jq '.[]|select(.title=="Quake")|.border')
-    # ID=$(echo $INFO | awk '{print $2}')
     if [[ $MINI -eq 1 ]]; then
-      # [[ $BORDER -eq 1 ]] && yabai -m window "$WNDOW_ID" --toggle border || :
       yabai -m window "$WINDOW_ID" --deminimize &
-      # yabai -m window "$ID" --move abs:0:0;
-      # yabai -m window "$ID" --resize abs:10000:450;
-      # [[ $BORDER -eq 0 ]] && yabai -m window "$WNDOW_ID" --toggle border || :
       yabai -m window $WINDOW_ID --move abs:0:0 &
       yabai -m window $WINDOW_ID --resize abs:10000:450 &
-      # yabai -m window $WINDOW_ID --opacity 0.95
       yabai -m window "$WINDOW_ID" --focus "$WINDOW_ID" 
       yabai -m window "$WINDOW_ID" --opacity 0.95 &
-
     elif [[ $MINI -eq 0 ]]; then
       BORDER=$(yabai -m query --windows --window $WINDOW_ID | jq '."border"') 
       [[ $BORDER -eq 1 ]] && yabai -m window "$WINDOW_ID" --toggle border || : &
@@ -330,7 +337,6 @@ function kitty_quake() {
       yabai -m window "$WINDOW_ID" --minimize &
       exit 0
     fi
-
     BORDER=$(yabai -m query --windows --window $WINDOW_ID | jq '."border"') 
     [[ $BORDER -eq 1 ]] && yabai -m window "$WINDOW_ID" --toggle border || : &
     exit 0

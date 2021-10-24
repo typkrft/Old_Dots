@@ -12,7 +12,6 @@ if [[
   || ${CURRENT_TIME#0} -lt ${PRE_MARKET_START#0}
 ]]; then
   sketchybar -m set vti drawing off
-  sketchybar -m set vti_sep drawing off
   exit 0
 fi
 
@@ -37,6 +36,5 @@ fi
 [[ $VTI == "" ]] && exit 0 || :
 
 sketchybar -m set vti label $VTI
-sketchybar -m set vti_sep drawing on
 sketchybar -m set vti drawing on
 

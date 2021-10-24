@@ -13,13 +13,14 @@ source colors.sh
 # V A R I A B L E S
 # NOTE: Exporting Directory Didn't work for some reason
 PLUGINS_DIR="$HOME/.config/sketchybar/plugins"
+HOMEBREW_PYTHON="/opt/homebrew/bin/python3"
 
 # B A R  C O N F I G
 sketchybar -m batch --bar                                          \
     position="top"                                                 \
     height=32                                                      \
     margin=11                                                      \
-    y_offset=10                                                    \
+    y_offset=11                                                    \
     padding_left=0                                                 \
     padding_right=0                                                \
     topmost="off"                                                  \
@@ -227,7 +228,7 @@ sketchybar -m batch                                                \
         icon_padding_left=10                                       \
         icon_padding_right=2                                       \
         label_padding_right=10                                     \
-        script="$PLUGINS_DIR/btc.sh"                               \
+        script="$HOMEBREW_PYTHON $PLUGINS_DIR/btc.py"              \
                                                                    \
     --add item eth right                                           \
     --set eth                                                      \
@@ -237,7 +238,7 @@ sketchybar -m batch                                                \
         icon_padding_left=10                                       \
         icon_padding_right=2                                       \
         label_padding_right=2                                      \
-        script="$PLUGINS_DIR/eth.sh"                               \
+        script="$HOMEBREW_PYTHON $PLUGINS_DIR/eth.py"              \
         icon_font="Iosevka Nerd Font Mono:Bold:18.0"               \
                                                                    \
     --add item vti right                                           \
@@ -300,6 +301,4 @@ sketchybar -m batch                                                \
 # D O N E
 sketchybar -m update
 echo "sketchybar configuration loaded.."
-
-        
 
