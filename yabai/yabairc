@@ -8,7 +8,9 @@
 #    ╚═╝         ╚═╝  ╚═╝      ╚═════╝       ╚═╝  ╚═╝      ╚═╝
                                     
 # P A T H S
+  # Sketchybar PATH NOTE: This will change when installed through brew
   export PATH=$HOME/.config/bin:$PATH
+  # WAL Color Schemes
   export PATH=$HOME/.cache/wal:$PATH
 
 # S C R I P T I N G  A D D I T T I O N S
