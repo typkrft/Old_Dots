@@ -4,7 +4,7 @@
     "editor.fontFamily": "Iosevka Nerd Font Mono",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
+    "terminal.integrated.fontFamily": "Iosevka Nerd Font",
     "editor.fontLigatures": true,
     "workbench.colorTheme": "Tokyo Night",
     "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/libexec/bin/python",
@@ -152,5 +152,4 @@
     "pgsql.resultsFontFamily": "Iosevka Nerd Font Mono, -apple-system,BlinkMacSystemFont,Segoe WPC,Segoe UI,HelveticaNeue-Light,Ubuntu,Droid Sans,sans-serif",
     "csv-edit.fontSizeInPx": 166,
     "pgsql.resultsFontSize": 16,
-    "window.zoomLevel": 1,
 }

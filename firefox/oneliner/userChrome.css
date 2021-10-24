@@ -102,6 +102,7 @@ TODO: Hide Bar with only one tab
 
 #TabsToolbar {
   margin-left: var(--navbarWidth) !important;
+  margin-bottom: 0px !important;
 }
 
 #nav-bar {
@@ -297,6 +298,7 @@ toolbar {
 
 :root[uidensity="compact"] {
   --tab-min-height: 28px !important;
+  --urlbar-min-height: 30px !important;
 }
 
 /* move find box to the top */
@@ -354,19 +356,74 @@ html#main-window
 #navigator-toolbox {
   max-height: 0;
   overflow: hidden;
-  /*   transition: ease all 1s; */
+    transition: ease all .35s;
 }
 
-#main-window:hover #navigator-toolbox {
+/* #main-window:hover #navigator-toolbox {
   max-height: 100vh;
-  /*   animation: 0s pop-in;
+  animation: 0s pop-in;
   animation-fill-mode: both;
-  animation-delay: 5s; */
-}
+  animation-delay: 5s; 
+  margin-bottom: -10px !important;
+}  */
 
-/* @keyframes pop-in {
+@keyframes pop-in {
   from {overflow: hidden}
   to {overflow: unset}
-} */
+}
 
 * { font-family:Iosevka Nerd Font !important }
+
+
+/* Dummy variable to support both versions 89-90 */
+:root{ --tab-block-margin: var(--proton-tab-block-margin) }
+
+:root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
+
+#titlebar{ -moz-appearance: none !important; }
+#TabsToolbar{ min-height: 0px !important }
+
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox, #tabbrowser-arrowscrollbox{ min-height: 0 !important; }
+
+
+:root:not([customizing]) #tabbrowser-tabs .tabs-newtab-button,
+:root:not([customizing]) #tabs-newtab-button,
+:root:not([customizing]) #TabsToolbar-customization-target > .toolbarbutton-1,
+:root:not([customizing]) #TabsToolbar .titlebar-button{
+/*   -moz-appearance: none !important; */
+  height: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  -moz-box-align: stretch;
+  margin: 0px !important;
+}
+
+/* .accessibility-indicator,
+.private-browsing-indicator{ 
+  height: unset !important;
+} */
+/* .accessibility-indicator > hbox{ padding-block: 0 !important } */
+
+/* #tabbrowser-tabs .tabbrowser-tab{ height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin,0px)) } */
+
+#tabbrowser-tabs .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+  visibility: collapse !important;
+}
+
+#main-window:hover #navigator-toolbox,
+:not(tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]),
+:not(urlbar-exceeds-toolbar-bounds="true")
+{
+    max-height: 100vh !important;
+}
+
+#main-window:hover #navigator-toolbox{
+  overflow: unset
+}
+
+#tabs-newtab-button > .toolbarbutton-icon{
+  padding: 0px !important;
+  transform: scale(0.6);
+  background-color: transparent !important;
+}
+
