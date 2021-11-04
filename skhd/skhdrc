@@ -14,7 +14,7 @@ default, window < lctrl - escape ; scripts
 # Toggle Sketchybar
 scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Spacebar
-scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
+# scripts < 0x01 : $HOME/.config/bin/helpers -t sketchybar
 # Toggle Yabai
 scripts < 0x10 : $HOME/.config/bin/helpers -t yabai
 # Show Desktop
@@ -103,9 +103,18 @@ default < cmd - w [
   "kitty" : skhd -k "ctrl + shift - w"
 ]
 
-default < ctrl - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
-default < ctrl - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
+default < ctrl + alt - up : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first || yabai -m window --focus last
+default < ctrl + alt - down : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
 default < cmd - return [
   "mail" : skhd -k "cmd + shift - d"
 ]
 default < cmd - 0x32 : $HOME/.config/bin/helpers -Q
+
+default < ctrl + alt - b : open -a Bitwarden.app
+default < ctrl + alt - a : open -a Authy\ Desktop.app
+default < ctrl + alt - left : yabai -m window --swap prev
+default < ctrl + alt - right : yabai -m window --swap next 
+default < ctrl + alt - 0x18 : yabai -m space --balance
+default < ctrl + alt - s : yabai -m window --toggle split
+default < ctrl + alt - r : yabai -m space --rotate 90
+default < ctrl + alt - f : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2

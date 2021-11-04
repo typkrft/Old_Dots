@@ -23,9 +23,9 @@
   
   HEIGHT=$(sketchybar -m query bar | jq -r '[.[]][0].height')
   if [[ ! $HEIGHT =~ ^-?[0-9]+$ ]]; then
-      while [[ ! $HEIGHT =~ ^-?[0-9]+$ ]]; do
-          Y_OFFSET=$(sketchybar -m query bar | jq -r '[.[]][0].y_offset')
+      while [[ ! $Y_OFFSET =~ ^-?[0-9]+$ ]]; do
           HEIGHT=$(sketchybar -m query bar | jq -r '[.[]][0].height')
+          Y_OFFSET=$(sketchybar -m query bar | jq -r '[.[]][0].y_offset')
       done
   fi
 
@@ -36,7 +36,7 @@
   helpers -C "5"
   
 # T I L I N G 
-  yabai -m config external_bar                 main:$(($HEIGHT + $Y_OFFSET)):0
+  yabai -m config external_bar                 main:"$(($HEIGHT + $Y_OFFSET))":0
   yabai -m config window_placement             second_child
   yabai -m config window_topmost               on
   yabai -m config split_ratio                  0.50
@@ -135,7 +135,15 @@
   # Sketchybar
     yabai -m signal --add event=window_focused action="/Users/brandon/.config/bin/sketchybar -m trigger window_focus &> /dev/null"
     yabai -m signal --add event=window_title_changed action="/Users/brandon/.config/bin/sketchybar -m trigger title_change &> /dev/null"
-  
+
+  # TOPMOST
+    # NOTE: FLOATING WINDOWS NEVER SEEM TO STAY ON TOP
+    # yabai -m signal --add event=application_activated action="sh $HOME/.dotfiles/yabai/topmost_script.sh"
+    # yabai -m signal --add event=window_focused action="$HOME/.dotfiles/yabai/topmost_script.sh"
+    # yabai -m  signal --add event=window_deminimized action="$HOME/.dotfiles/yabai/topmost_script.sh"
+    # yabai -m  signal --add event=window_title_changed action="$HOME/.dotfiles/yabai/topmost_script.sh"
+
+
 # B O R D E R S  
   yabai -m config window_border                on
   yabai -m config window_border_width          6
